@@ -48,7 +48,7 @@ export default function Home() {
       setCurrentTextIndex((prev) => (prev + 1) % loadingTexts.length);
     }, 1500);
     return () => clearInterval(interval);
-  }, []);
+  }, [loadingTexts.length]);
 
   useEffect(() => {
     if (counter === 100) {

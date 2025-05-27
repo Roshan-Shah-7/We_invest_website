@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Twitter, Linkedin, Youtube, Instagram } from 'lucide-react';
+import Link from 'next/link'; // Import Link component
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,7 +80,7 @@ export default function Footer() {
                     <div ref={el => { columnsRef.current[1] = el; }} className="footer-column">
                         <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Quick Links</h3>
                         <ul className="text-muted-foreground text-sm space-y-1">
-                            <li><a href="/" className="hover:text-brand_teal">Home</a></li>
+                            <li><Link href="/" className="hover:text-brand_teal">Home</Link></li>
                             <li><a href="/what-we-provide" className="hover:text-brand_teal">What We Provide</a></li>
                             <li><a href="/why-we-invest" className="hover:text-brand_teal">Why We Invest</a></li>
                             <li><a href="/portfolio" className="hover:text-brand_teal">Portfolio</a></li>
