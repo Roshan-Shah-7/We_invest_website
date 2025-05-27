@@ -1,11 +1,11 @@
 'use client';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { serviceData } from '@/data';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Tilt from 'react-parallax-tilt';
-import { Lightbulb, Users, Rocket, Handshake, Briefcase, Megaphone, GraduationCap, Target, DollarSign } from 'lucide-react';
+import { Lightbulb, Rocket, Briefcase, Megaphone, GraduationCap, Target, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';

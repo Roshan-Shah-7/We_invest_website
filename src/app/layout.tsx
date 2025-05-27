@@ -19,11 +19,36 @@ const ebGaramond = EB_Garamond({
 });
 
 
-// export const metadata: Metadata = {
-//   title: "Wee Invest Global Pvt. Ltd.",
-//   description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-//   icons: "/w_logo.png"
-// };
+const metadata: Metadata = {
+  title: "Wee Invest Global Pvt. Ltd.",
+  description: "Investment platform for Wee Invest Global Pvt. Ltd.",
+  icons: "/w_logo.png",
+  keywords: "investment, global, finance, wealth, management",
+  openGraph: {
+    title: "Wee Invest Global Pvt. Ltd.",
+    description: "Investment platform for Wee Invest Global Pvt. Ltd.",
+    url: "https://yourwebsite.com", // Replace with your actual website URL
+    siteName: "Wee Invest Global Pvt. Ltd.",
+    images: [
+      {
+        url: "https://yourwebsite.com/og-image.jpg", // Replace with your actual Open Graph image URL
+        width: 800,
+        height: 600,
+        alt: "Wee Invest Global Pvt. Ltd. Open Graph Image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@yourtwitterhandle", // Replace with your Twitter handle
+    creator: "@yourtwitterhandle", // Replace with your Twitter handle
+    title: "Wee Invest Global Pvt. Ltd.",
+    description: "Investment platform for Wee Invest Global Pvt. Ltd.",
+    images: ["https://yourwebsite.com/twitter-image.jpg"], // Replace with your actual Twitter image URL
+  },
+};
 
 export default function RootLayout({
   children,
@@ -41,8 +66,6 @@ export default function RootLayout({
     if (!hasBeenManuallyToggled) {
       setIsSidebarExpanded(shouldBeExpandedBasedOnScroll);
     } else {
-      // If the scroll action would naturally lead to the current manually set state,
-      // reset the manual toggle flag, allowing scroll to take over again.
       if (isSidebarExpanded === shouldBeExpandedBasedOnScroll) {
         setHasBeenManuallyToggled(false);
       }

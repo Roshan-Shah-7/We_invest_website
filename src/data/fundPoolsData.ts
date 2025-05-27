@@ -8,13 +8,20 @@ import retailEvolutionImage from '@/assets/home/Retail Evolution.jpg';
 import mobilityTransportImage from '@/assets/home/Mobility & Transport.jpg';
 import ventureCapitalImage from '@/assets/home/Venture Capital.jpg';
 
+interface ImageData {
+  src: string;
+  height: number;
+  width: number;
+  blurDataURL?: string; // Optional, depending on configuration
+}
+
 export interface FundPool {
   number: string;
   title: string;
   focus: string;
   goal: string;
   color: string;
-  image: any;
+  image: ImageData;
 }
 
 export const fundPoolsData: FundPool[] = [

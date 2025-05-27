@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Correct import path
 import { Button } from '@/components/ui/button'; // Import Button component
 import { Quote } from 'lucide-react'; // Import Quote icon
+import Image from 'next/image'; // Import Image component
 
 gsap.registerPlugin(ScrollTrigger); // Register once globally
 
@@ -90,10 +91,12 @@ const Testimonials: React.FC = () => {
                                 "{testimonial.quote}"
                             </p>
                             <div className="flex items-center">
-                                <img
+                                <Image
                                     src={testimonial.logo}
                                     alt={`${testimonial.company} logo`}
                                     className="w-12 h-12 rounded-full mr-4 object-cover border border-border"
+                                    width={48}
+                                    height={48}
                                 />
                                 <div>
                                     <h4 className="text-lg font-semibold text-primary">
