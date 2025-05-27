@@ -18,7 +18,7 @@ const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond"
 });
 
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const metadata: Metadata = {
   title: "Wee Invest Global Pvt. Ltd.",
   description: "Investment platform for Wee Invest Global Pvt. Ltd.",
