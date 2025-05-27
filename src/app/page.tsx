@@ -1,101 +1,152 @@
-import Image from "next/image";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { gsap, CSSPlugin, Expo } from 'gsap';
+gsap.registerPlugin(CSSPlugin);
+
+import Hero from '@/components/Hero';
+import WhatWeProvide from '@/components/WhatWeProvide';
+import WhyUs from '@/components/WhyUs';
+import Portfolio from '@/components/Portfolio';
+import Testimonials from '@/components/Testimonials';
+import Video from '@/components/Video';
+import FundPools from '@/components/FundPools';
+import Footer from '@/components/Footer';
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [counter, setCounter] = useState(0);
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [showMainContent, setShowMainContent] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const loadingTexts = [
+    'Loading your dashboard…',
+    'Fetching user preferences…',
+    'Optimizing layout…',
+    'Almost there…'
+  ];
+
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  useEffect(() => {
+    const count = setInterval(() => {
+      setCounter((prev) => {
+        if (prev < 100) {
+          return prev + 1;
+        } else {
+          clearInterval(count);
+          return 100;
+        }
+      });
+    }, 25);
+
+    return () => clearInterval(count);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % loadingTexts.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (counter === 100) {
+      revel();
+    }
+  }, [counter]);
+
+  const revel = () => {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setLoadingComplete(true);
+        setTimeout(() => {
+          setShowMainContent(true);
+        }, 50);
+      },
+    });
+
+    tl.to('.follow', {
+      width: '100%',
+      duration: 1.5,
+      delay: 0.7,
+      ease: Expo.easeInOut,
+    })
+      .to('.hide', {
+        opacity: 0,
+        duration: 0.3,
+      })
+      .to('.hide', {
+        display: 'none',
+        duration: 0.1,
+      })
+      .to('.follow', {
+        height: '100%',
+        duration: 0.7,
+        delay: 0.3,
+        ease: Expo.easeInOut,
+      }).to('.loader', {
+        width: "0%",
+        duration: 0.5,
+      }).to('.loader', {
+        opacity: 0,
+        duration: 0.7,
+        backgroundColor: "transparent",
+      })
+  };
+
+
+  return (
+    <>
+      {/* Loader */}
+      {!loadingComplete && (
+        <div className="w-full h-screen fixed z-[100000] text-center loader">
+          <div className="loading w-full h-screen bg-black flex items-center justify-center absolute top-0 left-0">
+            <div className="follow absolute bg-brand_teal h-[2px] w-0 z-10 left-0"></div>
+            <div
+              className="progressBar hide absolute left-0 h-[2px] bg-white transition-all duration-300 ease-out"
+              style={{ width: `${counter}%` }}
+            ></div>
+            <h1 className="count hide absolute text-6xl md:text-9xl text-white font-semibold -translate-x-4 z-20">
+              {counter}%
+            </h1>
+            <p className="absolute bottom-20 text-white animate-pulse text-lg hide">
+              {loadingTexts[currentTextIndex]}
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      )}
+
+      {/* Main Content */}
+      {showMainContent && (
+        <div
+          className={`transition-opacity duration-500 ease-in-out w-full h-full ${loadingComplete ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className="flex flex-col items-center justify-center w-full">
+            <main className="flex flex-col items-center justify-center w-full text-center mx-auto">
+              {loadingComplete ? (
+                <>
+                  <Hero />
+                  <WhatWeProvide />
+                  <WhyUs />
+                  <FundPools />
+                  <Portfolio />
+                  <Video />
+                  <Testimonials />
+                </>
+              ) : (
+                <div className="animate-pulse space-y-6 p-4">
+                  <div className="h-8 bg-gray-300 rounded w-3/4 mx-auto"></div>
+                  <div className="h-6 bg-gray-300 rounded w-1/2 mx-auto"></div>
+                  <div className="h-64 bg-gray-200 rounded w-full max-w-4xl mx-auto"></div>
+                </div>
+              )}
+            </main>
+            <Footer />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
