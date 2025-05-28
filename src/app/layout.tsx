@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { Lato, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react'; // Removed useEffect and useCallback as scroll/toggle logic is removed
+import Footer from "@/components/Footer";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -55,58 +56,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
-  const [hasBeenManuallyToggled, setHasBeenManuallyToggled] = useState(false);
-
-  const SCROLL_THRESHOLD = 50; // Pixels
-
-  const handleScroll = useCallback(() => {
-    const shouldBeExpandedBasedOnScroll = window.scrollY <= SCROLL_THRESHOLD;
-
-    if (!hasBeenManuallyToggled) {
-      setIsSidebarExpanded(shouldBeExpandedBasedOnScroll);
-    } else {
-      if (isSidebarExpanded === shouldBeExpandedBasedOnScroll) {
-        setHasBeenManuallyToggled(false);
-      }
-    }
-  }, [isSidebarExpanded, hasBeenManuallyToggled]);
-
-  useEffect(() => {
-    // Simple debounce
-    let timeoutId: NodeJS.Timeout;
-    const debouncedHandler = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        handleScroll();
-      }, 100); // Debounce scroll events by 100ms
-    };
-
-    window.addEventListener('scroll', debouncedHandler);
-    // Initial check in case page loads scrolled
-    handleScroll();
-    return () => {
-      window.removeEventListener('scroll', debouncedHandler);
-      clearTimeout(timeoutId);
-    };
-  }, [handleScroll]);
-
-  const toggleSidebarExpansion = useCallback(() => {
-    setIsSidebarExpanded(prev => !prev);
-    setHasBeenManuallyToggled(true);
-  }, []);
+  // isSidebarExpanded state is kept but will always be true as collapse feature is removed
+  const [isSidebarExpanded] = useState(true);
 
   return (
     <html lang="en">
       <body
         className={`${lato.variable} ${ebGaramond.variable} font-sans antialiased`}
       >
-        <Header isExpanded={isSidebarExpanded} onToggleExpansion={toggleSidebarExpansion} />
+        <Header />
         <main
           className={`transition-all duration-500 ease-in-out`}
         >
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
