@@ -44,7 +44,7 @@ const Testimonials: React.FC = () => {
 
     const testimonials: Testimonial[] = [
         {
-            quote: 'Wee Invest’s mentorship transformed our startup journey. We raised $1M in just 9 months and couldn’t have done it without their strategic guidance.',
+            quote: 'Wee Invest&apos;s mentorship transformed our startup journey. We raised $1M in just 9 months and couldn&apos;t have done it without their strategic guidance.',
             name: 'Priya Sharma',
             title: 'Founder',
             company: 'EcoInnovate',
@@ -75,7 +75,7 @@ const Testimonials: React.FC = () => {
 
                 <div className="mb-16 text-center">
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                        We’re proud to support visionaries who are changing the world. Hear from the founders we’ve helped succeed.
+                        We&apos;re proud to support visionaries who are changing the world. Hear from the founders we&apos;ve helped succeed.
                     </p>
                 </div>
 
@@ -116,7 +116,7 @@ const Testimonials: React.FC = () => {
                         Join Our Success Stories
                     </h3>
                     <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-                        Ready to write your own success story? Let’s make it happen together.
+                        Ready to write your own success story? Let&apos;s make it happen together.
                     </p>
                     <Button size="lg" className="rounded-full bg-brand_teal hover:bg-brand_teal/90">
                         Apply Now

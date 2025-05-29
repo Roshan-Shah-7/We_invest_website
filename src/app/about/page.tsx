@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
@@ -92,7 +93,7 @@ export default function AboutUsPage() {
                                     </div>
                                     <h3 className="text-xl font-bold text-slate-900 mb-4">Strategic Partnership</h3>
                                     <p className="text-slate-600 leading-relaxed">
-                                        We don't just fund businesses—we partner with founders, working side by side to build resilient
+                                        We don&apos;t just fund businesses—we partner with founders, working side by side to build resilient
                                         enterprises that deliver lasting impact.
                                     </p>
                                 </CardContent>
@@ -197,9 +198,10 @@ export default function AboutUsPage() {
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl transform rotate-3"></div>
                                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
-                                    <img
+                                    <Image
                                         src="/placeholder.svg?height=500&width=600"
                                         alt="Mission illustration"
+                                        fill
                                         className="w-full h-96 object-cover rounded-2xl"
                                     />
 
@@ -243,7 +245,8 @@ export default function AboutUsPage() {
                             <div className="relative">
                                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl transform -rotate-3"></div>
                                 <div className="relative bg-white rounded-3xl p-6 shadow-2xl">
-                                    <img
+                                    <Image
+                                        fill
                                         src="/placeholder.svg?height=400&width=500"
                                         alt="Company founding story"
                                         className="w-full h-80 object-cover rounded-2xl"
@@ -572,7 +575,7 @@ export default function AboutUsPage() {
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Our Commitment to Excellence</h2>
                         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            Your success is our success. We're committed to providing exceptional service and support throughout your
+                            Your success is our success. We&apos;re committed to providing exceptional service and support throughout your
                             entrepreneurial journey.
                         </p>
                     </div>
@@ -678,7 +681,7 @@ export default function AboutUsPage() {
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your Vision?</h2>
                         <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-                            Connect with us to explore how We Invest can support your entrepreneurial journey. Let's build the future
+                            Connect with us to explore how We Invest can support your entrepreneurial journey. Let&apos;s build the future
                             together.
                         </p>
                     </div>
@@ -722,7 +725,7 @@ export default function AboutUsPage() {
                                 <CardContent className="p-8">
                                     <h4 className="text-2xl font-bold text-slate-900 mb-6 text-center">Start Your Journey</h4>
                                     <p className="text-slate-600 mb-8 text-center">
-                                        Ready to take your venture to the next level? We'd love to hear from you.
+                                        Ready to take your venture to the next level? We&apos;d love to hear from you.
                                     </p>
                                     <div className="space-y-4">
                                         <Button

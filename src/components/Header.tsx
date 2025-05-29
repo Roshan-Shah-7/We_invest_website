@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import we_logo from '../../public/we_logo.png';
-import w_logo from '../../public/w_logo.png';
 
 const LOGO_ALT_TEXT = 'Wee Invest Global Pvt. Ltd';
 const APPLY_NOW_HREF = '/form';

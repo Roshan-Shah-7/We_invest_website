@@ -9,7 +9,6 @@ import Lottie from 'lottie-react';
 import bgAnimation from '../../assets/bg.json';
 
 import { fundPoolsData } from '@/data/fundPoolsData';
-import { Badge } from '@/components/ui/Badge';
 import NumberedBadge from '@/components/ui/NumberedBadge';
 
 gsap.registerPlugin(ScrollTrigger);

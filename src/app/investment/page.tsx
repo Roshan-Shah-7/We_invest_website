@@ -29,13 +29,13 @@ export default function InvestmentPage() {
                         We Invest: Your Gateway to <span className="text-emerald-600">Financial Growth</span>
                     </h1>
                     <blockquote className="text-xl md:text-2xl text-slate-600 italic mb-8 border-l-4 border-emerald-600 pl-6">
-                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays
+                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn&apos;t, pays
                         it."
                         <footer className="text-lg mt-2 not-italic">— Albert Einstein</footer>
                     </blockquote>
                     <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                        Smart investing is the key to unlocking financial potential. Whether you're an entrepreneur seeking capital
-                        or an individual building wealth, we're here to guide your journey.
+                        Smart investing is the key to unlocking financial potential. Whether you&apos;re an entrepreneur seeking capital
+                        or an individual building wealth, we&apos;re here to guide your journey.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
@@ -137,7 +137,7 @@ export default function InvestmentPage() {
                         <CardHeader>
                             <CardTitle className="flex items-center space-x-2">
                                 <PieChart className="h-6 w-6 text-emerald-600" />
-                                <span>Real Example: Mr. Shrestha's Investment Journey</span>
+                                <span>Real Example: Mr. Shrestha&apos;s Investment Journey</span>
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -212,7 +212,7 @@ export default function InvestmentPage() {
                                 </div>
                                 <h3 className="font-semibold text-lg text-slate-900 mb-2">Achieve Financial Goals</h3>
                                 <p className="text-slate-600 text-sm">
-                                    Whether it's buying a home, funding education, or retiring early, investing accelerates your progress
+                                    Whether it&apos;s buying a home, funding education, or retiring early, investing accelerates your progress
                                     toward major milestones.
                                 </p>
                             </CardContent>
@@ -268,7 +268,7 @@ export default function InvestmentPage() {
                                     <div>
                                         <h4 className="font-semibold text-slate-900">Conduct Thorough Research</h4>
                                         <p className="text-sm text-slate-600">
-                                            Understand the investment vehicles you're considering, whether it's stocks, bonds, or alternative
+                                            Understand the investment vehicles you&apos;re considering, whether it&apos;s stocks, bonds, or alternative
                                             assets.
                                         </p>
                                     </div>
@@ -565,7 +565,7 @@ export default function InvestmentPage() {
                                     <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5" />
                                     <div>
                                         <div className="font-semibold">Investment Size</div>
-                                        <div className="text-sm text-slate-600">Amount you're able to commit</div>
+                                        <div className="text-sm text-slate-600">Amount you&apos;re able to commit</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-3">

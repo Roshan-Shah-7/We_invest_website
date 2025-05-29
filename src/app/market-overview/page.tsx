@@ -1191,7 +1191,7 @@ export default function MarketOverviewPage() {
                                     if (filterView === "high-growth") return sector.growth >= 10
                                     return true
                                 })
-                                .map((sector, index) => {
+                                .map((sector) => {
                                     const Icon = sector.icon
                                     const isSelected = selectedSector === sector.id
                                     const isCompared = comparedSectors.includes(sector.id)
