@@ -8,11 +8,11 @@ interface AnimatedHeadlineProps {
     onToggleExpansion?: () => void;
 }
 
-const AnimatedHeadline: React.FC<AnimatedHeadlineProps> = ({ 
-    text, 
+const AnimatedHeadline: React.FC<AnimatedHeadlineProps> = ({
+    text,
     style,
     isExpanded,
-    onToggleExpansion 
+    onToggleExpansion
 }) => {
     const headlineRef = useRef<HTMLHeadingElement>(null);
 
@@ -34,8 +34,8 @@ const AnimatedHeadline: React.FC<AnimatedHeadlineProps> = ({
     }, []);
 
     return (
-        <h1 
-            ref={headlineRef} 
+        <h1
+            ref={headlineRef}
             className={`mb-6 leading-tight ${style} ${isExpanded ? 'expanded' : ''}`}
             onClick={onToggleExpansion}
         >

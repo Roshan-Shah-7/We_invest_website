@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
             'Strategic Startup Support',
         ],
         loop: 0,
-        delaySpeed: 500,
+        delaySpeed: 1000,
     });
 
     return (
@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => {
             />
 
             {/* Main content */}
-            <div className="relative w-full max-w-10xl text-center flex justify-center items-end">
+            <div className="relative w-full max-w-10xl text-start flex justify-center items-end">
                 <div>
                     <AnimatedHeadline
                         text="Grow Your Startup with"
@@ -95,8 +95,8 @@ const HeroSection: React.FC = () => {
                         onToggleExpansion={() => setIsSecondHeadlineExpanded(!isSecondHeadlineExpanded)}
                     />
 
-                    <p className="text-xl sm:text-2xl my-4 font-light">
-                        {greeting} Ready to grow your startup?
+                    <p className="text-xl sm:text-2xl my-4">
+                        {greeting} <span className='font-bold'>Ready to grow your startup?</span>
                     </p>
 
                     <h2 className="text-3xl sm:text-4xl font-semibold mb-6 text-brand_teal">

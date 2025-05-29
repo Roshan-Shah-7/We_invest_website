@@ -3,6 +3,10 @@ import { Lato, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AppClientSetup from "@/components/SmoothScrollSetup";
+import { LoadingProvider } from "@/contexts/LoadingContext";
+import PageWrapper from "@/components/PageWrapper";
+import RootLayoutClientContent from "@/components/RootLayoutClientContent";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -19,18 +23,18 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: "Wee Invest Global Pvt. Ltd.",
   description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-  icons: "/w_logo.png",
+  icons: "/w_logo.png", // Ensure this path is correct in your `public` folder
   keywords: "investment, global, finance, wealth, management",
   openGraph: {
     title: "Wee Invest Global Pvt. Ltd.",
     description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    url: "https://yourwebsite.com",
+    url: "https://yourwebsite.com", // FIXME: Replace with your actual website URL
     siteName: "Wee Invest Global Pvt. Ltd.",
     images: [
       {
-        url: "https://yourwebsite.com/og-image.jpg",
-        width: 800,
-        height: 600,
+        url: "https://yourwebsite.com/og-image.jpg", // FIXME: Replace with your actual OG image URL
+        width: 1200,
+        height: 630,
         alt: "Wee Invest Global Pvt. Ltd. Open Graph Image",
       },
     ],
@@ -39,27 +43,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourtwitterhandle",
-    creator: "@yourtwitterhandle",
+    site: "@yourtwitterhandle", // FIXME: Replace with your actual Twitter handle
+    creator: "@yourtwitterhandle", // FIXME: Replace with your actual Twitter handle
     title: "Wee Invest Global Pvt. Ltd.",
     description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    images: ["https://yourwebsite.com/twitter-image.jpg"],
+    images: ["https://yourwebsite.com/twitter-image.jpg"], // FIXME: Replace with your actual Twitter image URL
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${lato.variable} ${ebGaramond.variable} font-sans antialiased`}>
-        <Header />
-        <main className="transition-all duration-500 ease-in-out">
-          {children}
-        </main>
-        <Footer />
+        <LoadingProvider>
+          <RootLayoutClientContent>
+            {children}
+          </RootLayoutClientContent>
+        </LoadingProvider>
       </body>
     </html>
   );
