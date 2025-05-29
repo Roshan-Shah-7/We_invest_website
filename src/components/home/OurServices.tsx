@@ -1,11 +1,5 @@
 import React from 'react';
 import {
-    School,
-    Briefcase,
-    Lightbulb,
-    Presentation,
-    Users,
-    DollarSign,
     Rocket,
     Layers,
     Cpu,

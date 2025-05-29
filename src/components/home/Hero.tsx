@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react'; // Added useMemo
 import dynamic from 'next/dynamic';
-import type { Engine } from "@tsparticles/engine";
 
 const Particles = dynamic(() => import('@tsparticles/react'), { ssr: false });
 

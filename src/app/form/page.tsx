@@ -5,6 +5,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import InvestmentForm from '@/components/form/InvestmentForm';
 import { User, Zap, Briefcase, LucideIcon } from 'lucide-react';
+import Link from 'next/link';
 
 type FormType = 'individual' | 'startup' | 'business';
 
@@ -34,7 +35,7 @@ export default function ApplyPage() {
           </h1>
           <div className="w-24 h-1 bg-[#00695C] rounded-full mx-auto mb-5"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Choose the application type that best fits your profile and let's build something great together.
+            Choose the application type that best fits your profile and let&apos;s build something great together.
           </p>
         </header>
 

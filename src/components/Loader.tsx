@@ -7,7 +7,7 @@ const Loader = () => {
 
     // Initialize candles with random data
     useEffect(() => {
-        const initialCandles = Array.from({ length: 12 }, (_, i) => {
+        const initialCandles = Array.from({ length: 12 }, () => {
             const base = 50 + Math.random() * 30;
             return {
                 open: base,
