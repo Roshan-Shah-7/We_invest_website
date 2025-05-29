@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -92,7 +94,7 @@ export default function Footer() {
                     <div ref={el => { columnsRef.current[2] = el; }} className="footer-column">
                         <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Contact Us</h3>
                         <ul className="text-muted-foreground text-sm space-y-1">
-                            <li><a href="mailto:info@weinvest.com" className="hover:text-brand_teal">Email: info@weinvest.com</a></li>
+                            <li><Link href="mailto:info@weinvest.com" className="hover:text-brand_teal">Email: info@weinvest.com</Link></li>
                             <li>Phone: +977-1-555-0123</li>
                             <li>Address: 123 Innovation Lane, Kathmandu, Nepal</li>
                             <li>Office Hours: Mon-Fri, 9:00 AM - 5:00 PM (NPT)</li>
@@ -103,18 +105,18 @@ export default function Footer() {
                     <div ref={el => { columnsRef.current[3] = el; }} className="footer-column">
                         <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Connect With Us</h3>
                         <div className="flex gap-4 mt-2 justify-center md:justify-start">
-                            <a href="https://twitter.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
+                            <Link href="https://twitter.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
                                 <Twitter className="w-6 h-6" />
-                            </a>
-                            <a href="https://linkedin.com/company/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
+                            </Link>
+                            <Link href="https://linkedin.com/company/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
                                 <Linkedin className="w-6 h-6" />
-                            </a>
-                            <a href="https://youtube.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
+                            </Link>
+                            <Link href="https://youtube.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
                                 <Youtube className="w-6 h-6" />
-                            </a>
-                            <a href="https://instagram.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
+                            </Link>
+                            <Link href="https://instagram.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
                                 <Instagram className="w-6 h-6" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -122,8 +124,8 @@ export default function Footer() {
                 <div className="text-center mt-10 w-full">
                     <p className="text-muted-foreground text-xs mt-4">
                         © {new Date().getFullYear()} Wee Invest Global Pvt. Ltd. All rights reserved. |{' '}
-                        <a href="/privacy" className="hover:text-brand_teal">Privacy Policy</a> |{' '}
-                        <a href="/terms" className="hover:text-brand_teal">Terms of Service</a>
+                        <Link href="/privacy" className="hover:text-brand_teal">Privacy Policy</Link> |{' '}
+                        <Link href="/terms" className="hover:text-brand_teal">Terms of Service</Link>
                     </p>
                 </div>
             </div>

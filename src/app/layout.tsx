@@ -1,10 +1,7 @@
-'use client';
-
 import type { Metadata } from "next";
 import { Lato, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import React, { useState } from 'react'; // Removed useEffect and useCallback as scroll/toggle logic is removed
 import Footer from "@/components/Footer";
 
 const lato = Lato({
@@ -19,8 +16,7 @@ const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond"
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Wee Invest Global Pvt. Ltd.",
   description: "Investment platform for Wee Invest Global Pvt. Ltd.",
   icons: "/w_logo.png",
@@ -28,11 +24,11 @@ const metadata: Metadata = {
   openGraph: {
     title: "Wee Invest Global Pvt. Ltd.",
     description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    url: "https://yourwebsite.com", // Replace with your actual website URL
+    url: "https://yourwebsite.com",
     siteName: "Wee Invest Global Pvt. Ltd.",
     images: [
       {
-        url: "https://yourwebsite.com/og-image.jpg", // Replace with your actual Open Graph image URL
+        url: "https://yourwebsite.com/og-image.jpg",
         width: 800,
         height: 600,
         alt: "Wee Invest Global Pvt. Ltd. Open Graph Image",
@@ -43,31 +39,24 @@ const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourtwitterhandle", // Replace with your Twitter handle
-    creator: "@yourtwitterhandle", // Replace with your Twitter handle
+    site: "@yourtwitterhandle",
+    creator: "@yourtwitterhandle",
     title: "Wee Invest Global Pvt. Ltd.",
     description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    images: ["https://yourwebsite.com/twitter-image.jpg"], // Replace with your actual Twitter image URL
+    images: ["https://yourwebsite.com/twitter-image.jpg"],
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  // isSidebarExpanded state is kept but will always be true as collapse feature is removed
-  const [isSidebarExpanded] = useState(true);
-
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${lato.variable} ${ebGaramond.variable} font-sans antialiased`}
-      >
+      <body className={`${lato.variable} ${ebGaramond.variable} font-sans antialiased`}>
         <Header />
-        <main
-          className={`transition-all duration-500 ease-in-out`}
-        >
+        <main className="transition-all duration-500 ease-in-out">
           {children}
         </main>
         <Footer />
