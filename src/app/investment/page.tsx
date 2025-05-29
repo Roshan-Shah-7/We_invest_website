@@ -29,8 +29,8 @@ export default function InvestmentPage() {
                         We Invest: Your Gateway to <span className="text-emerald-600">Financial Growth</span>
                     </h1>
                     <blockquote className="text-xl md:text-2xl text-slate-600 italic mb-8 border-l-4 border-emerald-600 pl-6">
-                        "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn&apos;t, pays
-                        it."
+                        &quot;Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn&apos;t, pays
+                        it.&quot;
                         <footer className="text-lg mt-2 not-italic">— Albert Einstein</footer>
                     </blockquote>
                     <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">

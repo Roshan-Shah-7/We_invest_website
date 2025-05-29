@@ -15,10 +15,6 @@ interface NavLink {
   label: string;
 }
 
-interface HeaderProps {
-  // isExpanded and onToggleExpansion props removed as collapse feature is removed
-}
-
 const navLinks: ReadonlyArray<NavLink> = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -27,7 +23,7 @@ const navLinks: ReadonlyArray<NavLink> = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export default function Header({ }: HeaderProps) { // Removed isExpanded and onToggleExpansion from function signature
+export default function Header({ }) { // Removed isExpanded and onToggleExpansion from function signature
   const pathname = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);

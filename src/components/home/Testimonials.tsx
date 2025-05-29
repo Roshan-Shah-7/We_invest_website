@@ -88,7 +88,7 @@ const Testimonials: React.FC = () => {
                         >
                             <Quote className="w-8 h-8 text-brand_teal mb-4" /> {/* Quote icon */}
                             <p className="text-foreground italic mb-6">
-                                "{testimonial.quote}"
+                                &quot;{testimonial.quote}&quot;
                             </p>
                             <div className="flex items-center">
                                 <Image
