@@ -1,5 +1,6 @@
 // components/VideoGallery.tsx
 import { useState } from 'react';
+import Image from 'next/image'; // Import the Image component
 
 interface Video {
     id: string;
@@ -48,10 +49,12 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                             ) : (
                                 <>
                                     <div className="aspect-video bg-gray-200 relative">
-                                        <img
+                                        <Image
                                             src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                             alt={video.title}
-                                            className="w-full h-full object-cover"
+                                            fill // Use fill to make the image cover the parent div
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Add appropriate sizes
+                                            className="object-cover"
                                         />
                                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                                             <div className="w-16 h-16 rounded-full bg-[#00695C] flex items-center justify-center">

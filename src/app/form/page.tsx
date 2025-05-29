@@ -5,7 +5,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import InvestmentForm from '@/components/form/InvestmentForm';
 import { User, Zap, Briefcase, LucideIcon } from 'lucide-react';
-import Link from 'next/link';
 
 type FormType = 'individual' | 'startup' | 'business';
 

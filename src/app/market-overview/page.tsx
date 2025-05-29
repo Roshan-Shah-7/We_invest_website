@@ -490,16 +490,18 @@ const AnimatedSection = ({ children, delay = 0 }: AnimatedSectionProps) => {
             { threshold: 0.1 },
         )
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current)
+        const currentRef = sectionRef.current; // Capture the ref value
+
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current)
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
-        }
-    }, [delay])
+        };
+    }, [delay]);
 
     return (
         <div

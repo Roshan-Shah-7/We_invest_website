@@ -243,7 +243,7 @@ const FundPools: React.FC = () => {
     // Reset cardsRef when data changes to ensure fresh refs are collected
     useEffect(() => {
         cardsRef.current = [];
-    }, [fundPoolsData]);
+    }, []); // Removed fundPoolsData
 
     const addToRefs = useCallback((el: HTMLDivElement | null) => {
         if (el && !cardsRef.current.includes(el)) {
@@ -359,7 +359,7 @@ const FundPools: React.FC = () => {
             // avoid killing all of them. Just kill the one associated with this component.
             // ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Generally avoid unless necessary
         };
-    }, [fundPoolsData, addToRefs]); // Re-run if fundPoolsData changes or addToRefs changes (it won't due to useCallback)
+    }, [addToRefs]); // Removed fundPoolsData
 
     return (
         <section
