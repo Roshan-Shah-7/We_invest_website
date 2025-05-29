@@ -4,14 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { gsap, CSSPlugin, Expo } from 'gsap';
 gsap.registerPlugin(CSSPlugin);
 
-import Hero from '@/components/Hero';
-import WhatWeProvide from '@/components/WhatWeProvide';
-import WhyUs from '@/components/WhyUs';
-import Portfolio from '@/components/Portfolio';
-import Testimonials from '@/components/Testimonials';
-import Video from '@/components/Video';
-import FundPools from '@/components/FundPools';
-import Footer from '@/components/Footer';
+import Hero from '@/components/home/Hero';
+import WhatWeProvide from '@/components/home/WhatWeProvide';
+import WhyUs from '@/components/home/WhyUs';
+import Portfolio from '@/components/home/Portfolio';
+import Testimonials from '@/components/home/Testimonials';
+import Video from '@/components/home/Video';
+import FundPools from '@/components/home/FundPools';
 
 
 export default function Home() {

@@ -1,141 +1,756 @@
-'use client'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/Badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+    Users,
+    Heart,
+    Lightbulb,
+    Shield,
+    Globe,
+    Mail,
+    Phone,
+    MapPin,
+    ArrowRight,
+    CheckCircle,
+    Award,
+    TrendingUp,
+    BarChart3,
+    Building2,
+    Target,
+    Zap,
+    PieChart,
+    LineChart,
+    DollarSign,
+    UserCheck,
+    Clock,
+    Headphones,
+} from "lucide-react"
 
-import React, { useEffect } from 'react';
-import Image from 'next/image';
-import Building from "@/assets/about/building.jpg"
-import Empowerment from '@/assets/about/empowerment.svg';
-import Integrity from '@/assets/about/integrity.svg';
-import Growth from '@/assets/about/growth.svg';
-import MissionCard from '@/components/MissionCard';
-import TeamMemberCard from '@/components/TeamMemberCard'; // Import TeamMemberCard
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MarketOverview from '@/components/MarketOverview';
-import OurStorySection from '@/components/OurStorySection';
-
-gsap.registerPlugin(ScrollTrigger);
-
-
-const About = () => {
-    const missionData = [
-        {
-            icon: Empowerment,
-            title: 'Empowerment',
-            description: 'We empower individuals and businesses to take control of their financial future through education and strategic investment.',
-        },
-        {
-            icon: Integrity,
-            title: 'Integrity',
-            description: 'We uphold the highest standards of integrity in all our interactions, ensuring transparency and trust with our clients.',
-        },
-        {
-            icon: Growth,
-            title: 'Innovation', // Assuming 'Growth' icon is for 'Innovation' based on previous context
-            description: 'We embrace innovation and leverage cutting-edge technology to provide our clients with the best investment solutions available.',
-        },
-    ];
-
-    const teamData = [
-        {
-            name: 'Keshab Jaisi',
-            role: 'Talent Scout',
-            badge: 'Co-Founder',
-            description: 'Our talent scout, Keshab has an exceptional ability to identify promising ventures and forge strategic partnerships. His vision and expertise help turn bold ideas into reality.',
-            imageUrl: '/assets/team/keshab.jpg',
-        },
-        {
-            name: 'Laxmi Dangol',
-            role: 'Operational Efficiency Master',
-            badge: 'Operations Lead',
-            description: 'A master of operational efficiency, Laxmi specializes in optimizing processes and driving financial performance. Her expertise ensures our partners achieve sustainable growth.',
-            imageUrl: '/assets/team/laxmi.jpg',
-        },
-        {
-            name: 'Bipendra Chudal',
-            role: 'Analytical Expert',
-            badge: 'Advisor',
-            description: 'Our analytical expert, Bipendra uncovers critical insights from data to guide our investment strategies. His sharp mind keeps us ahead in an ever-changing market.',
-            imageUrl: '/assets/team/bipendra.jpg',
-        },
-        {
-            name: 'Dr. Banuram Niraula',
-            role: 'Seasoned Economist',
-            badge: 'Chief Economist',
-            description: 'A seasoned economist with experience at the World Bank, Dr. Niraula provides strategic foresight and deep insights into global economic trends, shaping our investment decisions.',
-            imageUrl: '/assets/team/banuram.jpg',
-        },
-        {
-            name: 'Vijay Chhetri',
-            role: 'Finance Head',
-            badge: 'Finance Director',
-            description: 'Our Finance Head and former expert at Nepal Rastra Bank, Vijay oversees our financial strategies with precision, ensuring a strong foundation for all our ventures.',
-            imageUrl: '/assets/team/vijay.jpg',
-        },
-    ];
-
-
+export default function AboutUsPage() {
     return (
-        <main className="relative w-full">
-            <div className='max-w-[80%] mx-auto flex flex-col items-center gap-8'>
-                {/* Hero Section */}
-                <section className="hero h-screen relative flex items-center">
-                    <Image src={Building} alt='building'
-                        className='hero_image h-[80vh] rounded-[2rem]' />
+        <div className="min-h-screen bg-white">
+            {/* Hero Section with Video Background Effect */}
+            <section className="relative py-32 px-4 overflow-hidden">
+                {/* Animated Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900">
+                    <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-emerald-900/90"></div>
+                </div>
 
-                    {/* Overlay */}
-                    <div className="absolute h-[80vh] inset-0 rounded-[2rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full bg-black/40 z-0" />
+                {/* Floating Elements */}
+                <div className="absolute top-20 left-10 w-20 h-20 bg-emerald-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-32 h-32 bg-slate-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-emerald-400/30 rounded-full blur-lg animate-bounce delay-500"></div>
 
-                    {/* Content */}
-                    <div className="absolute bottom-20 left-10  z-10 flex flex-col justify-center text-white text-start p-8 mt-[20rem]">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-4">About Us</h1>
-                        <p className="text-lg md:text-xl max-w-3xl mb-8">
-                            At We Invest, we are dedicated to helping our clients achieve their
-                            financial goals through personalized investment strategies and expert guidance.
-                            Our team of experienced professionals is committed to providing exceptional service and delivering long-term value.
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <div className="text-center">
+                        <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full mb-8">
+                            <span className="text-emerald-300 text-sm font-medium">About We Invest</span>
+                        </div>
+
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                            Where Innovation
+                            <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                                Fuels Growth
+                            </span>
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
+                            We are more than an investment firm; we are a dynamic team of visionaries committed to empowering the next
+                            generation of entrepreneurs through strategic partnerships and innovative solutions.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                            <Button
+                                size="lg"
+                                className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                            >
+                                Explore Partnership <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="border-2 border-white/30 hover:bg-white/10 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-sm"
+                            >
+                                Watch Our Story
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Value Propositions */}
+            <section className="py-24 px-4 bg-slate-50">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardContent className="p-8 text-center">
+                                    <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <UserCheck className="h-8 w-8 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-4">Strategic Partnership</h3>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        We don't just fund businesses—we partner with founders, working side by side to build resilient
+                                        enterprises that deliver lasting impact.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardContent className="p-8 text-center">
+                                    <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <Target className="h-8 w-8 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-4">Innovation Focus</h3>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        Our client-centric approach combines deep market expertise with a passion for innovation and
+                                        long-term success across diverse industries.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardContent className="p-8 text-center">
+                                    <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <PieChart className="h-8 w-8 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-4">Diverse Portfolio</h3>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        Investment funds spanning technology, healthcare, renewable energy, and the arts to fuel your
+                                        entrepreneurial journey.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Mission Section */}
+            <section className="py-24 px-4 bg-white">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 lg:order-1">
+                            <div className="inline-flex items-center px-3 py-1 bg-emerald-100 rounded-full mb-6">
+                                <span className="text-emerald-700 text-sm font-medium">Our Mission</span>
+                            </div>
+
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+                                Transforming Ideas Into
+                                <span className="block text-emerald-600">Industry Leaders</span>
+                            </h2>
+
+                            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+                                We are dedicated to transforming financial assets into opportunities for growth. Our experienced team
+                                leverages extensive market knowledge to guide entrepreneurs through the complexities of the financial
+                                landscape.
+                            </p>
+
+                            <div className="space-y-6">
+                                <div className="flex items-start space-x-4 group">
+                                    <div className="bg-emerald-100 rounded-lg p-2 group-hover:bg-emerald-200 transition-colors">
+                                        <DollarSign className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Capital & Mentorship</h4>
+                                        <p className="text-slate-600">
+                                            Providing startups with comprehensive resources and expert guidance to thrive in competitive
+                                            markets
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4 group">
+                                    <div className="bg-emerald-100 rounded-lg p-2 group-hover:bg-emerald-200 transition-colors">
+                                        <LineChart className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Strategic Growth</h4>
+                                        <p className="text-slate-600">
+                                            Building resilient enterprises that deliver lasting impact and sustainable value creation
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4 group">
+                                    <div className="bg-emerald-100 rounded-lg p-2 group-hover:bg-emerald-200 transition-colors">
+                                        <Lightbulb className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Visionary Leadership</h4>
+                                        <p className="text-slate-600">
+                                            Turning innovative ideas into industry-leading realities through expert guidance and strategic
+                                            vision
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="order-1 lg:order-2">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl transform rotate-3"></div>
+                                <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+                                    <img
+                                        src="/placeholder.svg?height=500&width=600"
+                                        alt="Mission illustration"
+                                        className="w-full h-96 object-cover rounded-2xl"
+                                    />
+
+                                    {/* Floating Stats */}
+                                    <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg">
+                                        <div className="text-center">
+                                            <div className="text-2xl font-bold text-emerald-600">150+</div>
+                                            <div className="text-xs text-slate-600">Startups Funded</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
+                                        <div className="text-center">
+                                            <div className="text-2xl font-bold text-purple-600">$50M+</div>
+                                            <div className="text-xs text-slate-600">Capital Deployed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Story Section */}
+            <section className="py-24 px-4 bg-gradient-to-br from-slate-50 to-emerald-50">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center px-3 py-1 bg-emerald-100 rounded-full mb-6">
+                            <span className="text-emerald-700 text-sm font-medium">Our Journey</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">The Story Behind We Invest</h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            Founded on a bold vision to create an investment ecosystem that empowers founders to build meaningful,
+                            enduring businesses.
                         </p>
                     </div>
-                </section>
 
-                {/* Our Mission */}
-                <section className="our_mission py-16">
-                    <h1 className="text-4xl font-bold mb-12 text-center">Our Mission</h1>
-                    <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[80%] m-auto'>
-                        {missionData.map((mission, index) => (
-                            <MissionCard
-                                key={index}
-                                icon={mission.icon}
-                                title={mission.title}
-                                description={mission.description}
-                            />
-                        ))}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                        <div>
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl transform -rotate-3"></div>
+                                <div className="relative bg-white rounded-3xl p-6 shadow-2xl">
+                                    <img
+                                        src="/placeholder.svg?height=400&width=500"
+                                        alt="Company founding story"
+                                        className="w-full h-80 object-cover rounded-2xl"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="text-3xl font-bold text-slate-900 mb-6">The Beginning</h3>
+                            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                                We Invest was founded on a bold vision: to create an investment ecosystem that empowers founders to
+                                build meaningful, enduring businesses. This vision came to life through the leadership of{" "}
+                                <span className="font-semibold text-emerald-600">Laxmi Dangol</span>, whose expertise in forging strong
+                                relationships and driving operational excellence laid the foundation for our success.
+                            </p>
+                            <p className="text-lg text-slate-600 leading-relaxed">
+                                She assembled a team of passionate professionals, each contributing unique strengths to create a
+                                powerhouse dedicated to transforming ideas into industry leaders.
+                            </p>
+                        </div>
                     </div>
-                </section>
 
-                {/* Our Story */}
-                <OurStorySection />
-
-                {/* Our Team */}
-                <section className="our_team py-16 w-full">
-                    <h1 className="text-4xl font-bold mb-12 text-center">Meet Our Team</h1>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[80%] m-auto'>
-                        {teamData.map((member, index) => (
-                            <TeamMemberCard
-                                key={index}
-                                name={member.name}
-                                role={member.role}
-                                description={member.description}
-                                imageUrl={member.imageUrl}
-                                badge={member.badge}
-                            />
-                        ))}
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl"></div>
+                        <div className="relative bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-12 text-white text-center">
+                            <h3 className="text-3xl font-bold mb-6">Today & Tomorrow</h3>
+                            <p className="text-xl text-emerald-100 max-w-4xl mx-auto leading-relaxed">
+                                Today, We Invest stands as a platform for founders who are ready to dream big and make it happen. Guided
+                                by innovation, collaboration, and a commitment to excellence, we are shaping the future of investment
+                                and creating lasting value for all stakeholders.
+                            </p>
+                        </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* Market Overview */}
-                <MarketOverview />
-            </div>
-        </main >
-    );
-};
+            {/* Team Section */}
+            <section className="py-24 px-4 bg-white">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center px-3 py-1 bg-emerald-100 rounded-full mb-6">
+                            <span className="text-emerald-700 text-sm font-medium">Our Team</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Meet Our Visionaries</h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            A diverse group of innovators, strategists, and industry experts united by a shared mission to reshape the
+                            entrepreneurial landscape.
+                        </p>
+                    </div>
 
-export default About;
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {/* Laxmi Dangol */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white text-xl font-bold">
+                                                    LD
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-3 py-1">
+                                                    Founding Leader
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Laxmi Dangol</h3>
+                                        <p className="text-slate-600 leading-relaxed">
+                                            A master of operational efficiency who specializes in optimizing processes and driving financial
+                                            performance. As a key leader, she ensures sustainable growth while steering strategic direction.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Keshab Jaisi */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-orange-500 to-red-500 text-white text-xl font-bold">
+                                                    KJ
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-3 py-1">
+                                                    Talent Scout
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Keshab Jaisi</h3>
+                                        <p className="text-slate-600 leading-relaxed">
+                                            Our talent scout with exceptional ability to identify promising ventures and forge strategic
+                                            partnerships. His vision and expertise help turn bold ideas into reality.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Bipendra Chudal */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-500 text-white text-xl font-bold">
+                                                    BC
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white border-0 px-3 py-1">
+                                                    Analytics Expert
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Bipendra Chudal</h3>
+                                        <p className="text-slate-600 leading-relaxed">
+                                            Our analytical expert who uncovers critical insights from data to guide investment strategies. His
+                                            sharp mind keeps us ahead in an ever-changing market.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Dr. Banuram Niraula */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-green-500 to-emerald-500 text-white text-xl font-bold">
+                                                    BN
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 px-3 py-1">
+                                                    Strategic Economist
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Dr. Banuram Niraula</h3>
+                                        <p className="text-slate-600 leading-relaxed">
+                                            A seasoned economist with World Bank experience who provides strategic foresight and deep insights
+                                            into global economic trends, shaping our investment decisions.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Vijay Chhetri */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-red-500 to-pink-500 text-white text-xl font-bold">
+                                                    VC
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 px-3 py-1">
+                                                    Finance Head
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Vijay Chhetri</h3>
+                                        <p className="text-slate-600 leading-relaxed">
+                                            Our Finance Head and former Nepal Rastra Bank expert who oversees financial strategies with
+                                            precision, ensuring a strong foundation for all ventures.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Market Overview with Data Visualization */}
+            <section className="py-24 px-4 bg-slate-50">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center px-3 py-1 bg-emerald-100 rounded-full mb-6">
+                            <span className="text-emerald-700 text-sm font-medium">Market Focus</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Investment Sectors</h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            We operate at the intersection of innovation and opportunity, with specialized funds across high-growth
+                            industries.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 relative">
+                                        <div className="bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <Building2 className="h-8 w-8 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-4">Technology</h3>
+                                        <p className="text-slate-600 mb-4">Cutting-edge tech startups and digital innovation platforms</p>
+                                        <div className="text-2xl font-bold text-emerald-600">35%</div>
+                                        <div className="text-sm text-slate-500">Portfolio Allocation</div>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 relative">
+                                        <div className="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <Heart className="h-8 w-8 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-4">Healthcare</h3>
+                                        <p className="text-slate-600 mb-4">Medical innovations and healthcare solutions for better lives</p>
+                                        <div className="text-2xl font-bold text-purple-600">28%</div>
+                                        <div className="text-sm text-slate-500">Portfolio Allocation</div>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 relative">
+                                        <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <Zap className="h-8 w-8 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-4">Renewable Energy</h3>
+                                        <p className="text-slate-600 mb-4">Sustainable energy solutions for a greener future</p>
+                                        <div className="text-2xl font-bold text-green-600">22%</div>
+                                        <div className="text-sm text-slate-500">Portfolio Allocation</div>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 relative">
+                                        <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <Globe className="h-8 w-8 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-4">Arts & Culture</h3>
+                                        <p className="text-slate-600 mb-4">Creative industries and cultural innovation projects</p>
+                                        <div className="text-2xl font-bold text-orange-600">15%</div>
+                                        <div className="text-sm text-slate-500">Portfolio Allocation</div>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+
+                    {/* Performance Metrics */}
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <Card className="border-0 shadow-lg bg-white text-center">
+                            <CardContent className="p-8">
+                                <div className="bg-emerald-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                    <TrendingUp className="h-8 w-8 text-emerald-600" />
+                                </div>
+                                <div className="text-3xl font-bold text-slate-900 mb-2">150+</div>
+                                <div className="text-slate-600">Startups Funded</div>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-0 shadow-lg bg-white text-center">
+                            <CardContent className="p-8">
+                                <div className="bg-purple-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                    <BarChart3 className="h-8 w-8 text-purple-600" />
+                                </div>
+                                <div className="text-3xl font-bold text-slate-900 mb-2">$50M+</div>
+                                <div className="text-slate-600">Capital Deployed</div>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-0 shadow-lg bg-white text-center">
+                            <CardContent className="p-8">
+                                <div className="bg-orange-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                    <Award className="h-8 w-8 text-orange-600" />
+                                </div>
+                                <div className="text-3xl font-bold text-slate-900 mb-2">85%</div>
+                                <div className="text-slate-600">Success Rate</div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </section>
+
+            {/* Customer Commitment */}
+            <section className="py-24 px-4 bg-white">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center px-3 py-1 bg-emerald-100 rounded-full mb-6">
+                            <span className="text-emerald-700 text-sm font-medium">Our Promise</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Our Commitment to Excellence</h2>
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                            Your success is our success. We're committed to providing exceptional service and support throughout your
+                            entrepreneurial journey.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardHeader className="pb-4">
+                                    <div className="flex items-center space-x-3">
+                                        <div className="bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl p-3">
+                                            <Shield className="h-6 w-6 text-white" />
+                                        </div>
+                                        <CardTitle className="text-xl">Trust & Transparency</CardTitle>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-slate-600 mb-6 leading-relaxed">
+                                        Complete transparency in all dealings, ensuring full visibility into our investment process and
+                                        decision-making framework.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center space-x-3">
+                                            <CheckCircle className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">Regular progress updates</span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                            <CheckCircle className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">Open communication channels</span>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardHeader className="pb-4">
+                                    <div className="flex items-center space-x-3">
+                                        <div className="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl p-3">
+                                            <Headphones className="h-6 w-6 text-white" />
+                                        </div>
+                                        <CardTitle className="text-xl">Dedicated Support</CardTitle>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-slate-600 mb-6 leading-relaxed">
+                                        Expert team always available to provide guidance, mentorship, and strategic advice when you need it
+                                        most.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center space-x-3">
+                                            <Clock className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">24/7 support availability</span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                            <Users className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">Expert mentorship program</span>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardHeader className="pb-4">
+                                    <div className="flex items-center space-x-3">
+                                        <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-xl p-3">
+                                            <Award className="h-6 w-6 text-white" />
+                                        </div>
+                                        <CardTitle className="text-xl">Success Guarantee</CardTitle>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-slate-600 mb-6 leading-relaxed">
+                                        Confident in our approach with guaranteed measurable progress within the first 12 months of
+                                        partnership.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center space-x-3">
+                                            <Target className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">Performance milestones</span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                            <CheckCircle className="h-5 w-5 text-emerald-600" />
+                                            <span className="text-slate-600">Satisfaction guarantee</span>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact & CTA Section */}
+            <section className="py-24 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 relative overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-40 h-40 bg-slate-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your Vision?</h2>
+                        <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+                            Connect with us to explore how We Invest can support your entrepreneurial journey. Let's build the future
+                            together.
+                        </p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="text-white">
+                            <h3 className="text-2xl font-bold mb-8">Get in Touch</h3>
+                            <div className="space-y-6">
+                                <div className="flex items-center space-x-4 group">
+                                    <div className="bg-emerald-500/20 rounded-lg p-3 group-hover:bg-emerald-500/30 transition-colors">
+                                        <Mail className="h-6 w-6 text-emerald-400" />
+                                    </div>
+                                    <div>
+                                        <div className="text-slate-300 text-sm">Email</div>
+                                        <div className="text-white font-medium">info@weinvest.com</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center space-x-4 group">
+                                    <div className="bg-emerald-500/20 rounded-lg p-3 group-hover:bg-emerald-500/30 transition-colors">
+                                        <Phone className="h-6 w-6 text-emerald-400" />
+                                    </div>
+                                    <div>
+                                        <div className="text-slate-300 text-sm">Phone</div>
+                                        <div className="text-white font-medium">+1 (555) 123-4567</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center space-x-4 group">
+                                    <div className="bg-emerald-500/20 rounded-lg p-3 group-hover:bg-emerald-500/30 transition-colors">
+                                        <MapPin className="h-6 w-6 text-emerald-400" />
+                                    </div>
+                                    <div>
+                                        <div className="text-slate-300 text-sm">Address</div>
+                                        <div className="text-white font-medium">123 Innovation Drive, Suite 100, Global City, GC 12345</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                                <CardContent className="p-8">
+                                    <h4 className="text-2xl font-bold text-slate-900 mb-6 text-center">Start Your Journey</h4>
+                                    <p className="text-slate-600 mb-8 text-center">
+                                        Ready to take your venture to the next level? We'd love to hear from you.
+                                    </p>
+                                    <div className="space-y-4">
+                                        <Button
+                                            size="lg"
+                                            className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                                        >
+                                            Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                        <Button
+                                            size="lg"
+                                            variant="outline"
+                                            className="w-full border-2 border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold py-4 rounded-xl"
+                                        >
+                                            Download Investment Guide
+                                        </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+
+                    <div className="text-center mt-16">
+                        <p className="text-slate-300 text-lg font-medium">
+                            Join us at We Invest, where your vision meets our expertise.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    )
+}

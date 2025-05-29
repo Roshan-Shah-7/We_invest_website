@@ -1,4 +1,4 @@
-import InvestmentForm from '@/components/InvestmentForm';
+import InvestmentForm from '@/components/form/InvestmentForm';
 
 export default function FormPage() {
   return (

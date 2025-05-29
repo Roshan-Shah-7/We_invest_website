@@ -6,10 +6,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Lenis from '@studio-freight/lenis';
 import Lottie from 'lottie-react';
-import bgAnimation from '../assets/bg.json';
+import bgAnimation from '../../assets/bg.json';
 
 import { fundPoolsData } from '@/data/fundPoolsData';
-import Badge from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/Badge';
+import NumberedBadge from '@/components/ui/NumberedBadge';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,7 +166,7 @@ const FundPools: React.FC = () => {
                                     </div>
                                     <div className="p-6 md:w-1/2 flex flex-col justify-between items-end text-end">
                                         <div className="flex items-center mb-4">
-                                            <Badge number={pool.number} color={pool.color} />
+                                            <NumberedBadge number={pool.number} color={pool.color} />
                                             <h3
                                                 className="ml-4 text-xl font-bold text-foreground"
                                                 dangerouslySetInnerHTML={{ __html: pool.title }}

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Particles from 'react-tsparticles';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import Lottie from 'lottie-react';
-import rocketAnimation from '../assets/a.json';
+import rocketAnimation from '../../assets/a.json';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AnimatedHeadline from './AnimatedHeadline';
+import AnimatedHeadline from '../AnimatedHeadline';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +52,7 @@ const HeroSection: React.FC = () => {
     });
 
     return (
-        <section className="hero-section md:mt-20 lg:mt-0 relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-black px-6">
+        <section className="hero-section md:mt-20 lg:mt-10 relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-black px-6">
             {/* Particle background */}
             <Particles
                 options={{
