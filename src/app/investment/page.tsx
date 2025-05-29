@@ -596,7 +596,7 @@ export default function InvestmentPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 px-4 bg-emerald-600">
+            <section className="py-20 px-4 bg-brand_teal">
                 <div className="container mx-auto text-center max-w-4xl">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Investment Journey?</h2>
                     <p className="text-xl text-emerald-100 mb-8">

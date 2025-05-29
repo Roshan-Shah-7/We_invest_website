@@ -1,112 +1,118 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Correct import path
-import { Button } from '@/components/ui/button'; // Import Button component
+// components/VideoGallery.tsx
+import { useState } from 'react';
 
-gsap.registerPlugin(ScrollTrigger); // Register once globally
-
-interface VideoItem {
+interface Video {
+    id: string;
     title: string;
-    description: string;
-    videoId: string;
+    description?: string;
 }
 
-const Video: React.FC = () => {
-    const cardsContainerRef = useRef<HTMLDivElement>(null); // Ref for the grid container
-    const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
+interface VideoGalleryProps {
+    videos: Video[];
+}
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Cards animation
-            if (cardsContainerRef.current) {
-                gsap.from(cardsRef.current, {
-                    scrollTrigger: {
-                        trigger: cardsContainerRef.current,
-                        start: 'top 80%', // Trigger when the container enters view
-                        once: true,
-                        // markers: true, // Removed debugging markers
-                    },
-                    opacity: 0, // Re-enable initial opacity
-                    scale: 0.9,
-                    duration: 0.8,
-                    stagger: 0.15, // Stagger the animation for each card
-                    ease: 'power3.out',
-                });
-            }
-        });
+const VideoGallery = ({ videos }: VideoGalleryProps) => {
+    const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
-        return () => ctx.revert();
-    }, []);
-
-    const videos: VideoItem[] = [
-        {
-            title: 'How We Helped GreenTech Innovate Scale',
-            description: 'See how strategic mentorship led to $2M funding',
-            videoId: 'dQw4w9WgXcQ', // Reverted to a commonly embeddable YouTube ID
-        },
-        {
-            title: 'A Day at Our Co-working Space',
-            description: 'Experience our collaborative startup ecosystem',
-            videoId: 'dQw4w9WgXcQ', // Reverted to a commonly embeddable YouTube ID
-        },
-        {
-            title: 'Founder Pitch Masterclass',
-            description: 'Learn from our expert coaching sessions',
-            videoId: 'dQw4w9WgXcQ', // Reverted to a commonly embeddable YouTube ID
-        },
-    ];
+    const toggleVideo = (id: string) => {
+        setActiveVideo(activeVideo === id ? null : id);
+    };
 
     return (
-        <section className="py-20 bg-[#F5F7FA] w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-extrabold text-center text-foreground mb-12">
-                    See Our Impact in <span className='text-brand_teal'>Action</span>
-                </h2>
-
-                <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                    {videos.map((video, index) => (
-                        <div
-                            key={video.title}
-                            ref={(el) => { cardsRef.current[index] = el; }}
-                            className="bg-card rounded-2xl overflow-hidden shadow-lg transform transition-transform hover:scale-[1.02] hover:border-4 hover:border-brand_teal"
-                        >
-                            <div className="relative h-0 pb-56.25%">
-                                <iframe
-                                    className="absolute top-0 left-0 w-full h-full"
-                                    src={`https://www.youtube.com/embed/${video.videoId}?rel=0`} // Corrected to /embed/
-                                    title={video.title}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-semibold text-foreground mb-3">
-                                    {video.title}
-                                </h3>
-                                <p className="text-muted-foreground">{video.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="text-center">
-                    <Button
-                        asChild
-                        size="lg"
-                        className="rounded-full bg-brand_teal hover:bg-brand_teal/90"
-                    >
-                        <a
-                            href="https://www.youtube.com/@WeInvestGlobal"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Watch More on YouTube
-                        </a>
-                    </Button>
-                </div>
+        <div className="mx-auto py-12 px-4 bg-[#F5F7FA] w-full">
+            <div className="text-center mb-12">
+                <h1 className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
+                    Video Collection
+                </h1>
+                <div className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
             </div>
-        </section>
+
+            <div className="max-w-6xl m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {videos.map((video) => (
+                    <div
+                        key={video.id}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                    >
+                        <div className="relative cursor-pointer" onClick={() => toggleVideo(video.id)}>
+                            {/* Video thumbnail or player */}
+                            {activeVideo === video.id ? (
+                                <div className="aspect-video">
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
+                                        title={video.title}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        className="w-full h-full"
+                                    />
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="aspect-video bg-gray-200 relative">
+                                        <img
+                                            src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                                            alt={video.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                            <div className="w-16 h-16 rounded-full bg-[#00695C] flex items-center justify-center">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-8 w-8 ml-1 text-white"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                                        <h3 className="text-xl font-bold text-white truncate">{video.title}</h3>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Video info */}
+                        <div className="p-5">
+                            <div className="flex items-center justify-between mb-3">
+                                <button
+                                    onClick={() => toggleVideo(video.id)}
+                                    className="px-4 py-2 rounded-full font-medium flex items-center"
+                                    style={{ backgroundColor: '#00695C', color: 'white' }}
+                                >
+                                    {activeVideo === video.id ? (
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                                            </svg>
+                                            Close
+                                        </>
+                                    ) : (
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                            </svg>
+                                            Play
+                                        </>
+                                    )}
+                                </button>
+                                <div className="text-xs px-2 py-1 rounded-full bg-gray-100">
+                                    5:24
+                                </div>
+                            </div>
+
+                            {video.description && (
+                                <p className="text-gray-600 mt-2 line-clamp-2">
+                                    {video.description}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
-export default Video;
+export default VideoGallery;

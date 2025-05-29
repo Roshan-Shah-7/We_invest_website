@@ -1,132 +1,179 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Twitter, Linkedin, Youtube, Instagram } from 'lucide-react';
-import Link from 'next/link'; // Import Link component
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { Twitter, Linkedin, Youtube, Instagram, MapPin, Mail, Phone, Clock } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
-    const footerRef = useRef<HTMLDivElement>(null);
-    const logoRef = useRef<HTMLDivElement>(null);
-    const columnsRef = useRef<(HTMLDivElement | null)[]>([]);
-    // const ctaButtonRef = useRef<HTMLButtonElement>(null); // Removed ref for CTA button
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Staggered animation for columns
-            gsap.fromTo(
-                columnsRef.current.filter((col): col is HTMLDivElement => col !== null),
-                { opacity: 0, y: 20 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    stagger: 0.2,
-                    scrollTrigger: {
-                        trigger: footerRef.current,
-                        start: 'top 90%',
-                        once: true,
-                    },
-                }
-            );
-
-            // Logo animation
-            gsap.fromTo(
-                logoRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1, delay: 0.5, scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
-            );
-
-
-            // Social icon hover effect
-            document.querySelectorAll('.social-icon').forEach(icon => {
-                const socialHoverTween = gsap.to(icon, {
-                    scale: 1.1,
-                    duration: 0.3,
-                    paused: true,
-                    ease: 'power1.out',
-                });
-                icon.addEventListener('mouseenter', () => socialHoverTween.play());
-                icon.addEventListener('mouseleave', () => socialHoverTween.reverse());
-            });
-        });
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <footer ref={footerRef} className="bg-[#F5F7FA] text-black w-full border-t border-border py-16">
-            {/* Wavy Divider */}
-            <svg className="w-full h-4 fill-background rotate-180" viewBox="0 0 1440 60">
-                <path d="M0,30 Q360,0 720,30 T1440,30 V60 H0 Z" />
-            </svg>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-                {/* Logo/Tagline */}
-                <div ref={logoRef} className="flex justify-center mb-6 opacity-0">
-                    <span className="text-xl font-bold text-brand_teal font-poppins">For Visionaries - By Visionaries</span>
-                </div>
+        <footer className="bg-[#f8fbfa] text-gray-800 w-full relative pt-24 pb-16">
+            {/* Decorative top wave */}
+            <div className="absolute top-0 left-0 right-0 h-24 overflow-hidden">
+                <svg
+                    className="absolute top-0 w-full h-full text-[#00695C]"
+                    viewBox="0 0 1440 120"
+                    preserveAspectRatio="none"
+                >
+                    <path
+                        d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,0 L0,0 Z"
+                        fill="currentColor"
+                    />
+                </svg>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-6 pb-6 border-b border-opacity-20 border-border text-center md:text-left w-full">
-                    {/* About Us */}
-                    <div ref={el => { columnsRef.current[0] = el; }} className="footer-column">
-                        <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">About Us</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            At Wee Invest Global Pvt. Ltd., we are driven by a singular mission: to empower visionaries with the capital, mentorship, and resources they need to turn bold ideas into thriving businesses. Founded with a passion for innovation, we support startups across diverse sectors.
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
+                    {/* Brand Section */}
+                    <div className="md:col-span-4">
+                        <div className="mb-6">
+                            <div className="flex items-center">
+                                <div className="bg-[#00695C] text-white p-3 rounded-xl mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <span className="text-2xl font-bold text-[#00695C] font-poppins">Wee Invest</span>
+                            </div>
+                        </div>
+
+                        <p className="text-gray-600 mb-6 text-sm leading-relaxed max-w-md">
+                            At Wee Invest Global Pvt. Ltd., we empower visionaries with the capital, mentorship, and resources to turn bold ideas into thriving businesses. Founded with a passion for innovation, we support startups across diverse sectors.
                         </p>
-                    </div>
 
-                    {/* Quick Links */}
-                    <div ref={el => { columnsRef.current[1] = el; }} className="footer-column">
-                        <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Quick Links</h3>
-                        <ul className="text-muted-foreground text-sm space-y-1">
-                            <li><Link href="/" className="hover:text-brand_teal">Home</Link></li>
-                            <li><a href="/what-we-provide" className="hover:text-brand_teal">What We Provide</a></li>
-                            <li><a href="/why-we-invest" className="hover:text-brand_teal">Why We Invest</a></li>
-                            <li><a href="/portfolio" className="hover:text-brand_teal">Portfolio</a></li>
-                            <li><a href="/apply" className="hover:text-brand_teal">Apply Now</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Contact Us */}
-                    <div ref={el => { columnsRef.current[2] = el; }} className="footer-column">
-                        <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Contact Us</h3>
-                        <ul className="text-muted-foreground text-sm space-y-1">
-                            <li><Link href="mailto:info@weinvest.com" className="hover:text-brand_teal">Email: info@weinvest.com</Link></li>
-                            <li>Phone: +977-1-555-0123</li>
-                            <li>Address: 123 Innovation Lane, Kathmandu, Nepal</li>
-                            <li>Office Hours: Mon-Fri, 9:00 AM - 5:00 PM (NPT)</li>
-                        </ul>
-                    </div>
-
-                    {/* Connect With Us */}
-                    <div ref={el => { columnsRef.current[3] = el; }} className="footer-column">
-                        <h3 className="text-xl font-semibold text-primary-foreground mb-2 font-poppins">Connect With Us</h3>
-                        <div className="flex gap-4 mt-2 justify-center md:justify-start">
-                            <Link href="https://twitter.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
-                                <Twitter className="w-6 h-6" />
+                        <div className="flex gap-4 mt-6">
+                            <Link href="https://twitter.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Twitter className="w-5 h-5" />
                             </Link>
-                            <Link href="https://linkedin.com/company/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
-                                <Linkedin className="w-6 h-6" />
+                            <Link href="https://linkedin.com/company/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Linkedin className="w-5 h-5" />
                             </Link>
-                            <Link href="https://youtube.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
-                                <Youtube className="w-6 h-6" />
+                            <Link href="https://youtube.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Youtube className="w-5 h-5" />
                             </Link>
-                            <Link href="https://instagram.com/weinvest" target="_blank" rel="noopener noreferrer" className="social-icon text-muted-foreground hover:text-brand_teal">
-                                <Instagram className="w-6 h-6" />
+                            <Link href="https://instagram.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Instagram className="w-5 h-5" />
                             </Link>
                         </div>
                     </div>
+
+                    {/* Quick Links */}
+                    <div className="md:col-span-2">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-5 pb-2 border-b border-[#00695C]/20">Quick Links</h3>
+                        <ul className="space-y-3">
+                            <li>
+                                <Link href="/" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                    <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/what-we-provide" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                    <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
+                                    What We Provide
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/why-we-invest" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                    <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
+                                    Why We Invest
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/portfolio" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                    <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
+                                    Portfolio
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/apply" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                    <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
+                                    Apply Now
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="md:col-span-3">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-5 pb-2 border-b border-[#00695C]/20">Contact Info</h3>
+                        <ul className="space-y-4">
+                            <li className="flex items-start">
+                                <div className="bg-[#e0f2f1] p-2 rounded-lg mr-4">
+                                    <Mail className="w-5 h-5 text-[#00695C]" />
+                                </div>
+                                <div>
+                                    <span className="text-sm text-gray-500">Email</span>
+                                    <Link href="mailto:info@weinvest.com" className="text-gray-800 hover:text-[#00695C] transition-colors block">info@weinvest.com</Link>
+                                </div>
+                            </li>
+                            <li className="flex items-start">
+                                <div className="bg-[#e0f2f1] p-2 rounded-lg mr-4">
+                                    <Phone className="w-5 h-5 text-[#00695C]" />
+                                </div>
+                                <div>
+                                    <span className="text-sm text-gray-500">Phone</span>
+                                    <span className="text-gray-800 block">+977-1-555-0123</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start">
+                                <div className="bg-[#e0f2f1] p-2 rounded-lg mr-4">
+                                    <MapPin className="w-5 h-5 text-[#00695C]" />
+                                </div>
+                                <div>
+                                    <span className="text-sm text-gray-500">Address</span>
+                                    <span className="text-gray-800 block">123 Innovation Lane, Kathmandu, Nepal</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start">
+                                <div className="bg-[#e0f2f1] p-2 rounded-lg mr-4">
+                                    <Clock className="w-5 h-5 text-[#00695C]" />
+                                </div>
+                                <div>
+                                    <span className="text-sm text-gray-500">Office Hours</span>
+                                    <span className="text-gray-800 block">Mon-Fri, 9:00 AM - 5:00 PM (NPT)</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Newsletter */}
+                    <div className="md:col-span-3">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-5 pb-2 border-b border-[#00695C]/20">Stay Updated</h3>
+                        <p className="text-gray-600 mb-4 text-sm">
+                            Subscribe to our newsletter for the latest investment opportunities and news.
+                        </p>
+                        <form className="space-y-3">
+                            <div>
+                                <input
+                                    type="email"
+                                    placeholder="Your email address"
+                                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 text-sm"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-[#00695C] hover:bg-[#005546] text-white py-3 px-4 rounded-lg font-medium text-sm flex items-center justify-center transition-colors duration-300"
+                            >
+                                Subscribe
+                                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
-                <div className="text-center mt-10 w-full">
-                    <p className="text-muted-foreground text-xs mt-4">
-                        © {new Date().getFullYear()} Wee Invest Global Pvt. Ltd. All rights reserved. |{' '}
-                        <Link href="/privacy" className="hover:text-brand_teal">Privacy Policy</Link> |{' '}
-                        <Link href="/terms" className="hover:text-brand_teal">Terms of Service</Link>
+                <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                    <p className="text-gray-600 text-sm text-center md:text-left mb-4 md:mb-0">
+                        © {new Date().getFullYear()} Wee Invest Global Pvt. Ltd. All rights reserved.
                     </p>
+                    <div className="flex space-x-6">
+                        <Link href="/privacy" className="text-gray-600 hover:text-[#00695C] text-sm transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="text-gray-600 hover:text-[#00695C] text-sm transition-colors">Terms of Service</Link>
+                        <Link href="/faq" className="text-gray-600 hover:text-[#00695C] text-sm transition-colors">FAQ</Link>
+                        <Link href="/contact" className="text-gray-600 hover:text-[#00695C] text-sm transition-colors">Contact</Link>
+                    </div>
                 </div>
             </div>
         </footer>

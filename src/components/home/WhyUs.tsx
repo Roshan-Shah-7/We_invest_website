@@ -29,7 +29,7 @@ const WhyUs: React.FC = () => {
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: containerRef.current,
-                            start: 'top 80%', // Adjust as needed
+                            start: 'top 90%', // Start earlier to ensure visibility
                             once: true,
                         },
                     }
@@ -48,7 +48,7 @@ const WhyUs: React.FC = () => {
                         ease: 'power3.out',
                         scrollTrigger: {
                             trigger: containerRef.current, // Trigger when the main container enters view
-                            start: 'top 60%', // Adjust to trigger after main section animation starts
+                            start: 'top 70%', // Start earlier for items
                             once: true,
                         },
                     }
@@ -56,7 +56,16 @@ const WhyUs: React.FC = () => {
             }
         });
 
-        return () => ctx.revert();
+        // Refresh ScrollTrigger after component mounts and potentially after dynamic content above has loaded
+        const refreshTimeout = setTimeout(() => {
+            ScrollTrigger.refresh();
+            console.log('ScrollTrigger refreshed in WhyUs component.');
+        }, 500); // A small delay to allow for DOM rendering
+
+        return () => {
+            ctx.revert();
+            clearTimeout(refreshTimeout);
+        };
     }, []); // No dependencies, runs once on mount
 
     const philosophyItems: InvestmentPhilosophyItem[] = [

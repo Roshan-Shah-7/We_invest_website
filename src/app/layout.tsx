@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Lato, EB_Garamond } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import AppClientSetup from "@/components/SmoothScrollSetup";
-import { LoadingProvider } from "@/contexts/LoadingContext";
-import PageWrapper from "@/components/PageWrapper";
 import RootLayoutClientContent from "@/components/RootLayoutClientContent";
 
 const lato = Lato({
@@ -55,11 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${lato.variable} ${ebGaramond.variable} font-sans antialiased`}>
-        <LoadingProvider>
           <RootLayoutClientContent>
             {children}
           </RootLayoutClientContent>
-        </LoadingProvider>
       </body>
     </html>
   );

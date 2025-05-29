@@ -45,7 +45,7 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
               width={120}
               height={30}
               alt={LOGO_ALT_TEXT}
-              className="object-contain"
+              className="object-contain w-full" // Added w-full to ensure it takes full width of parent Link
               priority
             />
           </Link>
@@ -88,7 +88,7 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
               width={100}
               height={25}
               alt={LOGO_ALT_TEXT}
-              className="object-contain"
+              className="object-contain w-full" // Added w-full to ensure it takes full width of parent Link
               priority
             />
           </Link>
