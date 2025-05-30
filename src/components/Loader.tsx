@@ -22,7 +22,6 @@ const Loading = () => {
     const textRef = useRef<HTMLDivElement>(null)
     const chartRef = useRef<HTMLDivElement>(null)
     const progressRef = useRef<HTMLDivElement>(null)
-    const [loadingProgress, setLoadingProgress] = useState(0)
 
     // Generate realistic candle data
     const generateCandleData = (): CandleData[] => {
@@ -186,31 +185,6 @@ const Loading = () => {
         }
     }, [])
 
-    // Loading progress animation
-    useEffect(() => {
-        const progressAnimation = gsap.to(
-            {},
-            {
-                duration: 8,
-                repeat: -1,
-                ease: "none",
-                onUpdate: function () {
-                    const progress = (this.progress() * 100) % 100
-                    setLoadingProgress(Math.floor(progress))
-
-                    if (progressRef.current) {
-                        gsap.set(progressRef.current, {
-                            width: `${progress}%`,
-                        })
-                    }
-                },
-            },
-        )
-
-        return () => {
-            progressAnimation.kill()
-        }
-    }, [])
 
     const maxPrice = Math.max(...candleData.map((c) => c.high))
     const minPrice = Math.min(...candleData.map((c) => c.low))
@@ -281,7 +255,6 @@ const Loading = () => {
                         {/* Candles */}
                         <div className="absolute bottom-0 left-0 w-full h-full flex items-end justify-around px-4">
                             {candleData.map((candle, index) => {
-                                const candleHeight = ((candle.high - candle.low) / priceRange) * 200
                                 const bodyHeight = (Math.abs(candle.close - candle.open) / priceRange) * 200
                                 const bodyBottom = ((Math.min(candle.open, candle.close) - minPrice) / priceRange) * 200
                                 const wickTop = ((candle.high - minPrice) / priceRange) * 200

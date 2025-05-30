@@ -44,7 +44,7 @@ export default function Contact() {
                         </h1>
                         <div className="w-20 h-1 bg-[#00695C] rounded-full mx-auto mb-6"></div>
                         <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                            We're here to help with any questions, support, or opportunities you'd like to discuss.
+                            We&apos;re here to help with any questions, support, or opportunities you&apos;d like to discuss.
                         </p>
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6">
                             <a href="tel:+15551234567" className="flex items-center bg-white hover:bg-[#00695C] group hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
@@ -72,7 +72,7 @@ export default function Contact() {
                                 <CheckCircle className="w-6 h-6 mr-3 text-green-600 flex-shrink-0" />
                                 <div>
                                     <p className="font-semibold">Thank you for your message!</p>
-                                    <p className="text-sm">We'll get back to you within 24 hours.</p>
+                                    <p className="text-sm">We&apos;ll get back to you within 24 hours.</p>
                                 </div>
                             </div>
                         )}

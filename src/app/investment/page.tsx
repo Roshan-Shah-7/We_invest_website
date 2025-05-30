@@ -140,7 +140,7 @@ export default function InvestmentPage() {
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <PieChart className="h-6 w-6 text-emerald-600" />
-                                    <span>Real Example: Mr. Shrestha's Investment Journey</span>
+                                    <span>Real Example: Mr. Shrestha&apos;s Investment Journey</span>
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-4">
@@ -265,8 +265,8 @@ export default function InvestmentPage() {
                                     <ul className="list-disc pl-5 text-slate-700 space-y-1">
                                         <li>Year 1: Earns NPR 50,000 (5% of initial investment)</li>
                                         <li>Year 2: Earns NPR 52,500 (5% of new balance)</li>
-                                        <li>Year 15: Earns NPR 98,928 (almost double the first year's interest)</li>
-                                        <li>Total interest without compounding: NPR 7,50,000 (50,000 × 15)</li>
+                                        <li>Year 15: Earns NPR 98,928 (almost double the first year&apos;s interest)</li>
+                                        <li>Total interest without compounding: NPR 7,50,000 (50,000 x 15)</li>
                                         <li>Total interest with compounding: NPR 10,78,928</li>
                                         <li>Compounding advantage: NPR 3,28,928 extra returns</li>
                                     </ul>
