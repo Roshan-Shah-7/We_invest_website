@@ -21,7 +21,6 @@ interface CandleData {
 const Loading = () => {
     const textRef = useRef<HTMLDivElement>(null)
     const chartRef = useRef<HTMLDivElement>(null)
-    const progressRef = useRef<HTMLDivElement>(null)
 
     // Generate realistic candle data
     const generateCandleData = (): CandleData[] => {
