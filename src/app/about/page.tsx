@@ -30,7 +30,7 @@ import {
 import Mission from "@/assets/about/mission.jpg"
 import OurStory from "@/assets/about/our story.jpg"
 
-// Color definitions
+
 const colors = {
     brand_green: '#00C853',
     brand_teal: '#00695C',
