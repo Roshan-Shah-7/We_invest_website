@@ -161,7 +161,7 @@ const HeroSection: React.FC = () => {
                     </h2>
                 </div>
 
-                <div className="w-full lg:w-2/5 flex justify-center lg:justify-end mt-8 lg:mt-0">
+                <div className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end mt-8 lg:mt-0">
                     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
                         <Lottie animationData={rocketAnimation} loop={true} className="w-full h-auto" />
                     </div>

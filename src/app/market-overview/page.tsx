@@ -1035,7 +1035,7 @@ export default function MarketOverviewPage() {
                             >
                                 Market
                                 <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-                                    Overview 2024
+                                    Overview 2025
                                 </span>
                             </h1>
                             <p
@@ -1058,7 +1058,7 @@ export default function MarketOverviewPage() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold rounded-xl backdrop-blur-sm flex items-center gap-2"
+                                    className="border-2 border-white/30 text-black hover:text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold rounded-xl backdrop-blur-sm flex items-center gap-2"
                                 >
                                     Download Report <Download className="h-5 w-5" />
                                 </Button>
@@ -1145,7 +1145,6 @@ export default function MarketOverviewPage() {
                     <ChevronRight className="h-6 w-6 text-emerald-300 transform rotate-90" />
                 </div>
             </section>
-            
 
             {/* Sector Overview Section */}
             <section className="py-24 px-4 bg-slate-50">

@@ -14,23 +14,18 @@ const videos = [
   {
     id: 'Y4RIOljIQuk',
     title: 'Getting Started with Next.js',
-    description: 'Learn the basics of Next.js framework and its core features'
+    description: 'This is the chance, to buy stocks'
   },
   {
     id: 'aOUn0HN3Bw4',
     title: 'Advanced Tailwind Techniques',
-    description: 'Master advanced Tailwind CSS patterns and optimization strategies'
+    description: 'Good News for Market'
   },
   {
     id: '1ykLKlQipw4',
     title: 'TypeScript Best Practices',
-    description: 'Essential TypeScript patterns for robust applications'
+    description: 'How to see sold stock'
   },
-  {
-    id: 'KvV2OFNpH08',
-    title: 'Responsive Design Principles',
-    description: 'Create responsive layouts that work on all devices'
-  }
 ];
 
 export default function Home() {

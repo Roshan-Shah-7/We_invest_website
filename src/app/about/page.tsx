@@ -279,8 +279,8 @@ export default function AboutUsPage() {
                     </div>
 
                     <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#00695C] to-[#00C853] rounded-3xl"></div>
-                        <div className="relative bg-gradient-to-r from-[#00695C] to-[#00C853] rounded-3xl p-12 text-white text-center">
+                        <div className="absolute inset-0 bg-brand_teal rounded-3xl"></div>
+                        <div className="relative bg-brand_teal rounded-3xl p-12 text-white text-center">
                             <h3 className="text-3xl font-bold mb-6">Today & Tomorrow</h3>
                             <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
                                 Today, We Invest stands as a platform for founders who are ready to dream big and make it happen. Guided
@@ -394,7 +394,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        {/* Dr. Banuram Niraula */}
+                        {/* Alish Dongol */}
                         <div className="group">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
@@ -404,19 +404,19 @@ export default function AboutUsPage() {
                                             <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
                                                 <AvatarImage src="/placeholder.svg?height=96&width=96" />
                                                 <AvatarFallback className="bg-gradient-to-br from-[#00695C] to-[#00BCD4] text-white text-xl font-bold">
-                                                    BN
+                                                    AD
                                                 </AvatarFallback>
                                             </Avatar>
                                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                                                 <Badge className="bg-[#00695C] text-white border-0 px-3 py-1">
-                                                    Strategic Economist
+                                                    Social Media Manager
                                                 </Badge>
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Dr. Banuram Niraula</h3>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Alish Dongol</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            A seasoned economist with World Bank experience who provides strategic foresight and deep insights
-                                            into global economic trends, shaping our investment decisions.
+                                            Our social media manager, Alish, brings creativity and digital expertise to amplify our brand and connect with our community.
+                                            His innovative campaigns enhance visibility and engagement for our partners.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -433,19 +433,48 @@ export default function AboutUsPage() {
                                             <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
                                                 <AvatarImage src="/placeholder.svg?height=96&width=96" />
                                                 <AvatarFallback className="bg-gradient-to-br from-[#00C853] to-[#00695C] text-white text-xl font-bold">
-                                                    VC
+                                                    YS
                                                 </AvatarFallback>
                                             </Avatar>
                                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                                                 <Badge className="bg-[#00C853] text-white border-0 px-3 py-1">
-                                                    Finance Head
+                                                    NEPSE Analyst
                                                 </Badge>
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Vijay Chhetri</h3>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Yubraj Sharma</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our Finance Head and former Nepal Rastra Bank expert who oversees financial strategies with
-                                            precision, ensuring a strong foundation for all ventures.
+                                            Our NEPSE analyst, Yubraj, specialises in analysing Nepal’s stock market trends to inform investment decisions.
+                                            His keen insights help optimise portfolio performance in local markets.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Sushil Silwa */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-brand_teal to-[#075661] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-[#00C853] to-[#00BCD4] text-white text-xl font-bold">
+                                                    SS
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-[#00C853] text-white border-0 px-3 py-1">
+                                                    Financial & Project Advisor
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Sushil Silwa</h3>
+                                        <p className="text-[#666666] leading-relaxed">
+                                            Our financial and project advisor, Sushil, provides strategic guidance on funding and project execution.
+                                            His expertise ensures our ventures are financially sound and operationally successful.
                                         </p>
                                     </CardContent>
                                 </div>

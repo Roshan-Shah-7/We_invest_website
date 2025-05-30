@@ -123,7 +123,7 @@ const servicesData: Service[] = [
 
 const OurServices: React.FC = () => {
     return (
-        <section className="bg-soft_white py-16 md:py-24 w-full">
+        <section className="bg-brand_teal/20 py-16 md:py-24 w-full lg:rounded-tr-[50rem] lg:rounded-bl-[20rem]">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-12 md:mb-16">
