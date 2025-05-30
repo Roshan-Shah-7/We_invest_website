@@ -47,12 +47,12 @@ export default function Contact() {
                             We're here to help with any questions, support, or opportunities you'd like to discuss.
                         </p>
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6">
-                            <a href="tel:+15551234567" className="flex items-center bg-white hover:bg-[#00695C] hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
-                                <Phone className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-[#00695C]" />
+                            <a href="tel:+15551234567" className="flex items-center bg-white hover:bg-[#00695C] group hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
+                                <Phone className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-[#00695C] group-hover:text-white" />
                                 <span className="font-medium">+1 (555) 123-4567</span>
                             </a>
-                            <a href="mailto:contact@weeinvest.com" className="flex items-center bg-[#00695C] hover:bg-[#005546] text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center">
-                                <Mail className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-white" />
+                            <a href="mailto:contact@weeinvest.com" className="flex items-center bg-[#00695C] hover:bg-white text-white group hover:text-black p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center">
+                                <Mail className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-white group-hover:text-black" />
                                 <span className="font-medium">contact@weeinvest.com</span>
                             </a>
                         </div>
@@ -63,7 +63,7 @@ export default function Contact() {
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
                     {/* Contact Form */}
-                    <div className="lg:col-span-3 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div className="lg:col-span-3 h-fit sticky top-20 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">
                             Send Us a Message
                         </h2>

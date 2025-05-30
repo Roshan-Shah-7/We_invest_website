@@ -145,8 +145,8 @@ const HeroSection: React.FC = () => {
                         onToggleExpansion={() => setIsFirstHeadlineExpanded(!isFirstHeadlineExpanded)}
                     />
                     <AnimatedHeadline
-                        text="Strategic Support" // Example: different main headline or pass {text} for typewriter
-                        style="font-bold text-slate-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-1 leading-tight"
+                        text="For Visionaries, By Visionaries" // Example: different main headline or pass {text} for typewriter
+                        style="font-bold text-slate-900 text-4xl sm:text-5xl md:text-5xl mt-1 leading-tight"
                         isExpanded={isSecondHeadlineExpanded}
                         onToggleExpansion={() => setIsSecondHeadlineExpanded(!isSecondHeadlineExpanded)}
                     />

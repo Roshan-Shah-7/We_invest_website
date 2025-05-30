@@ -123,7 +123,7 @@ const servicesData: Service[] = [
 
 const OurServices: React.FC = () => {
     return (
-        <section className="bg-brand_teal/20 py-16 md:py-24 w-full lg:rounded-tr-[50rem] lg:rounded-bl-[20rem]">
+        <section className="bg-transparent border border-brand_teal py-16 md:py-24 w-full lg:rounded-tr-[50rem] lg:rounded-tl-[50rem]">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-12 md:mb-16">
@@ -143,14 +143,16 @@ const OurServices: React.FC = () => {
                     {servicesData.map((service) => (
                         <div
                             key={service.id}
-                            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out flex flex-col group"
+                            className="bg-white p-6 rounded-xl border border-brand_teal/10 shadow-lg hover:shadow-2xl transition-shadow
+                             duration-500 ease-in-out flex flex-col group"
                         >
                             <div className="flex-shrink-0">
-                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-brand_green text-white group-hover:bg-brand_teal transition-colors duration-300">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-brand_green
+                                 text-white group-hover:bg-brand_teal transition-colors duration-300">
                                     <service.icon className="h-6 w-6" aria-hidden="true" />
                                 </div>
                             </div>
-                            <div className="mt-4 flex-grow">
+                            <div className="mt-4 flex-grow text-justify">
                                 <h3 className="text-xl font-semibold text-brand_teal group-hover:text-brand_green transition-colors duration-300">
                                     {service.mainTitle}
                                 </h3>

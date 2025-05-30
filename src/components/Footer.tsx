@@ -164,7 +164,19 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                <div className='pt-4 border-t border-gray-200 mb-4'>
+                    <p className='text-justify text-gray-700'>
+                        <span className='font-bold text-black'>Investment Disclaimer: </span>
+                        Investments carry inherent market risks, and the value of your investment may
+                        fluctuate due to various factors influencing financial markets. Past performance
+                        of any sector or investment is not a guaranteed predictor of future results. We strongly
+                        recommend that investors thoroughly review all relevant scheme documents and consult with
+                        qualified professionals to understand the legal, tax, and financial implications of their
+                        investment decisions. Making informed choices is essential to aligning your investments with your financial goals.
+                    </p>
+                </div>
+
+                <div className="pt-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-gray-600 text-sm text-center md:text-left mb-4 md:mb-0">
                         © {new Date().getFullYear()} Wee Invest Global Pvt. Ltd. All rights reserved.
                     </p>
