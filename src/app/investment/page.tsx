@@ -476,7 +476,9 @@ export default function InvestmentPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-slate-600 mb-4">
-                                        Middle-aged investors typically have established careers and a clearer picture of their financial goals, such as saving for a home, children's education, or retirement. With a moderate time horizon, they can balance growth with a growing need for stability. This group often seeks:
+                                        Middle-aged investors typically have established careers and a clearer picture of their financial 
+                                        goals, such as saving for a home, children&apos;s education, or retirement. With a moderate time horizon, 
+                                        they can balance growth with a growing need for stability. This group often seeks:
                                     </p>
                                     <ul className="list-disc pl-5 text-slate-600 space-y-2">
                                         <li>
@@ -504,10 +506,11 @@ export default function InvestmentPage() {
                                             </ul>
                                         </li>
                                         <li>
-                                            <b>Balanced Mutual Funds/ETFs:</b> Funds that invest in a predetermined mix of stocks and bonds, automatically providing diversification.
+                                            <b>Balanced Mutual Funds/ETFs:</b> Funds that invest in a predetermined mix of stocks and bonds, 
+                                            automatically providing diversification.
                                             <ul className="list-circle pl-5 text-slate-600">
                                                 <li>
-                                                    <b>Risk:</b> Moderate risk, depending on the fund's specific asset allocation. Subject to management fees.
+                                                    <b>Risk:</b> Moderate risk, depending on the fund&apos;s specific asset allocation. Subject to management fees.
                                                 </li>
                                             </ul>
                                         </li>
@@ -557,7 +560,10 @@ export default function InvestmentPage() {
                         </div>
                         <div className="text-center mt-8">
                             <p className="text-slate-600 italic">
-                                At We Invest, we understand that each investor's journey is unique. We collaborate closely with our clients to evaluate their risk tolerance and tailor investment strategies that align with their individual goals. Whether you are seeking aggressive growth or prefer the security of steady returns, our team is here to guide you every step of the way.
+                                At We Invest, we understand that each investor&apos;s journey is unique. 
+                                We collaborate closely with our clients to evaluate their risk tolerance and tailor 
+                                investment strategies that align with their individual goals. Whether you are seeking 
+                                aggressive growth or prefer the security of steady returns, our team is here to guide you every step of the way.
                             </p>
                         </div>
                     </div>

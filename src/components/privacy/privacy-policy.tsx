@@ -6,9 +6,7 @@ import { useState, useEffect } from "react"
 import {
     Shield,
     Calendar,
-    Printer,
     Download,
-    ArrowUp,
     Mail,
     Phone,
     MapPin,
@@ -30,12 +28,12 @@ import {
     privacyPolicyMetadata,
 } from "@/data/privacy-policy-data"
 
-import { PrivacyContentBlock } from "@/data/privacy-policy-data"
+import { PrivacyContentBlock, PrivacySection } from "@/data/privacy-policy-data"
 
 interface Section {
     id: string
     title: string
-    icon: React.ElementType
+    icon: string // Changed to string
     content: PrivacyContentBlock[]
     subsections?: { id: string; title: string }[]
 }
@@ -50,10 +48,10 @@ const iconMap: Record<string, React.ElementType> = {
     "consumer-protection-grievance": Bell,
 }
 
-const sections: Section[] = privacyPolicySections.map((section: any) => ({
+const sections: Section[] = privacyPolicySections.map((section: PrivacySection) => ({
     id: section.id,
     title: section.title,
-    icon: iconMap[section.id] || FileText,
+    icon: section.icon, // Directly use the string icon name
     content: section.content, // Directly use the content array
     subsections: section.subsections,
 }))
@@ -151,8 +149,8 @@ export default function PrivacyPolicy() {
                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 sticky top-20">
                             <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
                             <nav className="space-y-2">
-                                {sections.map((section: any) => {
-                                    const Icon = section.icon
+                                {sections.map((section: PrivacySection) => {
+                                    const IconComponent: React.ElementType = iconMap[section.icon] || FileText;
                                     return (
                                         <div key={section.id}>
                                             <button
@@ -161,12 +159,12 @@ export default function PrivacyPolicy() {
                                                     flex items-center ${activeSection === section.id ? "bg-brand_teal text-white" : "text-gray-700 hover:bg-gray-50"
                                                     }`}
                                             >
-                                                <Icon className="w-4 h-4 mr-3 flex-shrink-0" />
+                                                <IconComponent className="w-4 h-4 mr-3 flex-shrink-0" />
                                                 <span>{section.title}</span>
                                             </button>
                                             {section.subsections && activeSection === section.id && (
                                                 <div className="ml-7 mt-2 space-y-1">
-                                                    {section.subsections.map((subsection: any) => (
+                                                    {section.subsections.map((subsection: { id: string; title: string }) => (
                                                         <button
                                                             key={subsection.id}
                                                             onClick={() => scrollToSection(subsection.id)}
@@ -189,7 +187,7 @@ export default function PrivacyPolicy() {
                     <div className="lg:col-span-3">
                         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                             {sections.map((section, index) => {
-                                const Icon = section.icon
+                                const IconComponent: React.ElementType = iconMap[section.icon] || FileText;
                                 return (
                                     <section
                                         key={section.id}
@@ -198,7 +196,7 @@ export default function PrivacyPolicy() {
                                     >
                                         <div className="flex items-center mb-6">
                                             <div className="w-10 h-10 bg-brand-green rounded-lg flex items-center justify-center mr-4">
-                                                <Icon className="w-5 h-5 text-white" />
+                                                <IconComponent className="w-5 h-5 text-white" />
                                             </div>
                                             <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                                         </div>

@@ -1,4 +1,5 @@
-import { MessageCircle, HelpCircle, Phone, Mail, Briefcase, GraduationCap, ShieldCheck } from "lucide-react";
+import type React from "react";
+import { MessageCircle, HelpCircle, Briefcase, GraduationCap, ShieldCheck } from "lucide-react";
 
 export interface FAQItem {
     id: string;
@@ -11,7 +12,7 @@ export interface FAQItem {
 export interface FAQCategory {
     id: string;
     name: string;
-    icon: any; // Consider a more specific type if possible, e.g., React.ElementType
+    icon: React.ElementType;
     description: string;
 }
 

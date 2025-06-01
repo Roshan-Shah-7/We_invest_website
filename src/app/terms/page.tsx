@@ -2,22 +2,20 @@
 
 import * as React from "react"
 import { useState, useEffect } from "react"
-import { ChevronRight, FileText, Calendar, Printer, Download, ArrowUp, Mail, Phone, MapPin } from "lucide-react"
+import { ChevronRight, FileText, Calendar, Download, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { lastUpdated, effectiveDate, termsSections, TermContentBlock } from "@/data/termsData"
+import { lastUpdated, effectiveDate, termsSections, TermContentBlock, TermSection } from "@/data/termsData"
 
 interface Section {
     id: string
     title: string
-    icon?: React.ElementType // Optional icon for terms sections
     content: TermContentBlock[]
     subsections?: { id: string; title: string }[]
 }
 
-const sections: Section[] = termsSections.map((section: any) => ({
+const sections: Section[] = termsSections.map((section: TermSection) => ({
     id: section.id,
     title: section.title,
-    icon: section.icon, // Assuming icon might be present in termsData, or handle default
     content: section.content,
     subsections: section.subsections,
 }));
@@ -139,7 +137,7 @@ export default function TermsAndConditions() {
                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 sticky top-20">
                             <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
                             <nav className="space-y-2">
-                                {sections.map((section: any) => (
+                                {sections.map((section: TermSection) => (
                                     <div key={section.id}>
                                         <button
                                             onClick={() => scrollToSection(section.id)}
@@ -151,7 +149,7 @@ export default function TermsAndConditions() {
                                         </button>
                                         {section.subsections && activeSection === section.id && (
                                             <div className="ml-4 mt-2 space-y-1">
-                                                {section.subsections.map((subsection: any) => (
+                                                {section.subsections.map((subsection: { id: string; title: string }) => (
                                                     <button
                                                         key={subsection.id}
                                                         onClick={() => scrollToSection(subsection.id)}
@@ -217,7 +215,7 @@ export default function TermsAndConditions() {
                         <div className="mt-8 bg-brand_teal rounded-xl p-8 text-white text-center">
                             <h3 className="text-xl font-semibold mb-4">Agreement Acknowledgment</h3>
                             <p className="text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                                By using We Invest's services, you acknowledge that you have read, understood, and agree to be bound by
+                                By using We Invest&apos;s services, you acknowledge that you have read, understood, and agree to be bound by
                                 these Terms and Conditions. These terms constitute the entire agreement between you and We Invest
                                 regarding your use of our services.
                             </p>

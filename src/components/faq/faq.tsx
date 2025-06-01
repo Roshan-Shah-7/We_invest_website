@@ -124,7 +124,7 @@ export default function FAQ() {
                         {searchTerm && (
                             <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
                                 <p className="text-blue-800">
-                                    Found {filteredFAQs.length} result{filteredFAQs.length !== 1 ? "s" : ""} for "{searchTerm}"
+                                    Found {filteredFAQs.length} result{filteredFAQs.length !== 1 ? "s" : ""} for &quot;{searchTerm}&quot;
                                 </p>
                             </div>
                         )}
@@ -200,7 +200,7 @@ export default function FAQ() {
                     <div className="text-center">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">Still have questions?</h3>
                         <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                            Can't find what you're looking for? Our support team is here to help you with any questions about our
+                            Can&apos;t find what you&apos;re looking for? Our support team is here to help you with any questions about our
                             investment programs and services.
                         </p>
 
@@ -217,7 +217,7 @@ export default function FAQ() {
                             <div className="text-center p-6 bg-gray-50 rounded-xl">
                                 <Mail className="w-8 h-8 text-brand-green mx-auto mb-3" />
                                 <h4 className="font-semibold text-gray-900 mb-2">Email Us</h4>
-                                <p className="text-gray-700 text-sm mb-3">We'll respond within 24 hours</p>
+                                <p className="text-gray-700 text-sm mb-3">We&apos;ll respond within 24 hours</p>
                                 <Button variant="outline" size="sm">
                                     support@weinvest.com
                                 </Button>

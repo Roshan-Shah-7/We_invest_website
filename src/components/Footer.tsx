@@ -171,7 +171,7 @@ export default function Footer() {
                         factors affecting financial markets. The historical performance of any sector or investment does not assure
                         future results. We strongly advise investors to carefully examine all relevant scheme documents and seek guidance
                         from qualified professionals to grasp the legal, tax, and financial consequences of their investment decisions.
-                        It's crucial to make informed choices to ensure your investments align with your financial objectives.
+                        It&apos;s crucial to make informed choices to ensure your investments align with your financial objectives.
                     </p>
                 </div>
 
