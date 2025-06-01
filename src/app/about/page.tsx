@@ -153,8 +153,7 @@ export default function AboutUsPage() {
                                     <div>
                                         <h4 className="text-lg font-semibold text-[#333333] mb-2">Capital & Mentorship</h4>
                                         <p className="text-[#666666]">
-                                            Providing startups with comprehensive resources and expert guidance to thrive in competitive
-                                            markets
+                                            Providing comprehensive resources and expert guidance to empower everyone in competitive markets.
                                         </p>
                                     </div>
                                 </div>

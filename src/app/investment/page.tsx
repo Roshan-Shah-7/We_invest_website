@@ -288,7 +288,7 @@ export default function InvestmentPage() {
 
             {/* Why Invest Section */}
             <section className="py-16 px-4 bg-white">
-                <div className="container mx-auto max-w-6xl">
+                <div className="container mx-auto max-w-8xl">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Why Invest?</h2>
                         <p className="text-lg text-slate-600 max-w-3xl mx-auto">
@@ -296,7 +296,7 @@ export default function InvestmentPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 mb-16">
                         <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                             <CardContent className="p-6">
                                 <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -424,9 +424,9 @@ export default function InvestmentPage() {
                     </div>
 
                     {/* Risk and Investment Types */}
-                    <div className="mt-16">
+                    <div className="mt-16 w-full">
                         <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Investments and Risk</h3>
-                        <div className="grid md:grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-justify">
                             <Card className="border-emerald-200">
                                 <CardHeader>
                                     <CardTitle className="flex items-center space-x-2">
@@ -436,14 +436,82 @@ export default function InvestmentPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-slate-600 mb-4">
-                                        With a longer time horizon, younger individuals can afford to take on higher-risk investments, as
-                                        they have time to recover from market downturns.
+                                        For younger individuals, the investment landscape is filled with opportunities. With a longer time horizon, they can embrace higher-risk investments, allowing them to capitalize on market fluctuations and recover from potential downturns. This age group is often encouraged to explore:
                                     </p>
-                                    <div className="bg-emerald-50 p-4 rounded-lg">
-                                        <p className="text-sm text-emerald-700 font-medium">
-                                            Recommended: Equities, Growth Stocks, Startups
-                                        </p>
-                                    </div>
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                        <li>
+                                            <b>Equities:</b> Investing in stocks can provide significant growth potential over time.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> High volatility, potential for significant capital loss. However, a long-time horizon allows for recovery from market downturns.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Growth Stocks:</b> These companies are expected to grow at an above-average rate compared to their industry, offering the chance for substantial returns.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Higher volatility than established companies, as their valuations often depend on future growth expectations.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Startups:</b> Investing in early-stage companies can be risky but may yield high rewards for those willing to take the plunge.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Extremely high risk, high potential for complete loss of capital. Lack of liquidity. Due diligence is crucial.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="border-blue-200">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center space-x-2">
+                                        <Briefcase className="h-6 w-6 text-blue-600" />
+                                        <span>Middle-Aged Investors</span>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-slate-600 mb-4">
+                                        Middle-aged investors typically have established careers and a clearer picture of their financial goals, such as saving for a home, children's education, or retirement. With a moderate time horizon, they can balance growth with a growing need for stability. This group often seeks:
+                                    </p>
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                        <li>
+                                            <b>Diversified Portfolios:</b> A mix of equities and fixed-income securities to balance growth and risk.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Moderate risk, designed to mitigate overall portfolio volatility through asset allocation.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Blue-Chip Stocks:</b> Investments in large, well-established, and financially sound companies with a history of stable earnings.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Lower volatility than growth stocks, but still subject to market fluctuations.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Real Estate:</b> Investing in properties can offer long-term appreciation and potential rental income.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Illiquidity, market fluctuations, maintenance costs, and potential for tenant issues.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Balanced Mutual Funds/ETFs:</b> Funds that invest in a predetermined mix of stocks and bonds, automatically providing diversification.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Moderate risk, depending on the fund's specific asset allocation. Subject to management fees.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </CardContent>
                             </Card>
 
@@ -456,21 +524,40 @@ export default function InvestmentPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-slate-600 mb-4">
-                                        Older investors may prefer safer, income-generating assets to preserve capital and ensure financial
-                                        security.
+                                        As individuals approach retirement, their investment strategy typically shifts towards preserving capital and generating reliable income. Older investors often prioritize safety and stability, focusing on assets that can provide peace of mind. Recommended options include:
                                     </p>
-                                    <div className="bg-orange-50 p-4 rounded-lg">
-                                        <p className="text-sm text-orange-700 font-medium">
-                                            Recommended: Bonds, Fixed Deposits, Dividend Stocks
-                                        </p>
-                                    </div>
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                        <li>
+                                            <b>Bonds:</b> These fixed-income securities offer regular interest payments and are generally considered safer than stocks.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Lower risk than stocks, but subject to interest rate risk (bond prices fall when interest rates rise) and inflation risk.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Fixed Deposits:</b> A secure way to earn interest on savings, providing guaranteed returns with minimal risk.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Very low risk, but returns may be lower than inflation, eroding purchasing power over time.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <b>Dividend Stocks:</b> Investing in established companies that pay dividends can provide a steady income stream while still allowing for some growth potential.
+                                            <ul className="list-circle pl-5 text-slate-600">
+                                                <li>
+                                                    <b>Risk:</b> Lower volatility than growth stocks, but still subject to market fluctuations. Dividend payments are not guaranteed.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </CardContent>
                             </Card>
                         </div>
                         <div className="text-center mt-8">
                             <p className="text-slate-600 italic">
-                                At We Invest, we work closely with clients to assess their risk tolerance and align investments with
-                                their unique goals, whether they seek aggressive growth or steady returns.
+                                At We Invest, we understand that each investor's journey is unique. We collaborate closely with our clients to evaluate their risk tolerance and tailor investment strategies that align with their individual goals. Whether you are seeking aggressive growth or prefer the security of steady returns, our team is here to guide you every step of the way.
                             </p>
                         </div>
                     </div>

@@ -167,12 +167,11 @@ export default function Footer() {
                 <div className='pt-4 border-t border-gray-200 mb-4'>
                     <p className='text-justify text-gray-700'>
                         <span className='font-bold text-black'>Investment Disclaimer: </span>
-                        Investments carry inherent market risks, and the value of your investment may
-                        fluctuate due to various factors influencing financial markets. Past performance
-                        of any sector or investment is not a guaranteed predictor of future results. We strongly
-                        recommend that investors thoroughly review all relevant scheme documents and consult with
-                        qualified professionals to understand the legal, tax, and financial implications of their
-                        investment decisions. Making informed choices is essential to aligning your investments with your financial goals.
+                        Investments come with inherent market risks, and the value of your investment may vary due to numerous
+                        factors affecting financial markets. The historical performance of any sector or investment does not assure
+                        future results. We strongly advise investors to carefully examine all relevant scheme documents and seek guidance
+                        from qualified professionals to grasp the legal, tax, and financial consequences of their investment decisions.
+                        It's crucial to make informed choices to ensure your investments align with your financial objectives.
                     </p>
                 </div>
 
