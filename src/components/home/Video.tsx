@@ -22,7 +22,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
         <div className="mx-auto py-12 px-4 bg-[#F5F7FA] w-full">
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
-                    Live NEPSE Analysis
+                    Real Time NEPSE Analysis Learn From The Best
                 </h1>
                 <div className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
             </div>

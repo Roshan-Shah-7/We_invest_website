@@ -71,22 +71,6 @@ export default function AboutUsPage() {
                             We are more than an investment firm; we are a dynamic team of visionaries committed to empowering the next
                             generation of entrepreneurs through strategic partnerships and innovative solutions.
                         </p>
-
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Button
-                                size="lg"
-                                className="bg-white text-[#00695C] hover:bg-[#F5F7FA] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                            >
-                                Explore Partnership <ArrowRight className="ml-2 h-5 w-5" />
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="border-2 border-white/30 hover:bg-white/10 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-sm"
-                            >
-                                Watch Our Story
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -452,7 +436,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        {/* Sushil Silwa */}
+                        {/* Sushil Silwal */}
                         <div className="group">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
@@ -471,7 +455,7 @@ export default function AboutUsPage() {
                                                 </Badge>
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Sushil Silwa</h3>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Sushil Silwal</h3>
                                         <p className="text-[#666666] leading-relaxed">
                                             Our financial and project advisor, Sushil, provides strategic guidance on funding and project execution.
                                             His expertise ensures our ventures are financially sound and operationally successful.
@@ -480,6 +464,36 @@ export default function AboutUsPage() {
                                 </div>
                             </Card>
                         </div>
+
+                        {/* Anna Magar */}
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#00695C] to-[#00C853] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-[#00695C] to-[#00C853] text-white text-xl font-bold">
+                                                    AM
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-[#00695C] text-white border-0 px-3 py-1">
+                                                    Market Analyst
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Anna Magar</h3>
+                                        <p className="text-[#666666] leading-relaxed">
+                                            Our Head Research Analyst, Anna, leads in-depth market research to identify high-potential investment opportunities.
+                                            Her data-driven insights drive informed decision-making and strategic growth.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -493,8 +507,8 @@ export default function AboutUsPage() {
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold text-[#333333] mb-6">Investment Sectors</h2>
                         <p className="text-xl text-[#666666] max-w-3xl mx-auto">
-                            We operate at the intersection of innovation and opportunity, with specialized funds across high-growth
-                            industries.
+                            At We Invest, we operate at the intersection of innovation and opportunity. Our investment funds are tailored to support a
+                            focused range of high-growth sectors, each chosen for its potential to drive transformative change and deliver strong returns. Below are the key sectors we invest in:
                         </p>
                     </div>
 
@@ -508,7 +522,8 @@ export default function AboutUsPage() {
                                             <Building2 className="h-8 w-8 text-white" />
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Technology</h3>
-                                        <p className="text-[#666666] mb-4">Cutting-edge tech startups and digital innovation platforms</p>
+                                        <p className="text-[#666666] mb-4">We fund early-stage tech startups in AI, fintech, and software, addressing the challenge of scaling disruptive innovations in competitive markets.
+                                            Our goal is to empower entrepreneurs to create technologies that redefine industries.</p>
                                         <div className="text-2xl font-bold text-[#00695C]">35%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
@@ -524,8 +539,8 @@ export default function AboutUsPage() {
                                         <div className="bg-[#00C853] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             <Heart className="h-8 w-8 text-white" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Healthcare</h3>
-                                        <p className="text-[#666666] mb-4">Medical innovations and healthcare solutions for better lives</p>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Agriculture</h3>
+                                        <p className="text-[#666666] mb-4">We invest in sustainable farming practices and food security solutions to combat unsustainable practices and global food challenges. Our focus is on building resilient, eco-friendly agricultural systems with economic benefits.</p>
                                         <div className="text-2xl font-bold text-[#00C853]">28%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
@@ -541,8 +556,8 @@ export default function AboutUsPage() {
                                         <div className="bg-[#00BCD4] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             <Zap className="h-8 w-8 text-white" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Renewable Energy</h3>
-                                        <p className="text-[#666666] mb-4">Sustainable energy solutions for a greener future</p>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Waste Management & Renewable Energy</h3>
+                                        <p className="text-[#666666] mb-4"> We support initiatives in clean energy (solar, wind, hydropower) and sustainable waste solutions, tackling high costs and regulatory barriers to adoption. Our investments drive environmental impact and long-term financial returns.</p>
                                         <div className="text-2xl font-bold text-[#00BCD4]">22%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
@@ -558,47 +573,31 @@ export default function AboutUsPage() {
                                         <div className="bg-[#FFD54F] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             <Globe className="h-8 w-8 text-white" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Arts & Culture</h3>
-                                        <p className="text-[#666666] mb-4">Creative industries and cultural innovation projects</p>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Equity Market</h3>
+                                        <p className="text-[#666666] mb-4">We target opportunities in stock markets, leveraging data-driven insights to navigate volatility and investor sentiment. Our investments aim to capitalize on economic growth for diversified, long-term returns.</p>
                                         <div className="text-2xl font-bold text-[#FFD54F]">15%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
                             </Card>
                         </div>
-                    </div>
 
-                    {/* Performance Metrics */}
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <Card className="border-0 shadow-lg bg-white text-center">
-                            <CardContent className="p-8">
-                                <div className="bg-[#E8F5E9] rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                                    <TrendingUp className="h-8 w-8 text-[#00C853]" />
+                        <div className="group">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-[#00BCD4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 relative">
+                                        <div className="bg-[#9C27B0] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <Zap className="h-8 w-8 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-4">Real Estate</h3>
+                                        <p className="text-[#666666] mb-4">We enable access to high-value properties through collective investment models, addressing the barrier of high costs for individual investors. Our goal is to deliver strong returns through appreciating land and property values.</p>
+                                        <div className="text-2xl font-bold text-[#00BCD4]">22%</div>
+                                        <div className="text-sm text-[#666666]">Portfolio Allocation</div>
+                                    </CardContent>
                                 </div>
-                                <div className="text-3xl font-bold text-[#333333] mb-2">150+</div>
-                                <div className="text-[#666666]">Startups Funded</div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-0 shadow-lg bg-white text-center">
-                            <CardContent className="p-8">
-                                <div className="bg-[#E0F7FA] rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                                    <BarChart3 className="h-8 w-8 text-[#00BCD4]" />
-                                </div>
-                                <div className="text-3xl font-bold text-[#333333] mb-2">$50M+</div>
-                                <div className="text-[#666666]">Capital Deployed</div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-0 shadow-lg bg-white text-center">
-                            <CardContent className="p-8">
-                                <div className="bg-[#FFF8E1] rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                                    <Award className="h-8 w-8 text-[#FFD54F]" />
-                                </div>
-                                <div className="text-3xl font-bold text-[#333333] mb-2">85%</div>
-                                <div className="text-[#666666]">Success Rate</div>
-                            </CardContent>
-                        </Card>
+                            </Card>
+                        </div>
                     </div>
                 </div>
             </section>

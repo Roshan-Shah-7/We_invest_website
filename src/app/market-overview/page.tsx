@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
 import { LucideIcon } from "lucide-react"
 import {
+    BrainCircuit,
     LineChart,
     PieChart,
     Star,
@@ -17,7 +18,6 @@ import {
     Store,
     Zap,
     Bitcoin,
-    ArrowRight,
     BarChart3,
     Shield,
     Users,
@@ -30,7 +30,6 @@ import {
     Filter,
     BarChart2,
     Eye,
-    Download,
 } from "lucide-react"
 
 // Type Definitions
@@ -1045,24 +1044,6 @@ export default function MarketOverviewPage() {
                                 A strategic snapshot of key investment sectors, offering insights into trends, opportunities, and risks
                                 that shape informed decision-making.
                             </p>
-                            <div
-                                className="flex flex-wrap gap-4 animate-fade-in"
-                                style={{ animationDelay: "0.8s" }}
-                            >
-                                <Button
-                                    size="lg"
-                                    className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
-                                >
-                                    Explore Sectors <ArrowRight className="h-5 w-5" />
-                                </Button>
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="border-2 border-white/30 text-black hover:text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold rounded-xl backdrop-blur-sm flex items-center gap-2"
-                                >
-                                    Download Report <Download className="h-5 w-5" />
-                                </Button>
-                            </div>
                         </div>
                         <div
                             className="relative animate-fade-in"
@@ -1586,6 +1567,18 @@ export default function MarketOverviewPage() {
 
                                 <div className="flex items-start space-x-4 group">
                                     <div className="bg-emerald-100 rounded-lg p-2 group-hover:bg-emerald-200 transition-colors">
+                                        <BrainCircuit className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Deep Researcb</h4>
+                                        <p className="text-slate-600">
+                                            Comprehensive market analysis and data-driven insights to identify high-potential opportunities
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4 group">
+                                    <div className="bg-emerald-100 rounded-lg p-2 group-hover:bg-emerald-200 transition-colors">
                                         <Users className="h-6 w-6 text-emerald-600" />
                                     </div>
                                     <div>
@@ -1604,25 +1597,25 @@ export default function MarketOverviewPage() {
                                 <div className="grid grid-cols-2 gap-6 mb-8">
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-emerald-600 mb-2">
-                                            <AnimatedCounter end={150} suffix="+" />
+                                            <AnimatedCounter end={10} suffix="+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Active Investments</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-purple-600 mb-2">
-                                            <AnimatedCounter end={50} prefix="$" suffix="M+" />
+                                            <AnimatedCounter end={3} prefix="$" suffix="Cr+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Capital Deployed</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-orange-600 mb-2">
-                                            <AnimatedCounter end={85} suffix="%" />
+                                            <AnimatedCounter end={89} suffix="%" />
                                         </div>
                                         <div className="text-sm text-slate-600">Success Rate</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-teal-600 mb-2">
-                                            <AnimatedCounter end={7} suffix="+" />
+                                            <AnimatedCounter end={5} suffix="+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Market Sectors</div>
                                     </div>

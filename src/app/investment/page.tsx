@@ -136,7 +136,7 @@ export default function InvestmentPage() {
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Left Column: Summary Card */}
-                        <Card className="bg-white border-emerald-200 h-fit lg:sticky top-20">
+                        <Card className="bg-white border-emerald-200 h-fit md:sticky top-20">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <PieChart className="h-6 w-6 text-emerald-600" />

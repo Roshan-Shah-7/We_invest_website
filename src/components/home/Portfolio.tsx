@@ -1,169 +1,289 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+"use client"
 
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect, useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { Zap } from "lucide-react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Project, projects } from "@/data/portfolioProjects"
+import Image from "next/image"
+import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card"
+import { ExternalLink, Github, ArrowUpRight, Star } from "lucide-react"
 
-interface SuccessStory {
-    company: string;
-    achievement: string;
-    description: string;
-    website: string;
-}
-
-const Portfolio: React.FC = () => {
-    const lineRef = useRef<SVGPathElement>(null);
-    const cardsContainerRef = useRef<HTMLDivElement>(null);
-    const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
-
-    // Clear refs array on component mount or if story data could change dynamically
-    useEffect(() => {
-        cardsRef.current = [];
-    }, []);
-
+function ProjectCard({ project, index, className = "" }: { project: Project; index: number; className?: string }) {
+    const cardRef = useRef<HTMLDivElement>(null)
+    const imageRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            if (lineRef.current) {
-                gsap.from(lineRef.current, {
-                    scrollTrigger: {
-                        trigger: lineRef.current,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        scrub: 1.5, // Slightly adjusted scrub
-                    },
-                    strokeDashoffset: lineRef.current.getTotalLength(), // Use actual length
-                    strokeDasharray: lineRef.current.getTotalLength(),   // Use actual length
-                    ease: 'none',
-                });
-            }
+        const card = cardRef.current
+        const image = imageRef.current
+        const content = contentRef.current
 
-            if (cardsContainerRef.current && cardsRef.current.length > 0) {
-                gsap.from(cardsRef.current.filter(el => el !== null), { // Filter out nulls
-                    scrollTrigger: {
-                        trigger: cardsContainerRef.current,
-                        start: 'top 85%', // Start a bit later
-                        once: true,
-                    },
-                    opacity: 0,
-                    y: 60, // Slightly more travel
+        if (!card || !image || !content) return
+
+        // Initial state
+        gsap.set(card, { y: 100, opacity: 0, rotation: project.size === "small" ? 2 : 0 })
+        gsap.set(image, { scale: 1.2, opacity: 0 })
+        gsap.set(content, { y: 50, opacity: 0 })
+
+        // Scroll trigger animation
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
+            },
+        })
+
+        tl.to(card, {
+            y: 0,
+            opacity: 1,
+            rotation: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: index * 0.15,
+        })
+            .to(
+                image,
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                },
+                "-=0.8",
+            )
+            .to(
+                content,
+                {
+                    y: 0,
+                    opacity: 1,
                     duration: 0.8,
-                    stagger: 0.1, // Slightly faster stagger
-                    ease: 'power3.out',
-                });
-            }
-        });
+                    ease: "power3.out",
+                },
+                "-=0.6",
+            )
 
-        return () => ctx.revert();
-    }, []); // Empty dependency array ensures this runs once on mount
+        // Hover animations
+        const handleMouseEnter = () => {
+            gsap.to(image, { scale: 1.05, duration: 0.6, ease: "power2.out" })
+            gsap.to(card, {
+                y: -15,
+                rotation: project.size === "small" ? 1 : 0,
+                duration: 0.6,
+                ease: "power2.out",
+            })
+        }
 
-    const successStories: SuccessStory[] = [
-        {
-            company: 'GreenTech Innovate',
-            achievement: 'Raised $2M in Funding',
-            description: 'A sustainable energy startup focused on renewable solutions. With our funding and mentorship, GreenTech Innovate scaled their operations and secured a $2M investment round within 18 months.',
-            website: 'https://greentechinnovate.com',
-        },
-        {
-            company: 'HealthSync Solutions',
-            achievement: 'Expanded to 3 New Markets',
-            description: 'A health-tech company revolutionising patient care. Through our School of Startups programme, HealthSync gained access to strategic guidance, enabling them to expand into three new markets in just one year.',
-            website: 'https://healthsync.com',
-        },
-        {
-            company: 'EduFuture Labs',
-            achievement: 'Grew User Base by 300%',
-            description: 'An ed-tech platform enhancing learning through AI. With our incubation classes and pitch coaching, EduFuture Labs refined their product and pitch, leading to a 300% growth in their user base.',
-            website: 'https://edufuturelabs.com',
-        },
-        {
-            company: 'FinFlow Analytics',
-            achievement: 'Formed Strategic Partnerships',
-            description: 'A fintech startup streamlining financial operations. Our mentorship and strategic support helped FinFlow Analytics forge key partnerships, positioning them as a leader in their sector.',
-            website: 'https://finflowanalytics.com',
-        },
-    ];
+        const handleMouseLeave = () => {
+            gsap.to(image, { scale: 1, duration: 0.6, ease: "power2.out" })
+            gsap.to(card, {
+                y: 0,
+                rotation: 0,
+                duration: 0.6,
+                ease: "power2.out",
+            })
+        }
+
+        card.addEventListener("mouseenter", handleMouseEnter)
+        card.addEventListener("mouseleave", handleMouseLeave)
+
+        return () => {
+            card.removeEventListener("mouseenter", handleMouseEnter)
+            card.removeEventListener("mouseleave", handleMouseLeave)
+            tl.kill(); // Kill the ScrollTrigger timeline on unmount
+        }
+    }, [index, project.size])
+
+    const cardHeights = {
+        large: "h-[500px]",
+        medium: "h-[400px]",
+        small: "h-[320px]",
+        default: "h-[400px]",
+    }
+
+    const imageHeights = {
+        large: "h-80",
+        medium: "h-56",
+        small: "h-40",
+        default: "h-56",
+    }
+
+    const getCardHeight = () => cardHeights[project.size || "default"]
+    const getImageHeight = () => imageHeights[project.size || "default"]
 
     return (
-        <section className="relative py-24 sm:py-32 overflow-hidden">
-            {/* Animated SVG Line - Subtle Background Accent */}
-            <svg
-                className="absolute inset-0 w-full h-full pointer-events-none opacity-20 dark:opacity-10"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
+        <div ref={cardRef} className={`group ${className}`}>
+            <Card
+                className={`overflow-hidden ${getCardHeight()} bg-white border shadow-lg hover:shadow-2xl transition-shadow duration-500 relative`}
             >
-                <path
-                    ref={lineRef}
-                    d="M0 100 L100 0" // Bottom-left to top-right
-                    strokeWidth={0.5} // Thinner line
-                    stroke="currentColor"
-                    className="text-slate-400 dark:text-slate-600" // Muted color
-                    strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
-                // strokeDasharray will be set by GSAP based on getTotalLength()
-                />
-            </svg>
-
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10"> {/* z-10 to be above SVG */}
-                <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-foreground mb-16">
-                    Our Portfolio
-                </h2>
-
-                <div className="mb-16 sm:mb-20 text-center">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                        We take pride in the startups we’ve supported, helping them transform their ideas into impactful businesses. Here’s a glimpse of the innovative ventures we’ve empowered on their journey to success.
-                    </p>
-                </div>
-
-                <div ref={cardsContainerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-20 sm:mb-24">
-                    {successStories.map((story, index) => (
-                        <div
-                            key={story.company}
-                            ref={(el) => { cardsRef.current[index] = el; }}
-                            className="bg-card text-card-foreground rounded-xl p-6 sm:p-7 flex flex-col group
-                                       shadow-lg hover:shadow-xl transform hover:scale-[1.02] 
-                                       transition-all duration-300 ease-in-out border border-slate-200/60 dark:border-slate-700/60"
-                        >
-                            <div className="mb-4">
-                                <h3 className="text-xl font-semibold text-primary group-hover:text-brand_teal transition-colors duration-300">
-                                    {story.company}
-                                </h3>
-                                <p className="text-sm text-muted-foreground font-medium mt-2">
-                                    {story.achievement}
-                                </p>
-                            </div>
-                            <p className="text-sm text-muted-foreground mb-6 flex-grow">
-                                {story.description}
-                            </p>
-                            <a
-                                href={story.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm text-brand_teal hover:text-brand_teal/80 font-semibold flex items-center gap-1.5 mt-auto group" // mt-auto pushes to bottom
-                            >
-                                Visit Website
-                                <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                            </a>
+                {project.featured && (
+                    <div className="absolute top-4 right-4 z-20">
+                        <div className="bg-[#00695C] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                            <Star className="w-3 h-3" />
+                            Featured
                         </div>
-                    ))}
+                    </div>
+                )}
+
+                <div ref={imageRef} className="relative overflow-hidden">
+                    <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        width={700}
+                        height={500}
+                        className={`w-full ${getImageHeight()} object-cover`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#00695C]/90 via-[#00695C]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-4 left-4">
+                        <span className="bg-white/90 text-[#00695C] px-3 py-1 rounded-full text-sm font-semibold">
+                            {project.category}
+                        </span>
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4 transition-opacity duration-500"> {/* Removed opacity-0 group-hover:opacity-100 */}
+                        <div className="flex gap-3">
+                            <Button size="sm" className="bg-white text-[#00695C] hover:bg-gray-100 flex-1" asChild>
+                                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                    Live Demo
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="text-center">
-                    <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                        Be Our Next Success Story
-                    </h3>
-                    <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-                        Inspired by these achievements? Let’s work together to turn your vision into the next big success.
+                <CardContent ref={contentRef} className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-center justify-between mb-3">
+                        <h3
+                            className={`font-bold text-gray-900 group-hover:text-[#00695C] transition-colors duration-300 ${project.size === "large" ? "text-2xl" : project.size === "medium" ? "text-xl" : "text-lg"
+                                }`}
+                        >
+                            {project.title}
+                        </h3>
+                        <span className="text-[#00695C] text-sm font-semibold">{project.year}</span>
+                    </div>
+
+                    <p
+                        className={`text-gray-600 leading-relaxed flex-1 ${project.size === "small" ? "text-sm line-clamp-2" : "line-clamp-3"
+                            }`}
+                    >
+                        {project.description}
                     </p>
-                    <Button size="lg" className="rounded-full bg-brand_teal hover:bg-brand_teal/90 px-8 py-3 text-base"> {/* Example custom padding for lg */}
-                        Apply Now
-                    </Button>
+
+                    <div className="mt-4">
+                        <div className="flex flex-wrap gap-2 mb-3">
+                            {project.technologies.slice(0, project.size === "small" ? 2 : 4).map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-[#00695C]/10 hover:text-[#00695C] transition-colors duration-200"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                            {project.technologies.length > (project.size === "small" ? 2 : 4) && (
+                                <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
+                                    +{project.technologies.length - (project.size === "small" ? 2 : 4)}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+    )
+}
+
+export default function Portfolio() {
+    const headerRef = useRef<HTMLDivElement>(null)
+    const masonryRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const header = headerRef.current
+        const masonry = masonryRef.current
+
+        if (!header || !masonry) return
+
+        // Header animation
+        gsap.set(header.children, { y: 50, opacity: 0 })
+        gsap.to(header.children, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+            delay: 0.3,
+        })
+
+        // Floating elements animation
+        gsap.to(".floating-element", {
+            y: "random(-20, 20)",
+            x: "random(-10, 10)",
+            rotation: "random(-5, 5)",
+            duration: "random(3, 6)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: {
+                amount: 2,
+                from: "random",
+            },
+        })
+
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        }
+    }, [])
+
+    return (
+        <section className="relative py-20 px-4 overflow-hidden">
+            {/* Floating Background Elements */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="floating-element absolute top-20 left-[10%] w-4 h-4 bg-[#00695C]/20 rounded-full" />
+                <div className="floating-element absolute top-40 right-[15%] w-6 h-6 bg-[#00695C]/15 rounded-full" />
+                <div className="floating-element absolute bottom-32 left-[20%] w-3 h-3 bg-[#00695C]/25 rounded-full" />
+                <div className="floating-element absolute bottom-20 right-[25%] w-5 h-5 bg-[#00695C]/20 rounded-full" />
+                <div className="floating-element absolute top-60 left-[70%] w-2 h-2 bg-[#00695C]/30 rounded-full" />
+            </div>
+
+            <div className="relative max-w-7xl mx-auto">
+                {/* Header */}
+                <div ref={headerRef} className="text-center mb-20">
+                    <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-[#00695C]/10 rounded-full">
+                        <Zap className="w-4 h-4 text-[#00695C]" />
+                        <span className="text-[#00695C] font-semibold text-sm uppercase tracking-wide">Portfolio</span>
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                        Creative <span className="text-[#00695C]">Solutions</span>
+                    </h1>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Innovative projects that push boundaries and deliver exceptional user experiences across diverse industries.
+                    </p>
+                </div>
+
+                {/* Unique Masonry-style Layout */}
+                <div ref={masonryRef} className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16">
+                    {/* Large featured project - spans full width on mobile, 8 cols on desktop */}
+                    <ProjectCard project={projects[0]} index={0} className="md:col-span-8" />
+
+                    {/* Two small projects stacked - spans 4 cols on desktop */}
+                    <div className="md:col-span-4 space-y-6">
+                        <ProjectCard project={projects[1]} index={1} />
+                        <ProjectCard project={projects[3]} index={3} />
+                    </div>
+
+                    {/* Medium project - spans 5 cols */}
+                    <ProjectCard project={projects[2]} index={2} className="md:col-span-5" />
+
+                    {/* Medium project - spans 7 cols */}
+                    <ProjectCard project={projects[4]} index={4} className="md:col-span-7" />
+
+                    {/* Small project - spans 6 cols, offset */}
+                    <ProjectCard project={projects[5]} index={5} className="md:col-span-6 md:col-start-4" />
                 </div>
             </div>
         </section>
-    );
-};
-
-export default Portfolio;
+    )
+}

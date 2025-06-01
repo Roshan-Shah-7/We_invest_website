@@ -35,88 +35,88 @@ const FundPools: React.FC = () => {
 
         if (!cards.length || !container || !cardsWrapper) return;
 
-        // Cleanup previous ScrollTriggers
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        gsap.killTweensOf(cards);
-
-        // Initial state - only the first card is visible
-        gsap.set(cards, {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            width: '100%',
-            scale: 0.9,
-            opacity: 0,
-            zIndex: 0,
-            y: 40,
-            transformOrigin: 'top center',
-            overwrite: 'auto'
-        });
-
-        // First card is active
-        gsap.set(cards[0], {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            zIndex: 10
-        });
-
-        // Create a timeline with smoother animation
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: container,
-                start: 'top top',
-                end: `+=${window.innerHeight * (cards.length - 1) * 0.7}`,
-                scrub: 1.2, // Smoother scrub
-                pin: true,
-                pinSpacing: true,
-                markers: false,
-                anticipatePin: 1,
-                fastScrollEnd: true
-            },
-            defaults: {
-                duration: 0.6,
-                ease: "power2.inOut"
-            }
-        });
-
-        cards.forEach((card, index) => {
-            if (index === 0) return;
-
-            // Animate previous card to background position
-            tl.to(cards[index - 1], {
-                scale: 0.92,
-                y: 20,
-                opacity: 0.7,
-                zIndex: cards.length - index,
-                immediateRender: false
-            }, `card-${index}`);
-
-            // Animate current card to foreground
-            tl.to(card, {
-                scale: 1,
-                y: 0,
-                opacity: 1,
-                zIndex: 10,
-                immediateRender: false
-            }, `card-${index}`);
-
-            // Hide cards that are more than 2 positions behind
-            if (index > 1) {
-                tl.set(cards.slice(0, index - 1), {
-                    opacity: 0,
-                    zIndex: 0,
-                    immediateRender: false
-                }, `card-${index}`);
-            }
-        });
-
-        return () => {
-            tl.kill();
+        const ctx = gsap.context(() => {
+            // Kill all existing triggers
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
+            gsap.killTweensOf(cards);
+
+            const heightUnit = window.innerHeight * 0.7;
+            const totalScrollHeight = heightUnit * (cards.length - 1);
+
+            // Initialize all cards to a hidden stacked state
+            gsap.set(cards, {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                width: '100%',
+                scale: 0.9,
+                opacity: 0,
+                zIndex: 0,
+                y: 40,
+                transformOrigin: 'top center',
+            });
+
+            // First card is active
+            gsap.set(cards[0], {
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                zIndex: 10
+            });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top top',
+                    end: `+=${totalScrollHeight}`,
+                    scrub: 1.2,
+                    pin: true,
+                    pinSpacing: true,
+                    anticipatePin: 1,
+                    fastScrollEnd: true
+                },
+                defaults: {
+                    duration: 0.6,
+                    ease: "power2.inOut"
+                }
+            });
+
+            cards.forEach((card, index) => {
+                if (index === 0) return;
+
+                tl.to(cards[index - 1], {
+                    scale: 0.92,
+                    y: 20,
+                    opacity: 0.7,
+                    zIndex: cards.length - index
+                }, `card-${index}`);
+
+                tl.to(card, {
+                    scale: 1,
+                    y: 0,
+                    opacity: 1,
+                    zIndex: 10
+                }, `card-${index}`);
+
+                if (index > 1) {
+                    tl.set(cards.slice(0, index - 1), {
+                        opacity: 0,
+                        zIndex: 0
+                    }, `card-${index}`);
+                }
+            });
+
+            // Cleanup
+            return () => {
+                tl.kill();
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            };
+        }, containerRef);
+
+        return () => ctx.revert();
     }, []);
+
 
     return (
         <section
@@ -125,8 +125,8 @@ const FundPools: React.FC = () => {
             style={{ zIndex: 10 }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-20 md:pb-28">
-                <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-8 sm:mb-12 text-foreground">
-                    Fund Pools at Wee Invest
+                <h2 className="text-4xl text-brand_teal sm:text-5xl font-extrabold text-center mb-8 sm:mb-12 text-foreground">
+                    Fund Pools at We Invest
                 </h2>
                 <p className="text-lg sm:text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-16 sm:mb-20">
                     Diverse Sectors, Endless Opportunities.
@@ -158,8 +158,8 @@ const FundPools: React.FC = () => {
                                         priority={index <= 1}
                                     />
                                 </div>
-                                <div className="p-4 sm:p-6 md:p-8 w-full md:w-1/2 flex flex-col justify-between text-end h-1/2 md:h-full">
-                                    <div className="flex items-center mb-3 sm:mb-4 self-start md:self-end">
+                                <div className="p-4 sm:p-6 md:p-8 w-full md:w-1/2 flex flex-col justify-between text-justify h-1/2 md:h-full">
+                                    <div className="flex items-center mb-3 sm:mb-4 self-start">
                                         <NumberedBadge number={pool.number} color={pool.color} />
                                         <h3
                                             className="ml-3 sm:ml-4 text-lg sm:text-xl font-bold text-foreground"
@@ -169,9 +169,18 @@ const FundPools: React.FC = () => {
                                     <div className="flex-grow flex flex-col justify-center space-y-3 sm:space-y-4">
                                         <div>
                                             <h4 className="text-xs sm:text-sm font-semibold text-muted-foreground mb-0.5 sm:mb-1">
+                                                Problem:
+                                            </h4>
+                                            <li
+                                                className="text-sm sm:text-base text-foreground"
+                                                dangerouslySetInnerHTML={{ __html: pool.problem }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-xs sm:text-sm font-semibold text-muted-foreground mb-0.5 sm:mb-1">
                                                 Focus:
                                             </h4>
-                                            <p
+                                            <li
                                                 className="text-sm sm:text-base text-foreground"
                                                 dangerouslySetInnerHTML={{ __html: pool.focus }}
                                             />
@@ -180,7 +189,7 @@ const FundPools: React.FC = () => {
                                             <h4 className="text-xs sm:text-sm font-semibold text-muted-foreground mb-0.5 sm:mb-1">
                                                 Goal:
                                             </h4>
-                                            <p
+                                            <li
                                                 className="text-sm sm:text-base text-foreground"
                                                 dangerouslySetInnerHTML={{ __html: pool.goal }}
                                             />

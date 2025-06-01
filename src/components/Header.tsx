@@ -20,6 +20,7 @@ const navLinks: ReadonlyArray<NavLink> = [
   { href: '/about', label: 'About' },
   { href: '/investment', label: 'Investment' },
   { href: '/market-overview', label: 'Market Overview' },
+  { href: '/investment-programs', label: 'Investment Programs' },
   { href: '/contact', label: 'Contact' },
 ];
 

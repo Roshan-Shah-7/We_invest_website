@@ -28,6 +28,10 @@ const whoWeHelpData = [
         title: 'Scaleups',
         desc: 'For scaling ventures looking to break ceilings with strategic guidance.',
     },
+    {
+        title: 'Individuals',
+        desc: 'We help individual investors grow their wealth through strategic, high-potential opportunities.'
+    }
 ];
 
 // Helper function for greeting
@@ -73,6 +77,7 @@ const HeroSection: React.FC = () => {
             'Funding & Mentorship',
             'Expert Growth Resources',
             'Strategic Startup Support',
+            'Tailored Investment options'
         ],
         loop: true, // Changed to true for continuous typing
         delaySpeed: 1500,
@@ -180,7 +185,7 @@ const HeroSection: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6">
                     {whoWeHelpData.map((item) => (
                         <div
                             key={item.title}
@@ -190,7 +195,7 @@ const HeroSection: React.FC = () => {
                             <h4 className="text-xl sm:text-2xl font-semibold text-slate-800 group-hover:text-brand_teal transition-colors">
                                 {item.title}
                             </h4>
-                            <p className="text-base text-slate-600 mt-3 leading-relaxed">{item.desc}</p>
+                            <p className="text-slate-600 mt-3 leading-relaxed text-sm">{item.desc}</p>
                         </div>
                     ))}
                 </div>

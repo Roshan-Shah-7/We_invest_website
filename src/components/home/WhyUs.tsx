@@ -98,12 +98,14 @@ const WhyUs: React.FC = () => {
         >
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-                    Why <span className='text-brand_teal'>Wee</span> Invest?
+                    Why <span className='text-brand_teal'>We</span> Invest?
                 </h2>
 
                 <div className="mb-16 space-y-6">
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world. Our mission is to fuel the dreams of visionaries by providing the resources, guidance, and capital they need to turn innovative concepts into thriving businesses.
+                        At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world. 
+                        Our mission is to fuel the dreams of visionaries by providing the resources, guidance, 
+                        and capital they need to turn innovative concepts into thriving businesses.
                     </p>
                 </div>
 
@@ -119,7 +121,7 @@ const WhyUs: React.FC = () => {
                                 ref={(el) => {
                                     itemsRef.current[index] = el;
                                 }}
-                                className="p-6 bg-card rounded-lg shadow-lg transition-transform hover:scale-105"
+                                className="p-6 bg-card rounded-lg shadow-lg transition-transform hover:scale-105 text-justify"
                             >
                                 {item.icon}
                                 <h4 className="text-xl font-semibold text-foreground mb-3">
@@ -129,12 +131,6 @@ const WhyUs: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <div className="text-center">
-                    <Button size="lg" className="rounded-full bg-brand_teal hover:bg-brand_teal/90">
-                        Apply Now
-                    </Button>
                 </div>
             </div>
         </section>
