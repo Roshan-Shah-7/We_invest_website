@@ -1,6 +1,3 @@
-import { ExternalLink, Github, ArrowUpRight, Star } from "lucide-react"
-import type React from "react"
-
 export interface Project {
     id: number
     title: string
