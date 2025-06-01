@@ -1,6 +1,3 @@
-import type React from 'react';
-import { CheckCircle } from 'lucide-react'; // Assuming CheckCircle will be used for "Why Choose Us" section
-
 export interface Program {
     id: string;
     title: string;

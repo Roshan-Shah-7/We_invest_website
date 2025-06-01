@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
-import { Lightbulb, Building, Handshake, Eye } from 'lucide-react'; // Import Lucide icons
-import { Button } from '@/components/ui/button'; // Import Button component
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Lightbulb, Building, Handshake, Eye } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
 
@@ -103,8 +102,8 @@ const WhyUs: React.FC = () => {
 
                 <div className="mb-16 space-y-6">
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world. 
-                        Our mission is to fuel the dreams of visionaries by providing the resources, guidance, 
+                        At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world.
+                        Our mission is to fuel the dreams of visionaries by providing the resources, guidance,
                         and capital they need to turn innovative concepts into thriving businesses.
                     </p>
                 </div>

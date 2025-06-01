@@ -1,5 +1,5 @@
 import type React from "react"
-import { ExternalLink, Award, TrendingUp, Users, Target } from "lucide-react"
+import { Award, TrendingUp, Users, Target } from "lucide-react"
 
 export interface SuccessStory {
     company: string

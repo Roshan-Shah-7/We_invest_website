@@ -15,8 +15,6 @@ import {
     ArrowRight,
     CheckCircle,
     Award,
-    TrendingUp,
-    BarChart3,
     Building2,
     Target,
     Zap,

@@ -9,7 +9,7 @@ import { Project, projects } from "@/data/portfolioProjects"
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import { ExternalLink, Github, ArrowUpRight, Star } from "lucide-react"
+import { ExternalLink, Star } from "lucide-react"
 
 function ProjectCard({ project, index, className = "" }: { project: Project; index: number; className?: string }) {
     const cardRef = useRef<HTMLDivElement>(null)
