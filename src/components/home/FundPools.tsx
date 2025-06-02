@@ -61,7 +61,6 @@ const FundPools: React.FC = () => {
             gsap.killTweensOf(cards)
 
             const heightUnit = window.innerHeight * 0.8
-            const totalScrollHeight = heightUnit * (cards.length - 1)
 
             // Set initial states with better performance
             gsap.set(cards, {

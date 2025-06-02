@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef } from "react"
-import { Button } from "@/components/ui/button"
 import { Zap } from "lucide-react"
 
 export default function Portfolio() {

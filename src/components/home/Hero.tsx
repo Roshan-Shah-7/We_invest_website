@@ -79,8 +79,9 @@ const HeroSection: React.FC = () => {
         }
 
         return () => {
-            if (lottieContainerRef.current) {
-                observer.unobserve(lottieContainerRef.current);
+            const currentRef = lottieContainerRef.current;
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, []);
@@ -207,5 +208,7 @@ const HeroSection: React.FC = () => {
         </section>
     );
 };
+
+HeroSection.displayName = 'HeroSection';
 
 export default HeroSection;

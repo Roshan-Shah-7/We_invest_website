@@ -31,7 +31,7 @@ if (typeof window === 'undefined') {
   }
 } else {
   // Provide a dummy promise for client-side to prevent errors, though this code path should ideally not be reached.
-  clientPromise = Promise.resolve(null as any); // Cast to any to satisfy type, as it won't be used.
+  clientPromise = Promise.resolve(undefined as unknown as MongoClient); // Cast to MongoClient to satisfy type, as it won't be used on client-side.
 }
 
 // Export a module-scoped MongoClient object. By doing this in a

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Loader2, LogOut, User, Briefcase, Zap, Mail, FileText, LucideIcon } from 'lucide-react';
+import { Loader2, LogOut, User, Mail, FileText, LucideIcon } from 'lucide-react';
 
 interface InvestmentData {
   _id: string;
@@ -42,7 +42,7 @@ interface NewsletterData {
 type Tab = 'investments' | 'contacts' | 'newsletters';
 
 export default function AdminPanel() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<Tab>('investments');
   const [investmentData, setInvestmentData] = useState<InvestmentData[]>([]);
@@ -83,9 +83,9 @@ export default function AdminPanel() {
       } else {
         setError(result.message || `Error fetching ${tab} data`);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(`Error fetching ${tab} data:`, err);
-      setError(err.message || `Failed to load ${tab} data.`);
+      setError((err as Error).message || `Failed to load ${tab} data.`);
     } finally {
       setIsLoadingData(false);
     }

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/Badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { FundPool, ImageData } from "@/data/fundPoolsData"
+import { FundPool } from "@/data/fundPoolsData"
 
 const NumberedBadge: React.FC<{ number: number; color: string }> = ({ number, color }) => (
     <div

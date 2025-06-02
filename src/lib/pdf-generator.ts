@@ -1,6 +1,6 @@
 import PDFDocument from 'pdfkit';
 
-export async function generatePdf(formType: string, data: any): Promise<Buffer> {
+export async function generatePdf(formType: string, data: Record<string, unknown>): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument();
     const buffers: Buffer[] = [];
