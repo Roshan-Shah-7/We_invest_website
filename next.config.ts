@@ -19,19 +19,26 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
   },
   /* config options here */
-  webpack: (config, { isServer, webpack }) => { // Added webpack to options
+  webpack: (config, { isServer, webpack }) => {
     if (isServer) {
-      config.externals = {
-        ...(typeof config.externals === 'object' ? config.externals : {}),
-        // Externalize all MongoDB-related native modules
-        'mongodb': 'commonjs mongodb',
-        'mongodb-client-encryption': 'commonjs mongodb-client-encryption',
-        'kerberos': 'commonjs kerberos',
-        'aws4': 'commonjs aws4',
-        'snappy': 'commonjs snappy',
-        'gcp-metadata': 'commonjs gcp-metadata',
-        'socks': 'commonjs socks'
-      };
+      config.externals.push(
+        ({ context, request }: { context: string; request: string }, callback: (err?: Error, result?: string, type?: string) => void) => {
+          if (
+            [
+              'mongodb',
+              'mongodb-client-encryption',
+              'kerberos',
+              'aws4',
+              'snappy',
+              'gcp-metadata',
+              'socks',
+            ].includes(request)
+          ) {
+            return callback(undefined, `commonjs ${request}`);
+          }
+          callback(undefined);
+        }
+      );
     } else {
       // For client-side, provide fallbacks for Node.js built-in modules
       config.resolve.fallback = {
@@ -39,8 +46,8 @@ const nextConfig: NextConfig = {
         child_process: false,
         fs: false,
         net: false,
-        tls: 'empty', // Re-add tls fallback
-        dns: 'empty', // Re-add dns fallback
+        tls: false, // Set to false to completely remove, or 'empty' for a shim
+        dns: false, // Set to false to completely remove, or 'empty' for a shim
       };
 
       // Aggressively ignore the entire 'mongodb' package
