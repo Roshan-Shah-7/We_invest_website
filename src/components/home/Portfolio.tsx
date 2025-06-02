@@ -1,10 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Zap } from "lucide-react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Project, projects } from "@/data/portfolioProjects"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,87 +14,7 @@ function ProjectCard({ project, index, className = "" }: { project: Project; ind
     const imageRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        const card = cardRef.current
-        const image = imageRef.current
-        const content = contentRef.current
-
-        if (!card || !image || !content) return
-
-        // Initial state
-        gsap.set(card, { y: 100, opacity: 0, rotation: project.size === "small" ? 2 : 0 })
-        gsap.set(image, { scale: 1.2, opacity: 0 })
-        gsap.set(content, { y: 50, opacity: 0 })
-
-        // Scroll trigger animation
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse",
-            },
-        })
-
-        tl.to(card, {
-            y: 0,
-            opacity: 1,
-            rotation: 0,
-            duration: 1,
-            ease: "power3.out",
-            delay: index * 0.15,
-        })
-            .to(
-                image,
-                {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
-                },
-                "-=0.8",
-            )
-            .to(
-                content,
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                },
-                "-=0.6",
-            )
-
-        // Hover animations
-        const handleMouseEnter = () => {
-            gsap.to(image, { scale: 1.05, duration: 0.6, ease: "power2.out" })
-            gsap.to(card, {
-                y: -15,
-                rotation: project.size === "small" ? 1 : 0,
-                duration: 0.6,
-                ease: "power2.out",
-            })
-        }
-
-        const handleMouseLeave = () => {
-            gsap.to(image, { scale: 1, duration: 0.6, ease: "power2.out" })
-            gsap.to(card, {
-                y: 0,
-                rotation: 0,
-                duration: 0.6,
-                ease: "power2.out",
-            })
-        }
-
-        card.addEventListener("mouseenter", handleMouseEnter)
-        card.addEventListener("mouseleave", handleMouseLeave)
-
-        return () => {
-            card.removeEventListener("mouseenter", handleMouseEnter)
-            card.removeEventListener("mouseleave", handleMouseLeave)
-            tl.kill(); // Kill the ScrollTrigger timeline on unmount
-        }
-    }, [index, project.size])
+    // Removed useEffect with GSAP animations
 
     const cardHeights = {
         large: "h-[500px]",
@@ -143,7 +61,7 @@ function ProjectCard({ project, index, className = "" }: { project: Project; ind
                             {project.category}
                         </span>
                     </div>
-                    <div className="absolute bottom-4 left-4 right-4 transition-opacity duration-500"> {/* Removed opacity-0 group-hover:opacity-100 */}
+                    <div className="absolute bottom-4 left-4 right-4 transition-opacity duration-500">
                         <div className="flex gap-3">
                             <Button size="sm" className="bg-white text-[#00695C] hover:bg-gray-100 flex-1" asChild>
                                 <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -200,42 +118,7 @@ export default function Portfolio() {
     const headerRef = useRef<HTMLDivElement>(null)
     const masonryRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        const header = headerRef.current
-        const masonry = masonryRef.current
-
-        if (!header || !masonry) return
-
-        // Header animation
-        gsap.set(header.children, { y: 50, opacity: 0 })
-        gsap.to(header.children, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power3.out",
-            delay: 0.3,
-        })
-
-        // Floating elements animation
-        gsap.to(".floating-element", {
-            y: "random(-20, 20)",
-            x: "random(-10, 10)",
-            rotation: "random(-5, 5)",
-            duration: "random(3, 6)",
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            stagger: {
-                amount: 2,
-                from: "random",
-            },
-        })
-
-        return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-        }
-    }, [])
+    // Removed useEffect with GSAP animations
 
     return (
         <section className="relative py-20 px-4 overflow-hidden">

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Twitter, Linkedin, Youtube, Instagram, MapPin, Mail, Phone, Clock } from 'lucide-react';
 import Link from 'next/link';
+import NewsletterSubscriptionForm from './NewsletterSubscriptionForm';
 
 export default function Footer() {
     return (
@@ -142,25 +143,7 @@ export default function Footer() {
                         <p className="text-gray-600 mb-4 text-sm">
                             Subscribe to our newsletter for the latest investment opportunities and news.
                         </p>
-                        <form className="space-y-3">
-                            <div>
-                                <input
-                                    type="email"
-                                    placeholder="Your email address"
-                                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 text-sm"
-                                    required
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-[#00695C] hover:bg-[#005546] text-white py-3 px-4 rounded-lg font-medium text-sm flex items-center justify-center transition-colors duration-300"
-                            >
-                                Subscribe
-                                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </button>
-                        </form>
+                        <NewsletterSubscriptionForm />
                     </div>
                 </div>
 

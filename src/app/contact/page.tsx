@@ -5,27 +5,107 @@ import { Phone, Mail, MapPin, Send, CheckCircle, ExternalLink, Loader2, Building
 
 export default function Contact() {
     const [formData, setFormData] = useState({
-        name: '',
+        fullName: '',
         email: '',
+        phone: '',
         subject: '',
         message: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submissionStatus, setSubmissionStatus] = useState<'success' | 'error' | null>(null);
+    const [validationErrors, setValidationErrors] = useState<Partial<typeof formData>>({});
+
+    const validateForm = (): boolean => {
+        const errors: Partial<typeof formData> = {};
+        let isValid = true;
+
+        if (!formData.fullName.trim()) {
+            errors.fullName = 'Full Name is required.';
+            isValid = false;
+        }
+        if (!formData.email.trim()) {
+            errors.email = 'Email Address is required.';
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Invalid email address format.';
+            isValid = false;
+        }
+        if (!formData.phone.trim()) {
+            errors.phone = 'Phone Number is required.';
+            isValid = false;
+        } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(formData.phone)) {
+            errors.phone = 'Invalid phone number format.';
+            isValid = false;
+        }
+        if (!formData.subject.trim()) {
+            errors.subject = 'Subject is required.';
+            isValid = false;
+        }
+        if (!formData.message.trim()) {
+            errors.message = 'Message is required.';
+            isValid = false;
+        }
+
+        setValidationErrors(errors);
+        return isValid;
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        if (validationErrors[name as keyof typeof formData]) {
+            setValidationErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors[name as keyof typeof formData];
+                return newErrors;
+            });
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const isValid = validateForm();
+        if (!isValid) {
+            setSubmissionStatus('error');
+            setIsSubmitting(false);
+            return;
+        }
+
         setIsSubmitting(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setSubmissionStatus(null);
+
+        try {
+            const response = await fetch('/api/submit-contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fullName: formData.fullName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: formData.subject,
+                    message: formData.message,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setSubmissionStatus('success');
+                setFormData({ fullName: '', email: '', phone: '', subject: '', message: '' });
+            } else {
+                console.error('Contact form submission error:', result);
+                setSubmissionStatus('error');
+            }
+        } catch (error) {
+            console.error('Network or unexpected error:', error);
+            setSubmissionStatus('error');
+        } finally {
+            setIsSubmitting(false);
+            setTimeout(() => setSubmissionStatus(null), 5000);
+        }
     };
 
     return (
@@ -44,7 +124,7 @@ export default function Contact() {
                         </h1>
                         <div className="w-20 h-1 bg-[#00695C] rounded-full mx-auto mb-6"></div>
                         <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                            We&apos;re here to help with any questions, support, or opportunities you&apos;d like to discuss.
+                            We're here to help with any questions, support, or opportunities you'd like to discuss.
                         </p>
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6">
                             <a href="tel:+15551234567" className="flex items-center bg-white hover:bg-[#00695C] group hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
@@ -67,29 +147,52 @@ export default function Contact() {
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">
                             Send Us a Message
                         </h2>
-                        {isSubmitted && (
+                        {submissionStatus === 'success' && (
                             <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-center border border-green-200">
                                 <CheckCircle className="w-6 h-6 mr-3 text-green-600 flex-shrink-0" />
                                 <div>
                                     <p className="font-semibold">Thank you for your message!</p>
-                                    <p className="text-sm">We&apos;ll get back to you within 24 hours.</p>
+                                    <p className="text-sm">We'll get back to you within 24 hours.</p>
+                                </div>
+                            </div>
+                        )}
+                        {submissionStatus === 'error' && (
+                            <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg flex items-center border border-red-200">
+                                <Loader2 className="w-6 h-6 mr-3 text-red-600 flex-shrink-0" />
+                                <div>
+                                    <p className="font-semibold">Submission failed!</p>
+                                    <p className="text-sm">There was an error sending your message. Please try again.</p>
+                                </div>
+                            </div>
+                        )}
+                        {Object.keys(validationErrors).length > 0 && submissionStatus === 'error' && (
+                            <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg flex items-center border border-red-200">
+                                <Loader2 className="w-6 h-6 mr-3 text-red-600 flex-shrink-0" />
+                                <div>
+                                    <p className="font-semibold">Please correct the errors in the form.</p>
+                                    <ul className="list-disc list-inside text-sm mt-1">
+                                        {Object.values(validationErrors).map((error, index) => (
+                                            <li key={index}>{error}</li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
                         )}
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                                     <input
                                         type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
+                                        id="fullName"
+                                        name="fullName"
+                                        value={formData.fullName}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150"
+                                        className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.fullName ? 'border-red-500' : 'border-gray-300'}`}
                                         required
                                         placeholder="Your Full Name"
                                     />
+                                    {validationErrors.fullName && <p className="text-red-500 text-xs mt-1">{validationErrors.fullName}</p>}
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
@@ -99,11 +202,26 @@ export default function Contact() {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150"
+                                        className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.email ? 'border-red-500' : 'border-gray-300'}`}
                                         required
-                                        placeholder="your@email.com"
-                                    />
+                                    placeholder="your@email.com"
+                                />
+                                    {validationErrors.email && <p className="text-red-500 text-xs mt-1">{validationErrors.email}</p>}
                                 </div>
+                            </div>
+                            <div>
+                                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.phone ? 'border-red-500' : 'border-gray-300'}`}
+                                    required
+                                    placeholder="+977-9812345678"
+                                />
+                                {validationErrors.phone && <p className="text-red-500 text-xs mt-1">{validationErrors.phone}</p>}
                             </div>
                             <div>
                                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
@@ -113,10 +231,11 @@ export default function Contact() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150"
+                                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.subject ? 'border-red-500' : 'border-gray-300'}`}
                                     required
                                     placeholder="Reason for contacting"
                                 />
+                                {validationErrors.subject && <p className="text-red-500 text-xs mt-1">{validationErrors.subject}</p>}
                             </div>
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
@@ -126,10 +245,11 @@ export default function Contact() {
                                     rows={5}
                                     value={formData.message}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150"
+                                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.message ? 'border-red-500' : 'border-gray-300'}`}
                                     required
                                     placeholder="Your detailed message..."
                                 ></textarea>
+                                {validationErrors.message && <p className="text-red-500 text-xs mt-1">{validationErrors.message}</p>}
                             </div>
                             <button
                                 type="submit"

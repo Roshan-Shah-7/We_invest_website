@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Building from "@/assets/about/building.jpg"
 import {
     Users,
     Heart,
@@ -43,7 +44,11 @@ export default function AboutUsPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="relative py-32 px-4 overflow-hidden" style={{ backgroundColor: colors.brand_teal }}>
+            <section className="relative py-32 px-4 overflow-hidden"
+                style={{
+                    backgroundImage: `url(${Building.src})`,
+                    backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'
+                }}>
                 <div className="absolute inset-0 opacity-20">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#004D40] via-[#00695C] to-[#00897B]"></div>
                 </div>
@@ -54,7 +59,7 @@ export default function AboutUsPage() {
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="text-center">
-                        <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full mb-8">
+                        <div className="inline-flex items-center px-4 py-2 bg-brand_teal/20 backdrop-blur-sm border border-white/30 rounded-full mb-8">
                             <span className="text-white text-sm font-medium">About We Invest</span>
                         </div>
 
@@ -77,7 +82,7 @@ export default function AboutUsPage() {
             <section className="py-24 px-4" style={{ backgroundColor: colors.soft_white }}>
                 <div className="container mx-auto max-w-6xl">
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="group">
+                        <div className="group md:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
                                 <CardContent className="p-8 text-center">
                                     <div className="bg-[#00695C] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -95,21 +100,6 @@ export default function AboutUsPage() {
                         <div className="group">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
                                 <CardContent className="p-8 text-center">
-                                    <div className="bg-[#00C853] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Target className="h-8 w-8 text-white" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-[#333333] mb-4">Innovation Focus</h3>
-                                    <p className="text-[#666666] leading-relaxed">
-                                        Our client-centric approach combines deep market expertise with a passion for innovation and
-                                        long-term success across diverse industries.
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        <div className="group">
-                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
-                                <CardContent className="p-8 text-center">
                                     <div className="bg-[#00BCD4] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                         <PieChart className="h-8 w-8 text-white" />
                                     </div>
@@ -117,6 +107,21 @@ export default function AboutUsPage() {
                                     <p className="text-[#666666] leading-relaxed">
                                         Investment funds spanning technology, healthcare, renewable energy, and the arts to fuel your
                                         entrepreneurial journey.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="group md:mt-10">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                                <CardContent className="p-8 text-center">
+                                    <div className="bg-[#00C853] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <Target className="h-8 w-8 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-[#333333] mb-4">Innovation Focus</h3>
+                                    <p className="text-[#666666] leading-relaxed">
+                                        Our client-centric approach combines deep market expertise with a passion for innovation and
+                                        long-term success across diverse industries.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -497,7 +502,7 @@ export default function AboutUsPage() {
 
             {/* Market Overview with Data Visualization */}
             <section className="py-24 px-4" style={{ backgroundColor: colors.soft_white }}>
-                <div className="container mx-auto max-w-6xl">
+                <div className="container mx-auto max-w-8xl">
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center px-3 py-1 bg-[#E8F5E9] rounded-full mb-6">
                             <span className="text-[#00C853] text-sm font-medium">Market Focus</span>
@@ -509,8 +514,8 @@ export default function AboutUsPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                        <div className="group">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 mb-16 lg:mt-32">
+                        <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#00695C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -528,7 +533,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        <div className="group">
+                        <div className="group lg:-mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#00C853]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -545,7 +550,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        <div className="group">
+                        <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#00BCD4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -562,7 +567,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        <div className="group">
+                        <div className="group lg:-mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#FFD54F]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -579,7 +584,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        <div className="group">
+                        <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#00BCD4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

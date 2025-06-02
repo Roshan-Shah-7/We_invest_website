@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Hero from '@/components/home/Hero';
 
+import Hero from '@/components/home/Hero';
 import WhyUs from '@/components/home/WhyUs';
 import Portfolio from '@/components/home/Portfolio';
 import Testimonials from '@/components/home/Testimonials';

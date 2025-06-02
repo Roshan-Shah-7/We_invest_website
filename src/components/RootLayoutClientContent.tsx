@@ -1,13 +1,12 @@
 'use client';
 
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AppClientSetup from '@/components/SmoothScrollSetup';
 import Loader from '@/components/Loader';
 import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
+import { SessionProvider } from 'next-auth/react'; // Import SessionProvider
 
 export default function RootLayoutClientContent({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -38,7 +37,7 @@ export default function RootLayoutClientContent({ children }: { children: React.
   };
 
   return (
-    <>
+    <SessionProvider> {/* Wrap with SessionProvider */}
       {loading && <Loader />}
       {!loading && (
         <div>
@@ -61,6 +60,6 @@ export default function RootLayoutClientContent({ children }: { children: React.
           )}
         </div>
       )}
-    </>
+    </SessionProvider>
   );
 }
