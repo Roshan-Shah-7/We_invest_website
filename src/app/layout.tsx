@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Lato, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import RootLayoutClientContent from "@/components/RootLayoutClientContent";
-// Removed: import { SessionProvider } from 'next-auth/react';
 
 const lato = Lato({
   weight: ['400', '700'],
