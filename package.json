@@ -24,7 +24,7 @@
     "mongoose": "^8.15.1",
     "next": "^15.3.2",
     "next-auth": "^4.24.11",
-    "nodemailer": "^7.0.3",
+    "nodemailer": "^6.9.13",
     "pdfkit": "^0.17.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
