@@ -523,10 +523,16 @@ interface EmergingTrend {
 
 
 export default function MarketOverviewPage() {
-    const [selectedSector, setSelectedSector] = useState<string | null>("stocks")
+    const [selectedSector, setSelectedSector] = useState<Sector | null>(null) // Change type to Sector | null
+    const [isDialogOpen, setIsDialogOpen] = useState(false) // Add isDialogOpen state
     const [comparisonMode, setComparisonMode] = useState(false)
     const [comparedSectors, setComparedSectors] = useState<string[]>([])
     const [filterView, setFilterView] = useState<"all" | "low-risk" | "high-growth">("all")
+
+    const handleSectorClick = (sector: Sector) => {
+        setSelectedSector(sector)
+        setIsDialogOpen(true)
+    }
 
     const sectors: Sector[] = [
         {
@@ -1069,7 +1075,7 @@ export default function MarketOverviewPage() {
                                                 transform: `rotate(${pos.rotate}) scale(${pos.scale})`,
                                                 zIndex: pos.zIndex,
                                             }}
-                                            onClick={() => setSelectedSector(sector.id)}
+                                            onClick={() => handleSectorClick(sector)}
                                         >
                                             <div className="flex items-center space-x-3 mb-4">
                                                 <div
@@ -1175,7 +1181,7 @@ export default function MarketOverviewPage() {
                                 })
                                 .map((sector) => {
                                     const Icon = sector.icon
-                                    const isSelected = selectedSector === sector.id
+                                    const isSelected = selectedSector?.id === sector.id
                                     const isCompared = comparedSectors.includes(sector.id)
                                     return (
                                         <div
@@ -1206,7 +1212,7 @@ export default function MarketOverviewPage() {
                                                                 className="p-1 h-auto"
                                                                 onClick={(e) => {
                                                                     e.stopPropagation()
-                                                                    setSelectedSector(sector.id)
+                                                                    handleSectorClick(sector)
                                                                 }}
                                                             >
                                                                 <Eye className="h-4 w-4 text-slate-500" />
@@ -1266,7 +1272,7 @@ export default function MarketOverviewPage() {
                                                             className="mt-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-800"
                                                             onClick={(e) => {
                                                                 e.stopPropagation()
-                                                                setSelectedSector(sector.id)
+                                                                handleSectorClick(sector)
                                                             }}
                                                         >
                                                             View Details

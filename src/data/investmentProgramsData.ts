@@ -1,9 +1,16 @@
+import VCIP from '@/assets/investment/VCIP.png';
+import PoolFund from '@/assets/investment/fund.jpg';
+import Project from '@/assets/investment/project.jpg';
+import TimeBased from '@/assets/investment/timeBased.jpg';
+import { StaticImageData } from 'next/image'; // Import StaticImageData
+
 export interface Program {
     id: string;
     title: string;
     overview: string;
     keyFeatures: string[];
     benefits: string[];
+    imageUrl: StaticImageData; // Corrected type for imageUrl
 }
 
 export const investmentPrograms: Program[] = [
@@ -22,6 +29,7 @@ export const investmentPrograms: Program[] = [
             'Offers investors high-return potential through equity in disruptive ventures.',
             'Fosters innovation by supporting underserved entrepreneurial ecosystems.',
         ],
+        imageUrl: VCIP, // Using imported image module
     },
     {
         id: 'pool-funding',
@@ -38,6 +46,7 @@ export const investmentPrograms: Program[] = [
             'Democratizes access to high-value investments for smaller investors.',
             'Simplifies portfolio management through professional fund oversight.',
         ],
+        imageUrl: PoolFund, // Using imported image module
     },
     {
         id: 'project-wise',
@@ -54,6 +63,7 @@ export const investmentPrograms: Program[] = [
             'Offers transparency through milestone-based funding and clear equity terms.',
             'Provides potential for significant returns tied to project success.',
         ],
+        imageUrl: Project, // Using imported image module
     },
     {
         id: 'time-based',
@@ -70,6 +80,7 @@ export const investmentPrograms: Program[] = [
             'Provides flexibility to match investment horizons with financial planning needs.',
             'Ensures capital preservation through diversified, low-risk asset allocation.',
         ],
+        imageUrl: TimeBased, // Using imported image module
     },
 ];
 

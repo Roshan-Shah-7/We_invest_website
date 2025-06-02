@@ -1,140 +1,43 @@
-// import React from 'react';
-// import type { NextPage } from 'next';
-// import { investmentPrograms, whyChooseUsPoints } from '@/data/investmentProgramsData';
-// import { CheckCircle } from 'lucide-react';
-
-// const Programs: NextPage = () => {
-//     return (
-//         <>
-//             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-soft_white text-gray-800">
-//                 {/* Header Section */}
-//                 <header className="bg-gradient-to-r from-brand-dark-green to-brand-green text-brand_teal py-20 sm:py-24 mt-10 shadow-lg">
-//                     <div className="container mx-auto px-6 text-center">
-//                         <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight animate-fade-in-down">
-//                             We Invest: Investment Programmes
-//                         </h1>
-//                         <p className="mt-6 text-xl sm:text-2xl font-light opacity-90 animate-fade-in-up">
-//                             Empowering Your Financial Future
-//                         </p>
-//                     </div>
-//                 </header>
-
-//                 {/* Main Content Area */}
-//                 <main className="container mx-auto px-6 py-16">
-//                     {/* Introductory Text */}
-//                     <section className="mb-20 text-center max-w-3xl mx-auto">
-//                         <p className="text-xl leading-relaxed text-gray-700 font-light">
-//                             At We Invest, we offer a suite of innovative investment programmes
-//                             designed to empower entrepreneurs and investors to achieve their
-//                             financial goals. Our programmes provide flexible, high-potential
-//                             opportunities tailored to diverse needs, from early-stage startup
-//                             funding to stable, long-term wealth-building strategies. Each
-//                             programme is crafted to align with our mission of fostering
-//                             visionary growth while delivering sustainable returns. Explore our
-//                             offerings below to find the perfect fit for your investment
-//                             journey.
-//                         </p>
-//                     </section>
-
-//                     {/* Our Investment Programmes Section */}
-//                     <section className="mb-20">
-//                         <h2 className="text-4xl sm:text-5xl font-bold text-brand-dark-green mb-12 text-center animate-fade-in">
-//                             Our Investment Programmes
-//                         </h2>
-//                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-//                             {investmentPrograms.map((program, index) => (
-//                                 <div
-//                                     key={program.id}
-//                                     className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 animate-fade-in-up"
-//                                     style={{ animationDelay: `${index * 0.1}s` }}
-//                                 >
-//                                     <h3 className="text-2xl font-bold text-brand-green mb-4 leading-snug">
-//                                         {`${index + 1}. ${program.title}`}
-//                                     </h3>
-
-//                                     <div className="space-y-6 text-gray-700">
-//                                         <div>
-//                                             <h4 className="font-semibold text-brand_teal text-lg mb-2 border-b border-brand_teal/20 pb-1">Overview:</h4>
-//                                             <p className="text-base leading-relaxed">{program.overview}</p>
-//                                         </div>
-
-//                                         <div>
-//                                             <h4 className="font-semibold text-brand_teal text-lg mb-2 border-b border-brand_teal/20 pb-1">Key Features:</h4>
-//                                             <ul className="list-none space-y-2 text-base">
-//                                                 {program.keyFeatures.map((feature, i) => (
-//                                                     <li key={`${program.id}-feature-${i}`} className="flex items-start">
-//                                                         <CheckCircle className="w-5 h-5 text-brand_green mr-3 flex-shrink-0 mt-1" />
-//                                                         <span>{feature}</span>
-//                                                     </li>
-//                                                 ))}
-//                                             </ul>
-//                                         </div>
-
-//                                         <div>
-//                                             <h4 className="font-semibold text-brand_teal text-lg mb-2 border-b border-brand_teal/20 pb-1">Benefits:</h4>
-//                                             <ul className="list-none space-y-2 text-base">
-//                                                 {program.benefits.map((benefit, i) => (
-//                                                     <li key={`${program.id}-benefit-${i}`} className="flex items-start">
-//                                                         <CheckCircle className="w-5 h-5 text-brand_green mr-3 flex-shrink-0 mt-1" />
-//                                                         <span>{benefit}</span>
-//                                                     </li>
-//                                                 ))}
-//                                             </ul>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             ))}
-//                         </div>
-//                     </section>
-
-//                     {/* Why Choose Us Section */}
-//                     <section className="py-16 bg-brand-dark-green rounded-3xl shadow-2xl text-black">
-//                         <div className="container mx-auto px-6">
-//                             <h2 className="text-4xl text-brand_teal font-bold text-center mb-12 animate-fade-in">
-//                                 Why Choose Our Investment Programmes?
-//                             </h2>
-//                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
-//                                 {whyChooseUsPoints.map((point, index) => (
-//                                     <li key={`why-${index}`} className="flex items-start bg-white/10 p-6  rounded-xl shadow-inner animate-fade-in-up"
-//                                         style={{ animationDelay: `${index * 0.15}s` }}>
-//                                         <CheckCircle
-//                                             className="w-7 h-7 text-brand_green mr-4 flex-shrink-0 mt-1"
-//                                         />
-//                                         <span>{point}</span>
-//                                     </li>
-//                                 ))}
-//                             </ul>
-//                         </div>
-//                     </section>
-//                 </main>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default Programs;
-
-
-
-
+'use client'
 
 import type { NextPage } from "next"
-import { investmentPrograms, whyChooseUsPoints } from "@/data/investmentProgramsData"
-import { CheckCircle, TrendingUp, Shield, Target, Zap, ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { investmentPrograms, whyChooseUsPoints, Program } from "@/data/investmentProgramsData"
+import { CheckCircle, TrendingUp, Shield, Target, Zap, ArrowRight, X } from "lucide-react"
+import MoneyGrow from "@/assets/investment/bg.jpg"
+import Image from "next/image"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
 
 const Programs: NextPage = () => {
+    const [selectedProgram, setSelectedProgram] = useState<Program | null>(null)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+    const handleCardClick = (program: Program) => {
+        setSelectedProgram(program)
+        setIsDialogOpen(true)
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900">
             {/* Header Section */}
-            <header className="relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-dark-green/5 to-brand_teal/5"></div>
-                <div className="container mx-auto px-6 text-center relative">
+            <header className="relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10 h-[50vh]"
+                style={{
+                    backgroundImage: `url(${MoneyGrow.src})`,
+                    backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'
+                }}>
+                <div className="container mx-auto p-6 text-center relative drop-shadow-md bg-white/80 w-fit rounded-xl">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-dark-green rounded-2xl mb-8">
-                        <TrendingUp className="w-8 h-8 text-white" />
+                        <TrendingUp className="w-8 h-8 text-brand_green" />
                     </div>
-                    <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 leading-tight mb-6">Investment Programmes</h1>
+                    <h1 className="text-4xl sm:text-6xl font-bold text-brand_teal leading-tight mb-6">Investment Programmes</h1>
                     <div className="w-24 h-1 bg-brand-green mx-auto mb-6"></div>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-800 max-w-2xl mx-auto leading-relaxed">
                         Empowering Your Financial Future with Strategic Investment Solutions
                     </p>
                 </div>
@@ -176,8 +79,21 @@ const Programs: NextPage = () => {
                         {investmentPrograms.map((program, index) => (
                             <div
                                 key={program.id}
-                                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group"
+                                onClick={() => handleCardClick(program)}
+                                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group cursor-pointer"
                             >
+                                {/* Image Section */}
+                                <div className="w-full h-48 rounded-xl mb-6 overflow-hidden relative">
+                                    <Image
+                                        src={program.imageUrl}
+                                        alt={`Image for ${program.title}`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        objectPosition="top"
+                                        className="transition-transform duration-300 group-hover:scale-105"
+                                    />
+                                </div>
+
                                 {/* Program Header */}
                                 <div className="flex items-start justify-between mb-6">
                                     <div className="flex items-center">
@@ -193,61 +109,81 @@ const Programs: NextPage = () => {
                                     </div>
                                 </div>
 
-                                {/* Program Content */}
+                                {/* Program Short Description */}
                                 <div className="space-y-6">
-                                    {/* Overview */}
                                     <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3 flex items-center">
-                                            <div className="w-2 h-2 bg-brand_teal rounded-full mr-2"></div>
-                                            Overview
-                                        </h4>
-                                        <p className="text-gray-700 leading-relaxed">{program.overview}</p>
-                                    </div>
-
-                                    {/* Key Features */}
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3 flex items-center">
-                                            <div className="w-2 h-2 bg-brand-green rounded-full mr-2"></div>
-                                            Key Features
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {program.keyFeatures.map((feature, i) => (
-                                                <li key={`${program.id}-feature-${i}`} className="flex items-start text-gray-700">
-                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
-                                                    <span className="text-sm leading-relaxed">{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Benefits */}
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3 flex items-center">
-                                            <div className="w-2 h-2 bg-brand-dark-green rounded-full mr-2"></div>
-                                            Benefits
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {program.benefits.map((benefit, i) => (
-                                                <li key={`${program.id}-benefit-${i}`} className="flex items-start text-gray-700">
-                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
-                                                    <span className="text-sm leading-relaxed">{benefit}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <p className="text-gray-700 leading-relaxed line-clamp-3">{program.overview}</p>
                                     </div>
                                 </div>
 
-                                {/* CTA */}
+                                {/* Learn More Indicator */}
                                 <div className="mt-8 pt-6 border-t border-gray-100">
-                                    <button className="inline-flex items-center text-brand-dark-green font-semibold hover:text-brand-green transition-colors duration-200 group/btn">
-                                        Learn More
-                                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                                    </button>
+                                    <span className="inline-flex items-center text-brand-dark-green font-semibold">
+                                        Click to Learn More
+                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                                    </span>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </section>
+
+                {/* Investment Program Detail Dialog */}
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <DialogContent className="sm:max-w-[800px] p-6 max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                            <DialogTitle className="text-3xl font-bold text-gray-900">
+                                {selectedProgram?.title}
+                            </DialogTitle>
+                            <DialogDescription className="text-gray-600 mt-2">
+                                Detailed information about this investment program.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="py-4 space-y-6">
+                            {selectedProgram && (
+                                <>
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                                            <div className="w-3 h-3 bg-brand_teal rounded-full mr-2"></div>
+                                            Overview
+                                        </h4>
+                                        <p className="text-gray-700 leading-relaxed">{selectedProgram.overview}</p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                                            <div className="w-3 h-3 bg-brand-green rounded-full mr-2"></div>
+                                            Key Features
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {selectedProgram.keyFeatures.map((feature, i) => (
+                                                <li key={`detail-feature-${i}`} className="flex items-start text-gray-700">
+                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
+                                                    <span className="text-base leading-relaxed">{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                                            <div className="w-3 h-3 bg-brand-dark-green rounded-full mr-2"></div>
+                                            Benefits
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {selectedProgram.benefits.map((benefit, i) => (
+                                                <li key={`detail-benefit-${i}`} className="flex items-start text-gray-700">
+                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
+                                                    <span className="text-base leading-relaxed">{benefit}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </DialogContent>
+                </Dialog>
 
                 {/* Why Choose Us Section */}
                 <section className="bg-brand_teal/100 rounded-2xl p-12 text-white">

@@ -156,7 +156,7 @@ const FundPools: React.FC = () => {
                 cards[cards.length - 1],
                 {
                     scale: 0.9,
-                    opacity: 0,
+                    opacity: 1,
                     rotationX: 5,
                     display: "none",
                     zIndex: 0,
