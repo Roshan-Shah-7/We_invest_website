@@ -20,10 +20,13 @@ if (!uri) {
 // Ensure MongoClient is only instantiated on the server side.
 if (typeof window === 'undefined') {
   if (process.env.NODE_ENV === 'development') {
+    // @ts-expect-error
     if (!global._mongoClientPromise) {
       client = new MongoClient(uri, options);
+      // @ts-expect-error
       global._mongoClientPromise = client.connect();
     }
+    // @ts-expect-error
     clientPromise = global._mongoClientPromise;
   } else {
     client = new MongoClient(uri, options);
