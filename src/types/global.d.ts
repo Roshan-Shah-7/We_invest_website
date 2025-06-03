@@ -2,9 +2,13 @@ import { Mongoose } from 'mongoose';
 import { MongoClient } from 'mongodb';
 
 declare global {
-  let mongoose: {
-    conn: Mongoose | null;
-    promise: Promise<Mongoose> | null;
-  };
-  let _mongoClientPromise: Promise<MongoClient>;
+  namespace NodeJS {
+    interface Global {
+      mongoose: {
+        conn: Mongoose | null;
+        promise: Promise<Mongoose> | null;
+      };
+      _mongoClientPromise: Promise<MongoClient>;
+    }
+  }
 }
