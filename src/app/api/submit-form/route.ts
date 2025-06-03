@@ -50,12 +50,15 @@ export async function POST(req: Request) {
     let newInvestment;
     switch (formType) {
       case 'individual':
+        // @ts-expect-error
         newInvestment = await IndividualInvestment.create(dataToCreate);
         break;
       case 'startup':
+        // @ts-expect-error
         newInvestment = await StartupInvestment.create(dataToCreate);
         break;
       case 'business':
+        // @ts-expect-error
         newInvestment = await BusinessInvestment.create(dataToCreate);
         break;
       default:

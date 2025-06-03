@@ -14,6 +14,7 @@ export async function GET(req: Request) {
   await dbConnect();
 
   try {
+    // @ts-expect-error
     const contacts = await Contact.find({}).sort({ createdAt: -1 }); // Sort by createdAt descending
     return NextResponse.json({ success: true, data: contacts }, { status: 200 });
   } catch (error: unknown) {

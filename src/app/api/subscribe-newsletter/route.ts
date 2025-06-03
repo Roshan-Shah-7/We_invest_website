@@ -42,6 +42,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
+    // @ts-expect-error
     const newsletterEntry = await Newsletter.create({ email });
 
     return NextResponse.json({ success: true, data: newsletterEntry }, { status: 201 });

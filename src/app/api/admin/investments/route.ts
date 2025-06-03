@@ -16,8 +16,11 @@ export async function GET(req: Request) {
   await dbConnect();
 
   try {
+    // @ts-expect-error
     const individualInvestments = await IndividualInvestment.find({});
+    // @ts-expect-error
     const startupInvestments = await StartupInvestment.find({});
+    // @ts-expect-error
     const businessInvestments = await BusinessInvestment.find({});
 
     const allInvestments = [

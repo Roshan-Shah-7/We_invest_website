@@ -22,6 +22,7 @@ export async function POST(req: Request) {
 
   try {
     const formData = await req.json();
+    // @ts-expect-error
     const contact = await Contact.create(formData);
 
     return NextResponse.json({ success: true, data: contact }, { status: 201 });

@@ -9,11 +9,9 @@ if (!MONGODB_URI) {
 }
 
 
-// @ts-expect-error
 let cached = global.mongoose;
 
 if (!cached) {
-  // @ts-expect-error
   cached = global.mongoose = { conn: null, promise: null };
 }
 

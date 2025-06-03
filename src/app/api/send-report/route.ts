@@ -24,18 +24,23 @@ export async function POST(_req: Request) {
 
     switch (formType) {
       case 'individual':
+        // @ts-expect-error
         submissionData = await IndividualInvestment.findById(id);
         break;
       case 'startup':
+        // @ts-expect-error
         submissionData = await StartupInvestment.findById(id);
         break;
       case 'business':
+        // @ts-expect-error
         submissionData = await BusinessInvestment.findById(id);
         break;
       case 'contact':
+        // @ts-expect-error
         submissionData = await Contact.findById(id);
         break;
       case 'newsletter':
+        // @ts-expect-error
         submissionData = await Newsletter.findById(id);
         break;
       default:
