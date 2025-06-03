@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { LucideIcon } from "lucide-react"
 import {
     BrainCircuit,
@@ -523,14 +524,14 @@ interface EmergingTrend {
 
 
 export default function MarketOverviewPage() {
-    const [selectedSector, setSelectedSector] = useState<Sector | null>(null) // Change type to Sector | null
-    const [isDialogOpen, setIsDialogOpen] = useState(false) // Add isDialogOpen state
+    const [selectedSector, setSelectedSector] = useState<string | null>(null)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [comparisonMode, setComparisonMode] = useState(false)
     const [comparedSectors, setComparedSectors] = useState<string[]>([])
     const [filterView, setFilterView] = useState<"all" | "low-risk" | "high-growth">("all")
 
     const handleSectorClick = (sector: Sector) => {
-        setSelectedSector(sector)
+        setSelectedSector(sector.id)
         setIsDialogOpen(true)
     }
 
@@ -1181,14 +1182,14 @@ export default function MarketOverviewPage() {
                                 })
                                 .map((sector) => {
                                     const Icon = sector.icon
-                                    const isSelected = selectedSector?.id === sector.id
+                                    const isSelected = selectedSector === sector.id
                                     const isCompared = comparedSectors.includes(sector.id)
                                     return (
                                         <div
                                             key={sector.id}
                                             className={`snap-center flex-shrink-0 w-[300px] md:w-[350px] ${comparisonMode ? "cursor-pointer" : ""
                                                 }`}
-                                            onClick={() => comparisonMode ? toggleSectorComparison(sector.id) : null}
+                                            onClick={() => comparisonMode ? toggleSectorComparison(sector.id) : handleSectorClick(sector)}
                                         >
                                             <Card
                                                 className={`h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 ${isSelected && !comparisonMode ? "ring-2 ring-emerald-500" : ""
@@ -1349,10 +1350,10 @@ export default function MarketOverviewPage() {
                 </div>
             </section>
 
-            {/* Detailed Sector View */}
-            {currentSector && !comparisonMode && (
-                <section className="py-24 px-4 bg-white">
-                    <div className="container mx-auto max-w-7xl">
+            {/* Detailed Sector View as Dialog */}
+            {currentSector && (
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <DialogContent className="flex flex-col max-w-4xl p-8 overflow-y-auto max-h-[80vh]">
                         <AnimatedSection>
                             <div className="mb-12">
                                 <Badge className="mb-4 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">Sector Details</Badge>
@@ -1410,13 +1411,13 @@ export default function MarketOverviewPage() {
                             </div>
                             <Button
                                 className="mt-12 bg-emerald-500 hover:bg-emerald-600 text-white"
-                                onClick={() => setSelectedSector(null)}
+                                onClick={() => setIsDialogOpen(false)} // Close dialog
                             >
                                 Back to Overview
                             </Button>
                         </AnimatedSection>
-                    </div>
-                </section>
+                    </DialogContent>
+                </Dialog>
             )}
 
             {/* Emerging Trends */}
