@@ -16,6 +16,7 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/ban-ts-comment": "off", // Disable the rule that requires descriptions for @ts-expect-error
     },
   },
 ];
