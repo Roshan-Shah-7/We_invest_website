@@ -4,7 +4,7 @@ import dbConnect from '@/lib/mongodb';
 import IndividualInvestment from '@/models/IndividualInvestment';
 import StartupInvestment from '@/models/StartupInvestment';
 import BusinessInvestment from '@/models/BusinessInvestment';
-import { authOptions } from '../../auth/[...nextauth]/route'; // Adjust path as needed
+import { authOptions } from '@/lib/auth';
 
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
@@ -30,7 +30,7 @@ export async function GET(req: Request) {
     allInvestments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     return NextResponse.json({ success: true, data: allInvestments }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching investment data:', error);
     return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
   }
