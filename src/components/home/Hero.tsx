@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
                 observer.unobserve(currentLottieContainer);
             }
         };
-    }, []);
+    }, [lottieContainerRef]); // Added lottieContainerRef to dependencies
 
 
     // useTypewriter hook

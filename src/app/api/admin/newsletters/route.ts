@@ -16,7 +16,7 @@ export async function GET(req: Request) {
   try {
     const newsletters = await Newsletter.find({}).sort({ createdAt: -1 }); // Sort by createdAt descending
     return NextResponse.json({ success: true, data: newsletters }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching newsletter data:', error);
     return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
   }

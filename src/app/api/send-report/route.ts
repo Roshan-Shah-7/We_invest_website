@@ -1,27 +1,26 @@
 import { NextResponse } from 'next/server';
 import { generatePdf } from '@/lib/pdf-generator';
 import dbConnect from '@/lib/mongodb';
-import IndividualInvestment from '@/models/IndividualInvestment';
-import StartupInvestment from '@/models/StartupInvestment';
-import BusinessInvestment from '@/models/BusinessInvestment';
-import Contact from '@/models/Contact';
-import Newsletter from '@/models/Newsletter';
+import IndividualInvestment, { IIndividualInvestment } from '@/models/IndividualInvestment';
+import StartupInvestment, { IStartupInvestment } from '@/models/StartupInvestment';
+import BusinessInvestment, { IBusinessInvestment } from '@/models/BusinessInvestment';
+import Contact, { IContact } from '@/models/Contact';
+import Newsletter, { INewsletter } from '@/models/Newsletter';
 
-export async function POST(req: Request) {
+export async function POST(_req: Request) {
   // Note: Authentication check was here previously, but was removed as per user's request to remove auth.
   // If authentication is needed again, it would need to be re-implemented.
 
   await dbConnect();
 
   try {
-    const { formType, id } = await req.json();
+    const { formType, id } = await _req.json();
 
     if (!formType || !id) {
       return NextResponse.json({ success: false, message: 'formType and id are required' }, { status: 400 });
     }
 
-    let submissionData: any; // Will refine this type
-    const fileNamePrefix = formType;
+    let submissionData: IIndividualInvestment | IStartupInvestment | IBusinessInvestment | IContact | INewsletter | null;
 
     switch (formType) {
       case 'individual':
@@ -48,7 +47,7 @@ export async function POST(req: Request) {
     }
 
     // Generate PDF (pdfBuffer and filename are not used, so removing them)
-    await generatePdf(formType, submissionData);
+    await generatePdf(formType, submissionData.toObject());
 
     // Instead of sending email, you might want to return the PDF buffer or a link to it
     // For now, we'll just indicate success of PDF generation.
