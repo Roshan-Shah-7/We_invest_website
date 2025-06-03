@@ -22,6 +22,7 @@ const WhoWeHelpCard = React.memo(({ title, desc }: { title: string, desc: string
         <p className="text-slate-600 mt-3 leading-relaxed text-sm">{desc}</p>
     </div>
 ));
+WhoWeHelpCard.displayName = 'WhoWeHelpCard';
 
 const whoWeHelpData = [
     {
@@ -79,9 +80,9 @@ const HeroSection: React.FC = () => {
         }
 
         return () => {
-            const currentRef = lottieContainerRef.current;
-            if (currentRef) {
-                observer.unobserve(currentRef);
+            const currentLottieContainer = lottieContainerRef.current; // Capture the ref value
+            if (currentLottieContainer) {
+                observer.unobserve(currentLottieContainer);
             }
         };
     }, []);

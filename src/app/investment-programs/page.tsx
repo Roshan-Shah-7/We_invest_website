@@ -3,7 +3,7 @@
 import type { NextPage } from "next"
 import { useState } from "react"
 import { investmentPrograms, whyChooseUsPoints, Program } from "@/data/investmentProgramsData"
-import { CheckCircle, TrendingUp, Shield, Target, Zap, ArrowRight, X } from "lucide-react"
+import { CheckCircle, TrendingUp, Shield, Target, Zap, ArrowRight } from "lucide-react"
 import MoneyGrow from "@/assets/investment/bg.jpg"
 import Image from "next/image"
 import {

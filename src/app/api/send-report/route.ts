@@ -20,8 +20,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'formType and id are required' }, { status: 400 });
     }
 
-    let submissionData;
-    let fileNamePrefix = formType;
+    let submissionData: any; // Will refine this type
+    const fileNamePrefix = formType;
 
     switch (formType) {
       case 'individual':
@@ -47,15 +47,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Submission not found' }, { status: 404 });
     }
 
-    // Generate PDF
-    const pdfBuffer = await generatePdf(formType, submissionData);
-    const filename = `${fileNamePrefix}_${id}.pdf`;
+    // Generate PDF (pdfBuffer and filename are not used, so removing them)
+    await generatePdf(formType, submissionData);
 
     // Instead of sending email, you might want to return the PDF buffer or a link to it
     // For now, we'll just indicate success of PDF generation.
     return NextResponse.json({ success: true, message: 'Report generated successfully!' }, { status: 200 });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error generating report:', error);
     return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
   }

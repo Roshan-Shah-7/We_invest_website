@@ -3,6 +3,22 @@ import dbConnect from '@/lib/mongodb';
 import IndividualInvestment from '@/models/IndividualInvestment';
 import StartupInvestment from '@/models/StartupInvestment';
 import BusinessInvestment from '@/models/BusinessInvestment';
+
+// Define an interface for Mongoose ValidationError
+interface MongooseValidationError extends Error {
+  errors: Record<string, unknown>; // Mongoose validation errors typically have an 'errors' object
+  _message?: string; // Often present in Mongoose validation errors
+}
+
+// Type guard to check if an error is a MongooseValidationError
+function isMongooseValidationError(error: unknown): error is MongooseValidationError {
+  return (
+    error instanceof Error &&
+    error.name === 'ValidationError' &&
+    Object.prototype.hasOwnProperty.call(error, 'errors')
+  );
+}
+
 export async function POST(req: Request) {
   await dbConnect();
 
@@ -10,7 +26,7 @@ export async function POST(req: Request) {
     const formData = await req.json();
     const { formType, fullName, companyName, industry, ...rest } = formData; // Destructure fullName, companyName, industry
 
-    const dataToCreate: any = { ...rest }; // Use 'any' for flexibility in adding properties
+    const dataToCreate: Record<string, unknown> = { ...rest }; // Use Record<string, unknown> instead of any
 
     if (formType === 'startup' || formType === 'business') {
       dataToCreate.contactPerson = fullName;
@@ -47,11 +63,13 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true, data: newInvestment }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) { // Use unknown for caught errors
     console.error('Error submitting investment form:', error);
-    if (error.name === 'ValidationError') {
+    if (isMongooseValidationError(error)) { // Use the custom type guard
       return NextResponse.json({ success: false, message: error.message, errors: error.errors }, { status: 400 });
+    } else if (error instanceof Error) {
+      return NextResponse.json({ success: false, message: error.message }, { status: 500 });
     }
-    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'An unknown error occurred' }, { status: 500 });
   }
 }

@@ -9,10 +9,10 @@ export async function POST(req: Request) {
     const contact = await Contact.create(formData);
 
     return NextResponse.json({ success: true, data: contact }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error submitting contact form:', error);
-    if (error.name === 'ValidationError') {
-      return NextResponse.json({ success: false, message: error.message, errors: error.errors }, { status: 400 });
+    if (error instanceof Error && error.name === 'ValidationError') {
+      return NextResponse.json({ success: false, message: error.message, errors: (error as any).errors }, { status: 400 });
     }
     return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
   }
