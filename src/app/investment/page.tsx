@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
 import Link from 'next/link';
+import InvestmentHero from "@/assets/investment/investment.svg"
 import {
     BarChart,
     TrendingUp,
@@ -18,14 +19,15 @@ import {
     BarChart3,
     Lightbulb,
 } from "lucide-react"
+import Image from "next/image";
 
 export default function InvestmentPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
 
             {/* Hero Section */}
-            <section className="py-20 px-4">
-                <div className="container mx-auto text-center max-w-4xl">
+            <section className="mt-[4rem] py-10 flex items-end justify-center">
+                <div className="container text-center max-w-4xl">
                     <Badge className="mb-6 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">Understanding Investment</Badge>
                     <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
                         We Invest: Your Gateway to <span className="text-emerald-600">Financial Growth</span>
@@ -39,6 +41,7 @@ export default function InvestmentPage() {
                         or an individual building wealth, we&apos;re here to guide your journey.
                     </p>
                 </div>
+                <Image src={InvestmentHero} alt="We Invest Global | What is Investment?" className="hidden lg:block lg:w-[30rem]" />
             </section>
 
             {/* What is Investment */}
@@ -136,7 +139,7 @@ export default function InvestmentPage() {
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <PieChart className="h-6 w-6 text-emerald-600" />
-                                    <span>Real Example: Mr. Shrestha&apos;s Investment Journey</span>
+                                    <span>Real Example: Mr. Shah&apos;s Investment Journey</span>
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-4">
@@ -292,7 +295,8 @@ export default function InvestmentPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 mb-16">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        {/* Card 1 */}
                         <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                             <CardContent className="p-6">
                                 <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -306,6 +310,7 @@ export default function InvestmentPage() {
                             </CardContent>
                         </Card>
 
+                        {/* Card 2 */}
                         <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                             <CardContent className="p-6">
                                 <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -319,6 +324,7 @@ export default function InvestmentPage() {
                             </CardContent>
                         </Card>
 
+                        {/* Card 3 */}
                         <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                             <CardContent className="p-6">
                                 <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -332,32 +338,39 @@ export default function InvestmentPage() {
                             </CardContent>
                         </Card>
 
-                        <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
-                                    <BarChart3 className="h-6 w-6 text-emerald-600" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-slate-900 mb-2">Navigate Market Volatility</h3>
-                                <p className="text-slate-600 text-sm">
-                                    Long-term investments can weather short-term market fluctuations, providing stability and higher
-                                    returns.
-                                </p>
-                            </CardContent>
-                        </Card>
+                        {/* Card 4 - Centered in last row */}
+                        <div className="lg:col-start-2">
+                            <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6">
+                                    <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
+                                        <BarChart3 className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-semibold text-lg text-slate-900 mb-2">Navigate Market Volatility</h3>
+                                    <p className="text-slate-600 text-sm">
+                                        Long-term investments can weather short-term market fluctuations, providing stability and higher
+                                        returns.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
 
-                        <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
-                                    <TrendingUp className="h-6 w-6 text-emerald-600" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-slate-900 mb-2">Increase Risk-Taking Capacity</h3>
-                                <p className="text-slate-600 text-sm">
-                                    Younger investors with fewer financial responsibilities can explore higher-risk, higher-reward
-                                    opportunities.
-                                </p>
-                            </CardContent>
-                        </Card>
+                        {/* Card 5 - Centered in last row */}
+                        <div className="lg:col-start-3">
+                            <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6">
+                                    <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
+                                        <TrendingUp className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-semibold text-lg text-slate-900 mb-2">Increase Risk-Taking Capacity</h3>
+                                    <p className="text-slate-600 text-sm">
+                                        Younger investors with fewer financial responsibilities can explore higher-risk, higher-reward
+                                        opportunities.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
+
 
                     {/* Key Considerations */}
                     <div className="bg-slate-50 rounded-lg p-8">

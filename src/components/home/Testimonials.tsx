@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Correct import path
 import { Button } from '@/components/ui/button'; // Import Button component
 import { Quote } from 'lucide-react'; // Import Quote icon
 import Image from 'next/image'; // Import Image component
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger); // Register once globally
 
@@ -118,9 +119,11 @@ const Testimonials: React.FC = () => {
                     <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
                         Ready to write your own success story? Let&apos;s make it happen together.
                     </p>
-                    <Button size="lg" className="rounded-full bg-brand_teal hover:bg-brand_teal/90">
-                        Apply Now
-                    </Button>
+                    <Link href={'/contact'}>
+                        <Button size="lg" className="rounded-full bg-brand_teal hover:bg-brand_teal/90">
+                            Apply Now
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

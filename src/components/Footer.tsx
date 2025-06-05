@@ -65,21 +65,21 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/what-we-provide" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                <Link href="/investment" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
                                     <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
-                                    What We Provide
+                                    Investment
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/why-we-invest" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                <Link href="/market-overview" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
                                     <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
-                                    Why We Invest
+                                    Market Overview
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/portfolio" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
+                                <Link href="/investment-programs" className="text-gray-600 hover:text-[#00695C] transition-colors flex items-center">
                                     <span className="w-2 h-2 bg-[#00695C] rounded-full mr-3"></span>
-                                    Portfolio
+                                    Investment Program
                                 </Link>
                             </li>
                             <li>
@@ -111,8 +111,8 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <span className="text-sm text-gray-500">Phone</span>
-                                    <span className="text-gray-800 block">+977 984-7690076</span>
-                                    <span className="text-gray-800 block">+977 985-1408600</span>
+                                    <span className="text-gray-800 block">+977-9828240210</span>
+                                    <span className="text-gray-800 block">+977-9851408600</span>
                                 </div>
                             </li>
                             <li className="flex items-start">
@@ -130,7 +130,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <span className="text-sm text-gray-500">Office Hours</span>
-                                    <span className="text-gray-800 block">Mon-Fri, 9:00 AM - 5:00 PM (NPT)</span>
+                                    <span className="text-gray-800 block">Sun-Fri, 9:00 AM - 5:00 PM (NPT)</span>
                                 </div>
                             </li>
                         </ul>

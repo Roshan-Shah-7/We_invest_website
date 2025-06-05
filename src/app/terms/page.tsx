@@ -121,12 +121,12 @@ export default function TermsAndConditions() {
                             <span>Effective: {effectiveDate}</span>
                         </div>
                     </div>
-                    <div className="mt-6 flex justify-center space-x-4">
+                    {/* <div className="mt-6 flex justify-center space-x-4">
                         <Button variant="outline" size="sm">
                             <Download className="w-4 h-4 mr-2" />
                             Download PDF
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
             </header>
 

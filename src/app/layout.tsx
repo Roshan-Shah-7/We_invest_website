@@ -16,33 +16,25 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Wee Invest Global Pvt. Ltd.",
-  description: "Investment platform for Wee Invest Global Pvt. Ltd.",
+  title: "We Invest Global Pvt. Ltd. - Empowering Your Financial Future",
+  description: "We Invest Global Pvt. Ltd. is a leading investment platform offering strategic financial solutions, wealth management, and opportunities in high-growth sectors like technology, real estate, and renewable energy. Partner with us for sustainable growth and expert guidance.",
   icons: "/w_logo.png", // Ensure this path is correct in your `public` folder
-  keywords: "investment, global, finance, wealth, management",
+  keywords: "investment, global finance, wealth management, financial growth, strategic investment, technology investment, real estate investment, renewable energy, startup funding, capital gains, portfolio diversification, financial planning, Nepal investment",
   openGraph: {
-    title: "Wee Invest Global Pvt. Ltd.",
-    description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    url: "https://yourwebsite.com", // FIXME: Replace with your actual website URL
-    siteName: "Wee Invest Global Pvt. Ltd.",
+    title: "We Invest Global Pvt. Ltd. - Empowering Your Financial Future",
+    description: "We Invest Global Pvt. Ltd. is a leading investment platform offering strategic financial solutions, wealth management, and opportunities in high-growth sectors like technology, real estate, and renewable energy. Partner with us for sustainable growth and expert guidance.",
+    url: "https://www.weeinvestglobal.com.np", // FIXME: Replace with your actual website URL
+    siteName: "We Invest Global Pvt. Ltd.",
     images: [
       {
         url: "https://yourwebsite.com/og-image.jpg", // FIXME: Replace with your actual OG image URL
         width: 1200,
         height: 630,
-        alt: "Wee Invest Global Pvt. Ltd. Open Graph Image",
+        alt: "We Invest Global Pvt. Ltd. Open Graph Image",
       },
     ],
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@yourtwitterhandle", // FIXME: Replace with your actual Twitter handle
-    creator: "@yourtwitterhandle", // FIXME: Replace with your actual Twitter handle
-    title: "Wee Invest Global Pvt. Ltd.",
-    description: "Investment platform for Wee Invest Global Pvt. Ltd.",
-    images: ["https://yourwebsite.com/twitter-image.jpg"], // FIXME: Replace with your actual Twitter image URL
   },
 };
 

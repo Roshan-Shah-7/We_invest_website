@@ -37,7 +37,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#00C853',
     image: techInnovationFundImage,
     category: 'Technology',
-    investmentRange: 'Rs.50K - Rs.300K',
+    investmentRange: 'Rs.500K - Rs.3cr',
   },
   {
     number: 2,
@@ -48,7 +48,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#00B0FF',
     image: healthcareImage,
     category: 'Healthcare',
-    investmentRange: 'Rs.60K - Rs.500K',
+    investmentRange: 'Rs.600K - Rs.2.1cr',
   },
   {
     number: 3,
@@ -59,7 +59,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#FFA000',
     image: agricultureImage,
     category: 'Agriculture',
-    investmentRange: 'Rs.40K - Rs.200K',
+    investmentRange: 'Rs.400K - Rs.1.2cr',
   },
   {
     number: 4,
@@ -70,7 +70,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#4CAF50',
     image: renewableEnergyImage,
     category: 'Energy',
-    investmentRange: 'Rs.100K - Rs400K',
+    investmentRange: 'Rs.450K - Rs1.5cr',
   },
   {
     number: 5,
@@ -81,7 +81,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#9C27B0',
     image: emergingMarketsImage,
     category: 'Emerging Markets',
-    investmentRange: 'Rs.30K - Rs.250K',
+    investmentRange: 'Rs.550K - Rs.1.3cr',
   },
   {
     number: 6,
@@ -92,7 +92,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#FF5722',
     image: educationEdTechImage,
     category: 'Education',
-    investmentRange: 'Rs.40K - Rs.150K',
+    investmentRange: 'Rs.400K - Rs.1.5cr',
   },
   {
     number: 7,
@@ -103,7 +103,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#673AB7',
     image: retailEvolutionImage,
     category: 'Retail',
-    investmentRange: 'Rs.20K - Rs.190K',
+    investmentRange: 'Rs.400K - Rs.2.2cr',
   },
   {
     number: 8,
@@ -114,7 +114,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#2196F3',
     image: mobilityTransportImage,
     category: 'Transportation',
-    investmentRange: 'Rs.30K - Rs.310K',
+    investmentRange: 'Rs.500K - Rs.2.5cr',
   },
   {
     number: 9,
@@ -125,7 +125,7 @@ export const fundPoolsData: FundPool[] = [
     color: '#FFC107',
     image: ventureCapitalImage,
     category: 'Real Estate',
-    investmentRange: 'Rs.40K - Rs.200K',
+    investmentRange: 'Rs.400K - Rs.2cr',
   },
   {
     number: 10,
@@ -136,6 +136,6 @@ export const fundPoolsData: FundPool[] = [
     color: '#00695C',
     image: ventureCapitalImage,
     category: 'Venture Capital',
-    investmentRange: 'Rs.30K - Rs.250K',
+    investmentRange: 'Rs.600K - Rs.1.5cr',
   },
 ];

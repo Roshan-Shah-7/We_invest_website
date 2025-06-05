@@ -319,15 +319,11 @@ export default function Contact() {
                             </h3>
                             <div className="space-y-4 text-gray-600">
                                 <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                    <span>Monday - Friday:</span>
+                                    <span>Sunday - Friday:</span>
                                     <span className="font-medium text-gray-800">9:00 AM - 6:00 PM</span>
                                 </div>
                                 <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                                     <span>Saturday:</span>
-                                    <span className="font-medium text-gray-500">10:00 AM - 4:00 PM</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <span>Sunday:</span>
                                     <span className="font-medium text-gray-500">Closed</span>
                                 </div>
                             </div>
@@ -351,7 +347,7 @@ export default function Contact() {
                                 title: "Call Us Directly",
                                 detail: (
                                     <>
-                                        <span>+977-9851408600 <br /> +977-9847690076</span>
+                                        <span>+977-9851408600 <br /> +977-9828240210</span>
                                     </>
                                 ),
                                 description: "For urgent matters or quick questions.",

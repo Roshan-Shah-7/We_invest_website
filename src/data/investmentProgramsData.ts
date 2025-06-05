@@ -36,10 +36,10 @@ export const investmentPrograms: Program[] = [
     {
         id: 'pool-funding',
         title: 'Our Pool Funding Programme',
-        overview: 'Our Pool Funding programme allows multiple investors to combine resources into a single, diversified investment vehicle, offering a stable 2% annual return. This programme is ideal for risk-averse investors seeking consistent income with lower volatility.',
+        overview: 'Our Pool Funding programme allows multiple investors to combine resources into a single, diversified investment vehicle, offering a stable 12% annual return. This programme is ideal for risk-averse investors seeking consistent income with lower volatility.',
         keyFeatures: [
             'Pooled Capital: Investors contribute to a collective fund, enabling access to large-scale opportunities in real estate, equities, and fixed-income assets.',
-            'Fixed Return: Guaranteed 12% annual return, distributed quarterly, based on the fund’s performance.',
+            'Fixed Return: Tentaively 12% annual return, distributed quarterly, based on the fund’s performance.',
             'Diversified Portfolio: Investments spread across multiple asset classes to mitigate risk.',
             'Flexible Entry: Minimum investment of Rs.5,00,000, suitable for both individual and institutional investors.',
         ],
@@ -56,7 +56,7 @@ export const investmentPrograms: Program[] = [
         overview: 'The Project-Wise Funding programme offers targeted equity investments in specific projects within established or emerging businesses. This programme is designed for investors seeking direct involvement in high-potential initiatives with clear milestones and outcomes.',
         keyFeatures: [
             'Project-Specific Investments: Funding allocated to individual projects, such as product launches, infrastructure development, or market expansion, with investments starting at Rs.50,000.',
-            'Equity Stakes: Investors receive equity in the project or parent company, typically ranging from 5% and above,  depending on the project can range from few lakhs to even crores..',
+            'Equity Stakes: Investors receive equity in the project or parent company, typically ranging from 5% and above,  depending on the project and also depending on the investment can range from few lakhs to even crores..',
             'Milestone-Based Funding: Capital disbursed in tranches tied to project milestones, ensuring accountability and progress.',
             'Sector Focus: Technology, real estate, agriculture, and renewable energy projects with strong ROI potential.',
         ],

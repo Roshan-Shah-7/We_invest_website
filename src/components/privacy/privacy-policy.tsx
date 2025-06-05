@@ -121,12 +121,12 @@ export default function PrivacyPolicy() {
                             <span>Effective: {effectiveDate}</span>
                         </div>
                     </div>
-                    <div className="mt-6 flex justify-center space-x-4">
+                    {/* <div className="mt-6 flex justify-center space-x-4">
                         <Button variant="outline" size="sm">
                             <Download className="w-4 h-4 mr-2" />
                             Download PDF
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
             </header>
 
@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
                     <div className="flex items-center justify-center text-yellow-800">
                         <AlertTriangle className="w-5 h-5 mr-2" />
                         <span className="text-sm font-medium">
-                            Regulated by SEBON, Nepal Rastra Bank | Licensed Investment Company in Nepal
+                            Nepal Rastra Bank | Licensed Investment Company in Nepal is in the process of obtaining a licence from SEBON.
                         </span>
                     </div>
                 </div>
