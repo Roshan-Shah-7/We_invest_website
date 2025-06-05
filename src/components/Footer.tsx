@@ -33,12 +33,12 @@ export default function Footer() {
                                 <div className="bg-[#00695C] text-white p-3 rounded-xl mr-3">
                                     <Image src={wWhiteLogo} alt='We Investment Logo' width={30} height={30} />
                                 </div>
-                                <span className="text-2xl font-bold text-[#00695C] font-poppins">Wee Invest</span>
+                                <span className="text-2xl font-bold text-[#00695C] font-poppins">We Invest</span>
                             </div>
                         </div>
 
                         <p className="text-gray-600 mb-6 text-sm leading-relaxed max-w-md">
-                            At Wee Invest Global Pvt. Ltd., we empower visionaries with the capital, mentorship, and resources to turn bold ideas into thriving businesses. Founded with a passion for innovation, we support startups across diverse sectors.
+                            At We Invest Global Pvt. Ltd., we empower visionaries with the capital, mentorship, and resources to turn bold ideas into thriving businesses. Founded with a passion for innovation, we support startups across diverse sectors.
                         </p>
 
                         <div className="flex gap-4 mt-6">
@@ -159,7 +159,7 @@ export default function Footer() {
 
                 <div className="pt-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-gray-600 text-sm text-center md:text-left mb-4 md:mb-0">
-                        © {new Date().getFullYear()} Wee Invest Global Pvt. Ltd. All rights reserved.
+                        © {new Date().getFullYear()} We Invest Global Pvt. Ltd. All rights reserved.
                     </p>
                     <div className="flex space-x-6">
                         <Link href="/privacy" className="text-gray-600 hover:text-[#00695C] text-sm transition-colors">Privacy Policy</Link>

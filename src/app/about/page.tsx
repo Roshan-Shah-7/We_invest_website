@@ -452,7 +452,7 @@ export default function AboutUsPage() {
                                             </Avatar>
                                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
                                                 <Badge className="bg-[#00C853] text-white border-0 px-3 py-1">
-                                                    Operation Head
+                                                    Operations Head
                                                 </Badge>
                                             </div>
                                         </div>
@@ -465,7 +465,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        {/* Anna Magar */}
+                        {/* Ana Magar */}
                         <div className="group">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
@@ -484,7 +484,7 @@ export default function AboutUsPage() {
                                                 </Badge>
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Anna Magar</h3>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Ana Magar</h3>
                                         <p className="text-[#666666] leading-relaxed">
                                             Head Research Analyst, Anna drives strategic decisions with in-depth market research, identifying high-potential opportunities through data-driven insights.
                                         </p>
@@ -768,8 +768,8 @@ export default function AboutUsPage() {
                                     </div>
                                     <div>
                                         <div className="text-white/80 text-sm">Phone</div>
+                                        <div className="text-white font-medium">+977-9828240210</div>
                                         <div className="text-white font-medium">+977-9851408600</div>
-                                        <div className="text-white font-medium">+977-9847690076</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4 group">

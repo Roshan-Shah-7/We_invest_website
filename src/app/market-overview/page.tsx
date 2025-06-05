@@ -999,7 +999,7 @@ export default function MarketOverviewPage() {
                             >
                                 Market
                                 <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-                                    Overview 2025
+                                    Overview
                                 </span>
                             </h1>
                             <p

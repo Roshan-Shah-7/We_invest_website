@@ -45,21 +45,21 @@ const Testimonials: React.FC = () => {
 
     const testimonials: Testimonial[] = [
         {
-            quote: 'My software concept became a reality because to We Invest mentorship. I had a business plan; without it, my idea would be the only one we invest in. By offering space, a team, and professional assistance, we invest in helping to develop my idea.',
+            quote: "We invest's mentorship help turn my software concept into reality. They didn't just investment in my idea, they provided a space team and professional assistance crucial for it's development.",
             name: 'Roshan Shah',
             title: 'Founder',
             company: 'AgroSewa',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=EcoInnovate&font=noto', // Trimmed space
         },
         {
-            quote: 'We make investments to support the product expansion and distribution.  Wee Invest made it possible to enter three new markets in a single year, which was an incredible accomplishment.',
+            quote: 'We make investments to support the product expansion and distribution.  We Invest made it possible to enter three new markets in a single year, which was an incredible accomplishment.',
             name: 'Urja Tamrakar',
             title: 'Co-Founder',
             company: 'Vatsala Aroma Products',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=HealthSync&font=noto', // Trimmed space
         },
         {
-            quote: 'Their pitch coaching was a game-changer. We refined our approach and grew our user base by 300%—Wee Invest believed in us from day one.',
+            quote: 'Their pitch coaching was a game-changer. We refined our approach and grew our user base by 300%—We Invest believed in us from day one.',
             name: 'Aruna Limbu',
             title: 'CEO',
             company: 'Krishi Venture',
