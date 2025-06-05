@@ -102,7 +102,6 @@ export default function AdminDashboard() {
         window.URL.revokeObjectURL(url);
     } catch (error) {
         console.error('Error downloading PDF:', error);
-        // Optionally, show an error message to the user
     }
   };
 
