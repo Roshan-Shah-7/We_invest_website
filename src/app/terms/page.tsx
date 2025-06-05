@@ -6,6 +6,7 @@ import { ChevronRight, FileText, Calendar, Download, Mail, Phone, MapPin } from 
 import { Button } from "@/components/ui/button"
 import { lastUpdated, effectiveDate, termsSections, TermContentBlock, TermSection } from "@/data/termsData"
 
+
 interface Section {
     id: string
     title: string

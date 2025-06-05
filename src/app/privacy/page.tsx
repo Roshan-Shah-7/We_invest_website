@@ -1,12 +1,12 @@
 import PrivacyPolicy from "@/components/privacy/privacy-policy"
 
 export const metadata = {
-    title: "Investment Policy Statement | We Invest Private Limited",
+    title: "Privacy Policy | We Invest Global Pvt. Ltd.",
     description:
-        "Comprehensive investment framework and operational guidelines for We Invest Private Limited, regulated by SEBON and Nepal Rastra Bank.",
+        "Review the Privacy Policy of We Invest Global Pvt. Ltd. Learn how we collect, use, protect, and manage your personal information.",
     keywords:
-        "investment policy, Nepal investment, SEBON, venture capital, portfolio management, risk management, AML policy",
-}
+        "privacy policy, data protection, personal information, data security, We Invest Global, privacy statement",
+};
 
 export default function PrivacyPage() {
     return <PrivacyPolicy />

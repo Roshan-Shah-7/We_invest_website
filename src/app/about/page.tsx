@@ -30,6 +30,13 @@ import Mission from "@/assets/about/mission.jpg"
 import OurStory from "@/assets/about/our story.jpg"
 import Link from "next/link"
 
+export const metadata = {
+    title: "We Invest Global Pvt. Ltd. | About Us",
+    description:
+        "Learn about We Invest Global Pvt. Ltd.'s mission, vision, team, and commitment to empowering entrepreneurs and driving financial growth through strategic partnerships and innovative solutions.",
+    keywords:
+        "about us, We Invest Global, mission, vision, team, financial solutions, entrepreneur empowerment, investment firm Nepal",
+};
 
 const colors = {
     brand_green: '#00C853',
@@ -50,28 +57,24 @@ export default function AboutUsPage() {
                     backgroundImage: `url(${Building.src})`,
                     backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'
                 }}>
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#004D40] via-[#00695C] to-[#00897B]"></div>
+                <div className="absolute inset-0">
+                    <div className="absolute inset-0 bg-gradient-to-bl from-[#004D40]/60 via-[#00695C]/30 to-[#00897B]/20"></div>
                 </div>
-
-                {/* Floating Elements */}
-                <div className="absolute top-20 left-10 w-20 h-20 bg-[#00C853]/20 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-32 h-32 bg-[#00695C]/20 rounded-full blur-xl animate-pulse delay-1000"></div>
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="text-center">
-                        <div className="inline-flex items-center px-4 py-2 bg-brand_teal/20 backdrop-blur-sm border border-white/30 rounded-full mb-8">
+                        <div className="inline-flex items-center px-4 py-2 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-full mb-8">
                             <span className="text-white text-sm font-medium">About We Invest</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-3">
                             Where Innovation
                             <span className="block text-white mt-2">
                                 Fuels Growth
                             </span>
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-12">
+                        <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-12 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-full p-4 py-6">
                             We are more than an investment firm; we are a dynamic team of visionaries committed to empowering the next
                             generation of entrepreneurs through strategic partnerships and innovative solutions.
                         </p>

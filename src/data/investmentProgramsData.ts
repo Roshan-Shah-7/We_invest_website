@@ -1,7 +1,7 @@
-import VCIP from '@/assets/investment-program/VCIP.png';
+import VCIP from '@/assets/investment-program/VCIP.jpeg';
 import PoolFund from '@/assets/investment-program/pool fund.jpeg';
 import Project from '@/assets/investment/project.jpg';
-import TimeBased from '@/assets/investment/timeBased.jpg';
+import TimeBased from '@/assets/investment-program/projectInvest.jpeg';
 import { StaticImageData } from 'next/image'; // Import StaticImageData
 
 export interface Program {
