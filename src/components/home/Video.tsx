@@ -70,9 +70,6 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                                        <h3 className="text-xl font-bold text-white truncate">{video.title}</h3>
-                                    </div>
                                 </>
                             )}
                         </div>
@@ -101,16 +98,13 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                                         </>
                                     )}
                                 </button>
-                                <div className="text-xs px-2 py-1 rounded-full bg-gray-100">
-                                    5:24
-                                </div>
+                                {video.description && (
+                                    <p className="text-gray-600 font-bold mt-2 line-clamp-2">
+                                        {video.description}
+                                    </p>
+                                )}
                             </div>
 
-                            {video.description && (
-                                <p className="text-gray-600 mt-2 line-clamp-2">
-                                    {video.description}
-                                </p>
-                            )}
                         </div>
                     </div>
                 ))}

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
-import Contact from '@/models/Contact';
+import Contact, { IContact } from '@/models/Contact';
 
 // Define an interface for Mongoose ValidationError
 interface MongooseValidationError extends Error {
@@ -21,9 +21,9 @@ export async function POST(req: Request) {
   await dbConnect();
 
   try {
-    const formData = await req.json();
-    // @ts-expect-error
-    const contact = await Contact.create(formData);
+    const formData: Omit<IContact, 'createdAt' | '_id'> = await req.json();
+    const contact = new Contact(formData);
+    await contact.save();
 
     return NextResponse.json({ success: true, data: contact }, { status: 201 });
   } catch (error: unknown) {

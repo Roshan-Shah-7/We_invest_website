@@ -127,9 +127,9 @@ export default function Contact() {
                             We&apos;re here to help with any questions, support, or opportunities you&apos;d like to discuss.
                         </p>
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6">
-                            <a href="tel:+15551234567" className="flex items-center bg-white hover:bg-[#00695C] group hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
+                            <a href="tel:+9779851408600" className="flex items-center bg-white hover:bg-[#00695C] group hover:text-white p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center border border-gray-200">
                                 <Phone className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-[#00695C] group-hover:text-white" />
-                                <span className="font-medium">+1 (555) 123-4567</span>
+                                <span className="font-medium">+977-9851408600</span>
                             </a>
                             <a href="mailto:contact@weeinvest.com" className="flex items-center bg-[#00695C] hover:bg-white text-white group hover:text-black p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out min-w-[240px] justify-center">
                                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 mr-2.5 text-white group-hover:text-black" />
@@ -143,7 +143,7 @@ export default function Contact() {
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
                     {/* Contact Form */}
-                    <div className="lg:col-span-3 h-fit sticky top-20 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div className="lg:col-span-3 h-fit lg:sticky top-20 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-200">
                             Send Us a Message
                         </h2>
@@ -204,8 +204,8 @@ export default function Contact() {
                                         onChange={handleChange}
                                         className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C] transition duration-150 ${validationErrors.email ? 'border-red-500' : 'border-gray-300'}`}
                                         required
-                                    placeholder="your@email.com"
-                                />
+                                        placeholder="your@email.com"
+                                    />
                                     {validationErrors.email && <p className="text-red-500 text-xs mt-1">{validationErrors.email}</p>}
                                 </div>
                             </div>
@@ -349,17 +349,21 @@ export default function Contact() {
                             {
                                 icon: Phone,
                                 title: "Call Us Directly",
-                                detail: "+1 (555) 123-4567",
+                                detail: (
+                                    <>
+                                        <span>+977-9851408600 <br /> +977-9847690076</span>
+                                    </>
+                                ),
                                 description: "For urgent matters or quick questions.",
-                                href: "tel:+15551234567",
+                                href: "tel:+9779851408600",
                                 color: "bg-[#e0f7f4]"
                             },
                             {
                                 icon: Mail,
                                 title: "Email Our Team",
-                                detail: "contact@weeinvest.com",
+                                detail: "investwe3@gmail.com",
                                 description: "We typically respond within 24 hours.",
-                                href: "mailto:contact@weeinvest.com",
+                                href: "mailto:investwe3@gmail.com",
                                 color: "bg-[#e8f5e9]"
                             },
                             {

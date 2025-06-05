@@ -31,7 +31,7 @@ const whoWeHelpData = [
     },
     {
         title: 'Startup Teams',
-        desc: 'We accelerate small teams with big goals — from pre-seed to Series A.',
+        desc: 'We accelerate small teams with big goals — from pre-seed to full scale launch.',
     },
     {
         title: 'Scaleups',
@@ -39,7 +39,7 @@ const whoWeHelpData = [
     },
     {
         title: 'Individuals',
-        desc: 'We help individual investors grow their wealth through strategic, high-potential opportunities.'
+        desc: 'We help individual investors grow their wealth through strategic,  high-potential investment opportunites.'
     }
 ];
 
@@ -153,7 +153,7 @@ const HeroSection: React.FC = () => {
                 <Particles id="tsparticles" options={particlesOptions} />
             </div>
 
-            {/* Hero Block */}
+            {/* Hero */}
             <div className="relative z-10 w-full lg:mt-20 max-w-7xl flex flex-col lg:flex-row items-start justify-between">
                 <div className="w-full lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
                     <AnimatedHeadline

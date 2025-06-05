@@ -101,3 +101,14 @@ a {
 .animate-blink {
   animation: blink 0.8s step-end infinite;
 }
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #00695C !important;
+  --swiper-navigation-size: 20px;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}

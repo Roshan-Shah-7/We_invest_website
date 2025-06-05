@@ -1,9 +1,11 @@
 'use client'
 
 import React from 'react';
-import { Twitter, Linkedin, Youtube, Instagram, MapPin, Mail, Phone, Clock } from 'lucide-react';
+import { Facebook, Instagram, MapPin, Mail, Phone, Clock, Send, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import NewsletterSubscriptionForm from './NewsletterSubscriptionForm';
+import Image from 'next/image';
+import wWhiteLogo from "../../public/w-white-l.png"
 
 export default function Footer() {
     return (
@@ -29,9 +31,7 @@ export default function Footer() {
                         <div className="mb-6">
                             <div className="flex items-center">
                                 <div className="bg-[#00695C] text-white p-3 rounded-xl mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                    </svg>
+                                    <Image src={wWhiteLogo} alt='We Investment Logo' width={30} height={30} />
                                 </div>
                                 <span className="text-2xl font-bold text-[#00695C] font-poppins">Wee Invest</span>
                             </div>
@@ -42,16 +42,13 @@ export default function Footer() {
                         </p>
 
                         <div className="flex gap-4 mt-6">
-                            <Link href="https://twitter.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
-                                <Twitter className="w-5 h-5" />
+                            <Link href="https://t.me/weinvestglobal/11" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Send className="w-5 h-5" /> {/* Using Send for Telegram */}
                             </Link>
-                            <Link href="https://linkedin.com/company/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
-                                <Linkedin className="w-5 h-5" />
+                            <Link href="https://facebook.com/share/1BEWZehzx7/?mibextid=qi2Omg" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                                <Facebook className="w-5 h-5" />
                             </Link>
-                            <Link href="https://youtube.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
-                                <Youtube className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://instagram.com/weinvest" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
+                            <Link href="https://instagram.com/weinvestglobal?igsh=MXJrd2I2MThvMWRoZA==" target="_blank" rel="noopener noreferrer" className="bg-white p-2.5 rounded-full shadow-md hover:bg-[#00695C] hover:text-white transition-colors duration-300">
                                 <Instagram className="w-5 h-5" />
                             </Link>
                         </div>
@@ -104,7 +101,8 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <span className="text-sm text-gray-500">Email</span>
-                                    <Link href="mailto:info@weinvest.com" className="text-gray-800 hover:text-[#00695C] transition-colors block">info@weinvest.com</Link>
+                                    <Link href="mailto:investwe3@gmail.com" className="text-gray-800
+                                     hover:text-[#00695C] transition-colors block">investwe3@gmail.com</Link>
                                 </div>
                             </li>
                             <li className="flex items-start">
@@ -113,7 +111,8 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <span className="text-sm text-gray-500">Phone</span>
-                                    <span className="text-gray-800 block">+977-1-555-0123</span>
+                                    <span className="text-gray-800 block">+977 984-7690076</span>
+                                    <span className="text-gray-800 block">+977 985-1408600</span>
                                 </div>
                             </li>
                             <li className="flex items-start">
@@ -122,7 +121,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <span className="text-sm text-gray-500">Address</span>
-                                    <span className="text-gray-800 block">123 Innovation Lane, Kathmandu, Nepal</span>
+                                    <span className="text-gray-800 block">Bishalnagar, Kathmandu 44600, Nepal</span>
                                 </div>
                             </li>
                             <li className="flex items-start">

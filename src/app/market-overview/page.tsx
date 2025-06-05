@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/Badge"
+import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { LucideIcon } from "lucide-react"
 import {
@@ -788,48 +788,6 @@ export default function MarketOverviewPage() {
                 "Balance established technologies with emerging solutions",
             ],
         },
-        {
-            id: "crypto",
-            name: "Cryptocurrencies",
-            icon: Bitcoin,
-            color: "#f97316",
-            bgColor: "from-orange-500 to-red-600",
-            marketSize: "$2.5T",
-            growth: 12,
-            risk: "Very High",
-            liquidity: "High",
-            volatility: "Very High",
-            entryBarrier: "Low",
-            timeHorizon: "Short-Medium",
-            data: [20, 40, 80, 30, 90, 60, 85, 95],
-            yearlyData: [
-                { year: "2018", value: 20 },
-                { year: "2019", value: 40 },
-                { year: "2020", value: 80 },
-                { year: "2021", value: 30 },
-                { year: "2022", value: 90 },
-                { year: "2023", value: 60 },
-                { year: "2024", value: 85 },
-            ],
-            description: "Digital assets powered by blockchain technology",
-            insights: "The global cryptocurrency market is valued at approximately $2.5 trillion in 2024, with a projected CAGR of 12% through 2030. Volatility remains high, but institutional adoption and regulatory clarity are stabilizing the sector. Emerging trends include decentralized finance (DeFi) and non-fungible tokens (NFTs).",
-            opportunity: "Cryptocurrencies offer high-reward potential for risk-tolerant investors. Early investments in promising blockchain projects can yield significant returns. Direct token purchases, crypto ETFs, mining operations, and blockchain venture funds provide various entry points.",
-            riskNote: "Extreme volatility, regulatory uncertainty, and cybersecurity risks require careful consideration. Limiting exposure and staying informed are critical. The nascent nature of the technology means fundamentals are still evolving.",
-            radarData: [85, 90, 20, 80, 50],
-            radarLabels: ["Liquidity", "Growth", "Stability", "Accessibility", "Diversification"],
-            keyMetrics: [
-                { label: "Market Volatility", value: "Very High", trend: "neutral" },
-                { label: "Institutional Adoption", value: "Growing", trend: "up" },
-                { label: "Regulatory Clarity", value: "Improving", trend: "up" },
-                { label: "Technology Maturity", value: "Emerging", trend: "up" },
-            ],
-            expertTips: [
-                "Limit crypto exposure to 5-10% of investment portfolio",
-                "Focus on established cryptocurrencies with utility",
-                "Stay informed about regulatory developments",
-                "Understand the technology fundamentals before investing",
-            ],
-        },
     ]
 
 
@@ -1148,7 +1106,7 @@ export default function MarketOverviewPage() {
                                 </p>
                             </div>
                             <div className="mt-6 md:mt-0 flex items-center gap-4">
-                                <Button
+                                {/* <Button
                                     variant={comparisonMode ? "default" : "outline"}
                                     className={`flex items-center gap-2 ${comparisonMode ? "bg-emerald-500 hover:bg-emerald-600" : ""
                                         }`}
@@ -1156,7 +1114,7 @@ export default function MarketOverviewPage() {
                                 >
                                     <BarChart2 className="h-4 w-4" />
                                     {comparisonMode ? "Exit Comparison" : "Compare Sectors"}
-                                </Button>
+                                </Button> */}
                                 <div className="relative">
                                     <Button
                                         variant="outline"
@@ -1420,56 +1378,6 @@ export default function MarketOverviewPage() {
                 </Dialog>
             )}
 
-            {/* Emerging Trends */}
-            <section className="py-20 px-4 bg-white">
-                <div className="container mx-auto max-w-7xl">
-                    <div className="text-center mb-16">
-                        <Badge className="mb-6 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">Market Intelligence</Badge>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Emerging Trends 2025</h2>
-                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                            Stay ahead of market shifts with our analysis of key trends shaping the investment landscape
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {emergingTrends.map((trend, index) => {
-                            const Icon = trend.icon
-                            type ColorClassKeys = EmergingTrend['color'];
-                            const colorClasses: Record<ColorClassKeys, string> = {
-                                emerald: "from-emerald-500 to-teal-600 border-emerald-200",
-                                blue: "from-blue-500 to-indigo-600 border-blue-200",
-                                amber: "from-amber-500 to-orange-600 border-amber-200",
-                                purple: "from-purple-500 to-pink-600 border-purple-200",
-                            }
-
-                            return (
-                                <Card
-                                    key={index}
-                                    className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
-                                    style={{ animationDelay: `${index * 0.1}s` }}
-                                >
-                                    <CardContent className="p-6 text-center">
-                                        <div
-                                            className={`bg-gradient-to-br ${colorClasses[trend.color].split(" ")[0]} ${colorClasses[trend.color].split(" ")[1]} rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
-                                        >
-                                            <Icon className="h-8 w-8 text-white" />
-                                        </div>
-                                        <h3 className="text-lg font-bold text-slate-900 mb-3">{trend.title}</h3>
-                                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{trend.description}</p>
-                                        <Badge
-                                            variant="outline"
-                                            className={`${colorClasses[trend.color].split(" ")[2]} text-${trend.color}-700`}
-                                        >
-                                            {trend.impact} Impact
-                                        </Badge>
-                                    </CardContent>
-                                </Card>
-                            )
-                        })}
-                    </div>
-                </div>
-            </section>
-
             {/* Strategic Approach */}
             <section className="py-20 px-4 bg-gradient-to-br from-slate-900 to-emerald-900">
                 <div className="container mx-auto max-w-7xl">
@@ -1527,7 +1435,7 @@ export default function MarketOverviewPage() {
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <Badge className="mb-6 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">Partnership Benefits</Badge>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
                                 Why Partner with
                                 <span className="block text-emerald-600">We Invest?</span>
                             </h2>
@@ -1604,36 +1512,33 @@ export default function MarketOverviewPage() {
                                 <div className="grid grid-cols-2 gap-6 mb-8">
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-emerald-600 mb-2">
-                                            <AnimatedCounter end={10} suffix="+" />
+                                            <AnimatedCounter end={6} suffix="+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Active Investments</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-purple-600 mb-2">
-                                            <AnimatedCounter end={3} prefix="$" suffix="Cr+" />
+                                            <AnimatedCounter end={3} prefix="Rs " suffix="CR+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Capital Deployed</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-orange-600 mb-2">
-                                            <AnimatedCounter end={89} suffix="%" />
+                                            <AnimatedCounter end={71} suffix="%" />
                                         </div>
                                         <div className="text-sm text-slate-600">Success Rate</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-3xl font-bold text-teal-600 mb-2">
-                                            <AnimatedCounter end={5} suffix="+" />
+                                            <AnimatedCounter end={4} suffix="+" />
                                         </div>
                                         <div className="text-sm text-slate-600">Market Sectors</div>
                                     </div>
                                 </div>
-
-                                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6">
-                                    <h4 className="font-semibold text-slate-900 mb-3 text-center">Client Satisfaction</h4>
-                                    <div className="flex justify-center">
-                                        <ProgressRing percentage={95} color="#10b981" size={120} />
-                                    </div>
-                                </div>
+                                <blockquote className="text-md text-slate-600 italic mb-8 border-l-4 rounded-lg border-emerald-600 pl-4">
+                                    &quot;Never invest in a business you cannot understand.&quot;
+                                    <footer className="mt-2 not-italic font-semibold">— Warren Buffett</footer>
+                                </blockquote>
                             </div>
                         </div>
                     </div>

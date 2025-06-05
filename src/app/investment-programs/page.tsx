@@ -1,7 +1,7 @@
 'use client'
 
 import type { NextPage } from "next"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { investmentPrograms, whyChooseUsPoints, Program } from "@/data/investmentProgramsData"
 import { CheckCircle, TrendingUp, Shield, Target, Zap, ArrowRight } from "lucide-react"
 import MoneyGrow from "@/assets/investment/bg.jpg"
@@ -13,10 +13,22 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
+import Link from "next/link"
 
 const Programs: NextPage = () => {
     const [selectedProgram, setSelectedProgram] = useState<Program | null>(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+    useEffect(() => {
+        if (isDialogOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [isDialogOpen]);
 
     const handleCardClick = (program: Program) => {
         setSelectedProgram(program)
@@ -26,7 +38,7 @@ const Programs: NextPage = () => {
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900">
             {/* Header Section */}
-            <header className="relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10 h-[50vh]"
+            <header className="relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10 h-[60vh]"
                 style={{
                     backgroundImage: `url(${MoneyGrow.src})`,
                     backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'
@@ -75,21 +87,19 @@ const Programs: NextPage = () => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                         {investmentPrograms.map((program, index) => (
                             <div
                                 key={program.id}
                                 onClick={() => handleCardClick(program)}
-                                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200
+                                hover:shadow-lg transition-all duration-300 group cursor-pointer w-full"
                             >
                                 {/* Image Section */}
                                 <div className="w-full h-48 rounded-xl mb-6 overflow-hidden relative">
                                     <Image
                                         src={program.imageUrl}
                                         alt={`Image for ${program.title}`}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        objectPosition="top"
                                         className="transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
@@ -97,8 +107,9 @@ const Programs: NextPage = () => {
                                 {/* Program Header */}
                                 <div className="flex items-start justify-between mb-6">
                                     <div className="flex items-center">
-                                        <div className="w-10 h-10 bg-brand-dark-green rounded-xl flex items-center justify-center mr-4 group-hover:bg-brand-green transition-colors duration-300">
-                                            <Zap className="w-5 h-5 text-white" />
+                                        <div className="w-10 h-10 bg-brand-dark-green rounded-xl flex items-center justify-center 
+                                        mr-4 group-hover:bg-brand-green transition-colors duration-300">
+                                            <Zap className="w-5 h-5 text-brand_teal" />
                                         </div>
                                         <div>
                                             <span className="text-sm font-semibold text-brand_teal uppercase tracking-wide">
@@ -109,15 +120,8 @@ const Programs: NextPage = () => {
                                     </div>
                                 </div>
 
-                                {/* Program Short Description */}
-                                <div className="space-y-6">
-                                    <div>
-                                        <p className="text-gray-700 leading-relaxed line-clamp-3">{program.overview}</p>
-                                    </div>
-                                </div>
-
                                 {/* Learn More Indicator */}
-                                <div className="mt-8 pt-6 border-t border-gray-100">
+                                <div className="mt-8 pt-6 border-t border-gray-100 text-center">
                                     <span className="inline-flex items-center text-brand-dark-green font-semibold">
                                         Click to Learn More
                                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
@@ -158,7 +162,7 @@ const Programs: NextPage = () => {
                                         <ul className="space-y-2">
                                             {selectedProgram.keyFeatures.map((feature, i) => (
                                                 <li key={`detail-feature-${i}`} className="flex items-start text-gray-700">
-                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
+                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5 text-brand_teal" />
                                                     <span className="text-base leading-relaxed">{feature}</span>
                                                 </li>
                                             ))}
@@ -168,12 +172,12 @@ const Programs: NextPage = () => {
                                     <div>
                                         <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                                             <div className="w-3 h-3 bg-brand-dark-green rounded-full mr-2"></div>
-                                            Benefits
+                                            Roadmap
                                         </h4>
                                         <ul className="space-y-2">
                                             {selectedProgram.benefits.map((benefit, i) => (
                                                 <li key={`detail-benefit-${i}`} className="flex items-start text-gray-700">
-                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5" />
+                                                    <CheckCircle className="w-4 h-4 text-brand-green mr-3 flex-shrink-0 mt-0.5 text-brand_teal" />
                                                     <span className="text-base leading-relaxed">{benefit}</span>
                                                 </li>
                                             ))}
@@ -189,7 +193,7 @@ const Programs: NextPage = () => {
                 <section className="bg-brand_teal/100 rounded-2xl p-12 text-white">
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-6">
-                            <Shield className="w-8 h-8 text-brand_teal" />
+                            <Shield className="w-8 h-8 text-white" />
                         </div>
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why Choose Our Investment Programmes?</h2>
                         <div className="w-20 h-1 bg-brand_teal mx-auto mb-6"></div>
@@ -221,10 +225,13 @@ const Programs: NextPage = () => {
                         <p className="text-gray-300 mb-6 max-w-xl mx-auto">
                             Contact our investment specialists to discuss which programme aligns best with your financial goals.
                         </p>
-                        <button className="inline-flex items-center bg-brand_teal hover:bg-brand-green text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-300">
-                            Get Started Today
-                            <ArrowRight className="w-5 h-5 ml-2" />
-                        </button>
+                        <Link href={"/contact"}>
+                            <button className="inline-flex items-center bg-white hover:bg-transparent text-black hover:text-white hover:border hover:border-white font-semibold px-8 py-3
+                         rounded-xl transition-colors duration-500">
+                                Get Started Today
+                                <ArrowRight className="w-5 h-5 ml-2" />
+                            </button>
+                        </Link>
                     </div>
                 </section>
             </main>

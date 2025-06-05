@@ -7,15 +7,14 @@ import { authOptions } from '@/lib/auth';
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  if (!session || (session.user as any).role !== 'admin' && (session.user as any).role !== 'superadmin') {
+    return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
   }
 
   await dbConnect();
 
   try {
-    // @ts-expect-error
-    const contacts = await Contact.find({}).sort({ createdAt: -1 }); // Sort by createdAt descending
+    const contacts = await (Contact as any).find({}).sort({ createdAt: -1 }); // Cast to any to bypass TypeScript error
     return NextResponse.json({ success: true, data: contacts }, { status: 200 });
   } catch (error: unknown) {
     console.error('Error fetching contact data:', error);

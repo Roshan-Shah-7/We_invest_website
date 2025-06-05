@@ -150,7 +150,6 @@ export default function PrivacyPolicy() {
                             <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
                             <nav className="space-y-2">
                                 {sections.map((section: PrivacySection) => {
-                                    const IconComponent: React.ElementType = iconMap[section.icon] || FileText;
                                     return (
                                         <div key={section.id}>
                                             <button
@@ -159,7 +158,6 @@ export default function PrivacyPolicy() {
                                                     flex items-center ${activeSection === section.id ? "bg-brand_teal text-white" : "text-gray-700 hover:bg-gray-50"
                                                     }`}
                                             >
-                                                <IconComponent className="w-4 h-4 mr-3 flex-shrink-0" />
                                                 <span>{section.title}</span>
                                             </button>
                                             {section.subsections && activeSection === section.id && (
@@ -187,7 +185,6 @@ export default function PrivacyPolicy() {
                     <div className="lg:col-span-3">
                         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                             {sections.map((section, index) => {
-                                const IconComponent: React.ElementType = iconMap[section.icon] || FileText;
                                 return (
                                     <section
                                         key={section.id}
@@ -195,9 +192,6 @@ export default function PrivacyPolicy() {
                                         className={`p-8 ${index !== sections.length - 1 ? "border-b border-gray-200" : ""}`}
                                     >
                                         <div className="flex items-center mb-6">
-                                            <div className="w-10 h-10 bg-brand-green rounded-lg flex items-center justify-center mr-4">
-                                                <IconComponent className="w-5 h-5 text-white" />
-                                            </div>
                                             <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                                         </div>
                                         <div className="space-y-6">
@@ -232,14 +226,14 @@ export default function PrivacyPolicy() {
                                                             <div
                                                                 key={blockIndex}
                                                                 className={`p-4 rounded-lg ${block.color === "blue"
-                                                                        ? "bg-blue-50 text-blue-800"
-                                                                        : block.color === "yellow"
-                                                                            ? "bg-yellow-50 text-yellow-800"
-                                                                            : block.color === "red"
-                                                                                ? "bg-red-50 text-red-800"
-                                                                                : block.color === "green"
-                                                                                    ? "bg-green-50 text-green-800"
-                                                                                    : "bg-gray-50 text-gray-800"
+                                                                    ? "bg-blue-50 text-blue-800"
+                                                                    : block.color === "yellow"
+                                                                        ? "bg-yellow-50 text-yellow-800"
+                                                                        : block.color === "red"
+                                                                            ? "bg-red-50 text-red-800"
+                                                                            : block.color === "green"
+                                                                                ? "bg-green-50 text-green-800"
+                                                                                : "bg-gray-50 text-gray-800"
                                                                     }`}
                                                             >
                                                                 {block.title && (

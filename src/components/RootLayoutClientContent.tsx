@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation'; // Import usePathname
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AppClientSetup from '@/components/SmoothScrollSetup';
@@ -11,6 +12,8 @@ import { SessionProvider } from 'next-auth/react'; // Import SessionProvider
 export default function RootLayoutClientContent({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const pathname = usePathname(); // Get current pathname
+  const isAdminPath = pathname.startsWith('/admin'); // Check if it's any admin path
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -42,11 +45,11 @@ export default function RootLayoutClientContent({ children }: { children: React.
       {!loading && (
         <div>
           <AppClientSetup />
-          <Header />
+          {!isAdminPath && <Header />} {/* Conditionally render Header */}
           <main className="transition-all duration-500 ease-in-out">
             {children}
           </main>
-          <Footer />
+          {!isAdminPath && <Footer />} {/* Conditionally render Footer */}
 
           {/* Scroll to Top Button */}
           {showScrollTop && (

@@ -284,7 +284,7 @@ export default function InvestmentForm({ formType }: InvestmentFormProps) {
           </div>
         </div>
         <div>
-          <label htmlFor="investmentAmount" className="block text-sm font-medium text-gray-700 mb-2">Investment Amount (USD)</label>
+          <label htmlFor="investmentAmount" className="block text-sm font-medium text-gray-700 mb-2">Investment Amount (NPR)</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <span className="text-gray-500">Rs</span>
@@ -480,7 +480,7 @@ export default function InvestmentForm({ formType }: InvestmentFormProps) {
           {validationErrors.yearsInOperation && <p className="text-red-500 text-xs mt-1">{validationErrors.yearsInOperation}</p>}
         </div>
         <div>
-          <label htmlFor="annualRevenue" className="block text-sm font-medium text-gray-700 mb-2">Annual Revenue (USD)</label>
+          <label htmlFor="annualRevenue" className="block text-sm font-medium text-gray-700 mb-2">Annual Revenue (NPR)</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <span className="text-gray-500">Rs.</span>

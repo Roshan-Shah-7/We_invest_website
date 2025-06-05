@@ -9,24 +9,54 @@ import { authOptions } from '@/lib/auth';
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  if (!session || (session.user as any).role !== 'admin' && (session.user as any).role !== 'superadmin') {
+    return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
   }
 
   await dbConnect();
 
   try {
-    // @ts-expect-error
-    const individualInvestments = await IndividualInvestment.find({});
-    // @ts-expect-error
-    const startupInvestments = await StartupInvestment.find({});
-    // @ts-expect-error
-    const businessInvestments = await BusinessInvestment.find({});
+    const individualInvestments = await (IndividualInvestment as any).find({});
+    const startupInvestments = await (StartupInvestment as any).find({});
+    const businessInvestments = await (BusinessInvestment as any).find({});
 
     const allInvestments = [
-      ...individualInvestments.map(doc => ({ ...doc.toObject(), formType: 'individual' })),
-      ...startupInvestments.map(doc => ({ ...doc.toObject(), formType: 'startup' })),
-      ...businessInvestments.map(doc => ({ ...doc.toObject(), formType: 'business' })),
+      ...individualInvestments.map(doc => {
+        const obj = doc.toObject();
+        return {
+          _id: obj._id,
+          type: 'individual',
+          name: obj.fullName,
+          email: obj.email,
+          amount: obj.investmentAmount,
+          createdAt: obj.createdAt,
+          // companyName will be undefined for individual, which is fine
+        };
+      }),
+      ...startupInvestments.map(doc => {
+        const obj = doc.toObject();
+        return {
+          _id: obj._id,
+          type: 'startup',
+          name: obj.contactPerson, // Map contactPerson to name
+          email: obj.email,
+          amount: obj.investmentAmount,
+          companyName: obj.startupName, // Map startupName to companyName
+          createdAt: obj.createdAt,
+        };
+      }),
+      ...businessInvestments.map(doc => {
+        const obj = doc.toObject();
+        return {
+          _id: obj._id,
+          type: 'business',
+          name: obj.contactPerson, // Map contactPerson to name
+          email: obj.email,
+          amount: obj.investmentAmount,
+          companyName: obj.companyName, // Already companyName
+          createdAt: obj.createdAt,
+        };
+      }),
     ];
 
     // Sort by createdAt descending

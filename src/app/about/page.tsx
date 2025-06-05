@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/Badge"
+import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Building from "@/assets/about/building.jpg"
 import {
@@ -28,6 +28,7 @@ import {
 } from "lucide-react"
 import Mission from "@/assets/about/mission.jpg"
 import OurStory from "@/assets/about/our story.jpg"
+import Link from "next/link"
 
 
 const colors = {
@@ -203,14 +204,14 @@ export default function AboutUsPage() {
                                     {/* Floating Stats */}
                                     <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg">
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-[#00695C]">150+</div>
+                                            <div className="text-2xl font-bold text-[#00695C]">6+</div>
                                             <div className="text-xs text-[#666666]">Startups Funded</div>
                                         </div>
                                     </div>
 
                                     <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-[#00C853]">$50M+</div>
+                                            <div className="text-2xl font-bold text-[#00C853]">Rs 2.5cr</div>
                                             <div className="text-xs text-[#666666]">Capital Deployed</div>
                                         </div>
                                     </div>
@@ -314,8 +315,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Laxmi Dangol</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            A master of operational efficiency who specializes in optimizing processes and driving financial
-                                            performance. As a key leader, she ensures sustainable growth while steering strategic direction.
+                                            Key leader Laxmi drives operational efficiency and financial performance, steering the company&apos;s strategic direction to ensure sustainable growth for our partners.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -323,7 +323,7 @@ export default function AboutUsPage() {
                         </div>
 
                         {/* Keshab Jaisi */}
-                        <div className="group">
+                        <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#00BCD4] to-[#00695C] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -343,8 +343,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Keshab Jaisi</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our talent scout with exceptional ability to identify promising ventures and forge strategic
-                                            partnerships. His vision and expertise help turn bold ideas into reality.
+                                            Talent scout Keshab identifies high-potential ventures and builds strategic partnerships, turning visionary ideas into reality with his sharp insight and expertise.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -352,7 +351,7 @@ export default function AboutUsPage() {
                         </div>
 
                         {/* Bipendra Chudal */}
-                        <div className="group">
+                        <div className="group lg:mt-20">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#00C853] to-[#00BCD4] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -372,44 +371,14 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Bipendra Chudal</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our analytical expert who uncovers critical insights from data to guide investment strategies. His
-                                            sharp mind keeps us ahead in an ever-changing market.
+                                            Analytical expert Bipendra provides data-driven insights for investment strategies, keeping us ahead in dynamic markets with his sharp analytical skills.
                                         </p>
                                     </CardContent>
                                 </div>
                             </Card>
                         </div>
 
-                        {/* Alish Dongol */}
-                        <div className="group">
-                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                                <div className="relative">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#00695C] to-[#00BCD4] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                                    <CardContent className="p-8 text-center relative">
-                                        <div className="relative mb-6">
-                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
-                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
-                                                <AvatarFallback className="bg-gradient-to-br from-[#00695C] to-[#00BCD4] text-white text-xl font-bold">
-                                                    AD
-                                                </AvatarFallback>
-                                            </Avatar>
-                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                                                <Badge className="bg-[#00695C] text-white border-0 px-3 py-1">
-                                                    Social Media Manager
-                                                </Badge>
-                                            </div>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Alish Dongol</h3>
-                                        <p className="text-[#666666] leading-relaxed">
-                                            Our social media manager, Alish, brings creativity and digital expertise to amplify our brand and connect with our community.
-                                            His innovative campaigns enhance visibility and engagement for our partners.
-                                        </p>
-                                    </CardContent>
-                                </div>
-                            </Card>
-                        </div>
-
-                        {/* Vijay Chhetri */}
+                        {/* Yubraj Sharma */}
                         <div className="group">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
@@ -430,8 +399,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Yubraj Sharma</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our NEPSE analyst, Yubraj, specialises in analysing Nepal’s stock market trends to inform investment decisions.
-                                            His keen insights help optimise portfolio performance in local markets.
+                                            NEPSE analyst Yubraj optimises portfolio performance by analysing Nepal&apos;s stock market trends, delivering actionable insights for local investments.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -439,7 +407,7 @@ export default function AboutUsPage() {
                         </div>
 
                         {/* Sushil Silwal */}
-                        <div className="group">
+                        <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-gradient-to-br from-brand_teal to-[#075661] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -459,8 +427,35 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Sushil Silwal</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our financial and project advisor, Sushil, provides strategic guidance on funding and project execution.
-                                            His expertise ensures our ventures are financially sound and operationally successful.
+                                            As a financial and project advisor, Sushil ensures ventures are financially sound with strategic guidance on funding and project execution.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/*  Jyotika Thapa */}
+                        <div className="group lg:mt-20">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#00C853] to-[#00BCD4] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-[#00C853] to-[#00BCD4] text-white text-xl font-bold">
+                                                    JT
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-[#00C853] text-white border-0 px-3 py-1">
+                                                    Operation Head
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Jyotika Thapa</h3>
+                                        <p className="text-[#666666] leading-relaxed">
+                                            Operations Head, Jyotika, streamlines workflows and enhances efficiency, ensuring seamless project execution with her strategic leadership and operational expertise.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -488,8 +483,35 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-2">Anna Magar</h3>
                                         <p className="text-[#666666] leading-relaxed">
-                                            Our Head Research Analyst, Anna, leads in-depth market research to identify high-potential investment opportunities.
-                                            Her data-driven insights drive informed decision-making and strategic growth.
+                                            Head Research Analyst, Anna drives strategic decisions with in-depth market research, identifying high-potential opportunities through data-driven insights.
+                                        </p>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Alish Dangol */}
+                        <div className="group lg:mt-10">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#00695C] to-[#00BCD4] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                    <CardContent className="p-8 text-center relative">
+                                        <div className="relative mb-6">
+                                            <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
+                                                <AvatarImage src="/placeholder.svg?height=96&width=96" />
+                                                <AvatarFallback className="bg-gradient-to-br from-[#00695C] to-[#00BCD4] text-white text-xl font-bold">
+                                                    AD
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                                <Badge className="bg-[#00695C] text-white border-0 px-3 py-1">
+                                                    Social Media Manager
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#333333] mb-2">Alish Dangol</h3>
+                                        <p className="text-[#666666] leading-relaxed">
+                                            Social media manager Alish boosts brand visibility with creative digital campaigns, connecting our community through innovative engagement strategies.
                                         </p>
                                     </CardContent>
                                 </div>
@@ -514,7 +536,7 @@ export default function AboutUsPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 mb-16 lg:mt-32">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-8 mb-16 lg:mt-32">
                         <div className="group lg:mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
@@ -567,7 +589,7 @@ export default function AboutUsPage() {
                             </Card>
                         </div>
 
-                        <div className="group lg:-mt-10">
+                        <div className="group 2xl:-mt-10">
                             <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#FFD54F]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -734,7 +756,7 @@ export default function AboutUsPage() {
                                     </div>
                                     <div>
                                         <div className="text-white/80 text-sm">Email</div>
-                                        <div className="text-white font-medium">info@weinvest.com</div>
+                                        <div className="text-white font-medium">investwe3@gmail.com</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4 group">
@@ -743,7 +765,8 @@ export default function AboutUsPage() {
                                     </div>
                                     <div>
                                         <div className="text-white/80 text-sm">Phone</div>
-                                        <div className="text-white font-medium">+1 (555) 123-4567</div>
+                                        <div className="text-white font-medium">+977-9851408600</div>
+                                        <div className="text-white font-medium">+977-9847690076</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4 group">
@@ -752,7 +775,7 @@ export default function AboutUsPage() {
                                     </div>
                                     <div>
                                         <div className="text-white/80 text-sm">Address</div>
-                                        <div className="text-white font-medium">123 Innovation Drive, Suite 100, Global City, GC 12345</div>
+                                        <div className="text-white font-medium">Bishalnagar, Kathmandu 44600, Nepal</div>
                                     </div>
                                 </div>
                             </div>
@@ -766,19 +789,21 @@ export default function AboutUsPage() {
                                         Ready to take your venture to the next level? We&apos;d love to hear from you.
                                     </p>
                                     <div className="space-y-4">
-                                        <Button
-                                            size="lg"
-                                            className="w-full bg-[#00C853] hover:bg-[#00B248] text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                                        >
-                                            Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
-                                        </Button>
-                                        <Button
+                                        <Link href={'/contact'}>
+                                            <Button
+                                                size="lg"
+                                                className="w-full bg-[#00C853] hover:bg-[#00B248] text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                                            >
+                                                Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
+                                            </Button>
+                                        </Link>
+                                        {/* <Button
                                             size="lg"
                                             variant="outline"
                                             className="w-full border-2 border-[#E0E0E0] text-[#333333] hover:bg-[#F5F7FA] font-semibold py-4 rounded-xl"
                                         >
                                             Download Investment Guide
-                                        </Button>
+                                        </Button> */}
                                     </div>
                                 </CardContent>
                             </Card>

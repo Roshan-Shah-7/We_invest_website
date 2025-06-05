@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/Badge"
+import { Badge } from "@/components/ui/badge"
+import Link from 'next/link';
 import {
     BarChart,
     TrendingUp,
@@ -30,22 +31,13 @@ export default function InvestmentPage() {
                         We Invest: Your Gateway to <span className="text-emerald-600">Financial Growth</span>
                     </h1>
                     <blockquote className="text-xl md:text-2xl text-slate-600 italic mb-8 border-l-4 border-emerald-600 pl-6">
-                        &quot;Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn&apos;t, pays
-                        it.&quot;
-                        <footer className="text-lg mt-2 not-italic">— Albert Einstein</footer>
+                        &quot;Investing puts money to work. The only reason to save money is to invest it.&quot;
+                        <footer className="text-lg mt-2 not-italic">— Grant Cardone</footer>
                     </blockquote>
                     <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
                         Smart investing is the key to unlocking financial potential. Whether you&apos;re an entrepreneur seeking capital
                         or an individual building wealth, we&apos;re here to guide your journey.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                            Start Investing <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                        <Button size="lg" variant="outline">
-                            Learn More
-                        </Button>
-                    </div>
                 </div>
             </section>
 
@@ -91,6 +83,10 @@ export default function InvestmentPage() {
                     </div>
 
                     {/* Key Objectives */}
+                    <h2 className="text-3xl text-center mt-12 md:text-4xl font-bold text-slate-900 mb-5">What Investment Dose?</h2>
+                    <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-10">
+                        Investing actively grows your financial resources by putting your capital to work. It enables you to:
+                    </p>
                     <div className="grid md:grid-cols-4 gap-6">
                         <div className="text-center">
                             <div className="bg-emerald-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
@@ -426,7 +422,7 @@ export default function InvestmentPage() {
                     {/* Risk and Investment Types */}
                     <div className="mt-16 w-full">
                         <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Investments and Risk</h3>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-justify">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <Card className="border-emerald-200">
                                 <CardHeader>
                                     <CardTitle className="flex items-center space-x-2">
@@ -434,14 +430,14 @@ export default function InvestmentPage() {
                                         <span>Young Investors</span>
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="py-2">
                                     <p className="text-slate-600 mb-4">
                                         For younger individuals, the investment landscape is filled with opportunities. With a longer time horizon, they can embrace higher-risk investments, allowing them to capitalize on market fluctuations and recover from potential downturns. This age group is often encouraged to explore:
                                     </p>
-                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2 px-4">
                                         <li>
                                             <b>Equities:</b> Investing in stocks can provide significant growth potential over time.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> High volatility, potential for significant capital loss. However, a long-time horizon allows for recovery from market downturns.
                                                 </li>
@@ -449,7 +445,7 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Growth Stocks:</b> These companies are expected to grow at an above-average rate compared to their industry, offering the chance for substantial returns.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Higher volatility than established companies, as their valuations often depend on future growth expectations.
                                                 </li>
@@ -457,7 +453,7 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Startups:</b> Investing in early-stage companies can be risky but may yield high rewards for those willing to take the plunge.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Extremely high risk, high potential for complete loss of capital. Lack of liquidity. Due diligence is crucial.
                                                 </li>
@@ -474,16 +470,16 @@ export default function InvestmentPage() {
                                         <span>Middle-Aged Investors</span>
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="py-2">
                                     <p className="text-slate-600 mb-4">
-                                        Middle-aged investors typically have established careers and a clearer picture of their financial 
-                                        goals, such as saving for a home, children&apos;s education, or retirement. With a moderate time horizon, 
+                                        Middle-aged investors typically have established careers and a clearer picture of their financial
+                                        goals, such as saving for a home, children's education, or retirement. With a moderate time horizon,
                                         they can balance growth with a growing need for stability. This group often seeks:
                                     </p>
-                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2 px-4">
                                         <li>
                                             <b>Diversified Portfolios:</b> A mix of equities and fixed-income securities to balance growth and risk.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Moderate risk, designed to mitigate overall portfolio volatility through asset allocation.
                                                 </li>
@@ -491,7 +487,7 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Blue-Chip Stocks:</b> Investments in large, well-established, and financially sound companies with a history of stable earnings.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Lower volatility than growth stocks, but still subject to market fluctuations.
                                                 </li>
@@ -499,18 +495,18 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Real Estate:</b> Investing in properties can offer long-term appreciation and potential rental income.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Illiquidity, market fluctuations, maintenance costs, and potential for tenant issues.
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <b>Balanced Mutual Funds/ETFs:</b> Funds that invest in a predetermined mix of stocks and bonds, 
+                                            <b>Balanced Mutual Funds/ETFs:</b> Funds that invest in a predetermined mix of stocks and bonds,
                                             automatically providing diversification.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
-                                                    <b>Risk:</b> Moderate risk, depending on the fund&apos;s specific asset allocation. Subject to management fees.
+                                                    <b>Risk:</b> Moderate risk, depending on the fund's specific asset allocation. Subject to management fees.
                                                 </li>
                                             </ul>
                                         </li>
@@ -525,14 +521,14 @@ export default function InvestmentPage() {
                                         <span>Nearing Retirement</span>
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="py-2">
                                     <p className="text-slate-600 mb-4">
                                         As individuals approach retirement, their investment strategy typically shifts towards preserving capital and generating reliable income. Older investors often prioritize safety and stability, focusing on assets that can provide peace of mind. Recommended options include:
                                     </p>
-                                    <ul className="list-disc pl-5 text-slate-600 space-y-2">
+                                    <ul className="list-disc pl-5 text-slate-600 space-y-2 px-4">
                                         <li>
                                             <b>Bonds:</b> These fixed-income securities offer regular interest payments and are generally considered safer than stocks.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Lower risk than stocks, but subject to interest rate risk (bond prices fall when interest rates rise) and inflation risk.
                                                 </li>
@@ -540,7 +536,7 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Fixed Deposits:</b> A secure way to earn interest on savings, providing guaranteed returns with minimal risk.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Very low risk, but returns may be lower than inflation, eroding purchasing power over time.
                                                 </li>
@@ -548,7 +544,7 @@ export default function InvestmentPage() {
                                         </li>
                                         <li>
                                             <b>Dividend Stocks:</b> Investing in established companies that pay dividends can provide a steady income stream while still allowing for some growth potential.
-                                            <ul className="list-circle pl-5 text-slate-600">
+                                            <ul className="list-disc pl-5 text-slate-600 space-y-1">
                                                 <li>
                                                     <b>Risk:</b> Lower volatility than growth stocks, but still subject to market fluctuations. Dividend payments are not guaranteed.
                                                 </li>
@@ -560,9 +556,9 @@ export default function InvestmentPage() {
                         </div>
                         <div className="text-center mt-8">
                             <p className="text-slate-600 italic">
-                                At We Invest, we understand that each investor&apos;s journey is unique. 
-                                We collaborate closely with our clients to evaluate their risk tolerance and tailor 
-                                investment strategies that align with their individual goals. Whether you are seeking 
+                                At We Invest, we understand that each investor&apos;s journey is unique.
+                                We collaborate closely with our clients to evaluate their risk tolerance and tailor
+                                investment strategies that align with their individual goals. Whether you are seeking
                                 aggressive growth or prefer the security of steady returns, our team is here to guide you every step of the way.
                             </p>
                         </div>
@@ -801,16 +797,18 @@ export default function InvestmentPage() {
                         Join thousands of investors who trust We Invest to grow their wealth and achieve their financial goals.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-                            Schedule Consultation
-                        </Button>
-                        <Button
+                        <Link href='/contact'>
+                            <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
+                                Schedule Consultation
+                            </Button>
+                        </Link>
+                        {/* <Button
                             size="lg"
                             variant="outline"
                             className="border-white hover:bg-white hover:text-emerald-600"
                         >
                             Download Investment Guide
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </section>

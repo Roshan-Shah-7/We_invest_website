@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
-import IndividualInvestment from '@/models/IndividualInvestment';
-import StartupInvestment from '@/models/StartupInvestment';
-import BusinessInvestment from '@/models/BusinessInvestment';
+import IndividualInvestment, { IIndividualInvestment } from '@/models/IndividualInvestment';
+import StartupInvestment, { IStartupInvestment } from '@/models/StartupInvestment';
+import BusinessInvestment, { IBusinessInvestment } from '@/models/BusinessInvestment';
 
 // Define an interface for Mongoose ValidationError
 interface MongooseValidationError extends Error {
@@ -24,42 +24,49 @@ export async function POST(req: Request) {
 
   try {
     const formData = await req.json();
-    const { formType, fullName, companyName, industry, ...rest } = formData; // Destructure fullName, companyName, industry
-
-    const dataToCreate: Record<string, unknown> = { ...rest }; // Use Record<string, unknown> instead of any
-
-    if (formType === 'startup' || formType === 'business') {
-      dataToCreate.contactPerson = fullName;
-    }
-
-    if (formType === 'startup') {
-      dataToCreate.startupName = companyName; // Map companyName to startupName
-      dataToCreate.industry = industry; // Map industry
-    } else if (formType === 'business') {
-      dataToCreate.companyName = companyName; // Explicitly add companyName for business form
-      dataToCreate.industry = industry; // Map industry for business form
-    }
-
-    if (dataToCreate.pitchDeck instanceof File) {
-      dataToCreate.pitchDeck = dataToCreate.pitchDeck.name;
-    }
-    if (dataToCreate.businessPlan instanceof File) {
-      dataToCreate.businessPlan = dataToCreate.businessPlan.name;
-    }
+    const { formType, fullName, email, phone, investmentAmount, message, ...rest } = formData;
 
     let newInvestment;
+
     switch (formType) {
       case 'individual':
-        // @ts-expect-error
-        newInvestment = await IndividualInvestment.create(dataToCreate);
+        newInvestment = await (IndividualInvestment as any).create({
+          fullName,
+          email,
+          phone,
+          investmentAmount: parseFloat(investmentAmount),
+          occupation: rest.occupation as string,
+          message,
+          createdAt: new Date(),
+        });
         break;
       case 'startup':
-        // @ts-expect-error
-        newInvestment = await StartupInvestment.create(dataToCreate);
+        newInvestment = await (StartupInvestment as any).create({
+          startupName: rest.companyName as string,
+          industry: rest.industry as string,
+          contactPerson: fullName,
+          email,
+          phone,
+          investmentAmount: parseFloat(investmentAmount),
+          pitchDeck: rest.pitchDeck as string,
+          businessPlan: rest.businessPlan as string,
+          message,
+          createdAt: new Date(),
+        });
         break;
       case 'business':
-        // @ts-expect-error
-        newInvestment = await BusinessInvestment.create(dataToCreate);
+        newInvestment = await (BusinessInvestment as any).create({
+          companyName: rest.companyName as string,
+          industry: rest.industry as string,
+          contactPerson: fullName,
+          email,
+          phone,
+          investmentAmount: parseFloat(investmentAmount),
+          businessPlan: rest.businessPlan as string,
+          pitchDeck: rest.pitchDeck as string,
+          message,
+          createdAt: new Date(),
+        });
         break;
       default:
         return NextResponse.json({ success: false, message: 'Invalid form type' }, { status: 400 });

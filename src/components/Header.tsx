@@ -35,7 +35,7 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
       <aside
         className={`
           hidden lg:flex fixed top-0 left-0 w-full z-[10000]
-          bg-white/80 backdrop-blur-md border-b border-brand_teal py-2 shadow-md
+          bg-white/80 backdrop-blur-md border-b border-brand_teal py-4 shadow-md
         `}
       >
         <div className="flex items-center justify-between max-w-7xl w-full mx-auto px-6">
@@ -43,10 +43,8 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
           <Link href="/" className="flex items-center">
             <Image
               src={we_logo}
-              width={120}
-              height={30}
               alt={LOGO_ALT_TEXT}
-              className="object-contain w-full" // Added w-full to ensure it takes full width of parent Link
+              className="w-[10rem] lg:w-[11rem] object-contain"
               priority
             />
           </Link>
@@ -61,7 +59,7 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
                 key={href}
                 href={href}
                 className={`
-                  text-base font-medium transition-all duration-300
+                  text-base lg:text-[1.1rem] font-medium transition-all duration-300
                   ${pathname === href ? 'text-brand_teal underline underline-offset-4' : 'text-gray-700 hover:text-brand_teal'}
                 `}
               >

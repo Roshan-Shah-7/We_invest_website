@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,14 +19,14 @@ export default function AdminLogin() {
 
     const result = await signIn('credentials', {
       redirect: false,
-      username,
+      email,
       password,
     });
 
     if (result?.error) {
-      setError('Invalid username or password.');
+      setError('Invalid email or password.');
     } else {
-      router.push('/admin'); // Redirect to admin panel on success
+      router.push('/admin');
     }
     setIsLoading(false);
   };
@@ -42,12 +42,12 @@ export default function AdminLogin() {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00695C] focus:border-[#00695C]"
               required
             />
@@ -78,6 +78,14 @@ export default function AdminLogin() {
             )}
           </button>
         </form>
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => router.push('/')}
+            className="text-[#00695C] hover:text-[#005546] font-semibold text-sm transition-colors duration-300"
+          >
+            Go to Home Page
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -44,24 +44,24 @@ const Testimonials: React.FC = () => {
 
     const testimonials: Testimonial[] = [
         {
-            quote: 'Wee Invest&apos;s mentorship transformed our startup journey. We raised $1M in just 9 months and couldn&apos;t have done it without their strategic guidance.',
-            name: 'Priya Sharma',
+            quote: 'My software concept became a reality because to We Invest mentorship. I had a business plan; without it, my idea would be the only one we invest in. By offering space, a team, and professional assistance, we invest in helping to develop my idea.',
+            name: 'Roshan Shah',
             title: 'Founder',
-            company: 'EcoInnovate',
+            company: 'AgroSewa',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=EcoInnovate&font=noto', // Trimmed space
         },
         {
-            quote: 'The School of Startups program gave us the tools to scale. Expanding into three new markets in a year was a dream come true, thanks to Wee Invest.',
-            name: 'Rahul Kapoor',
+            quote: 'We make investments to support the product expansion and distribution.  Wee Invest made it possible to enter three new markets in a single year, which was an incredible accomplishment.',
+            name: 'Urja Tamrakar',
             title: 'Co-Founder',
-            company: 'HealthSync Solutions',
+            company: 'Vatsala Aroma Products',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=HealthSync&font=noto', // Trimmed space
         },
         {
             quote: 'Their pitch coaching was a game-changer. We refined our approach and grew our user base by 300%—Wee Invest believed in us from day one.',
-            name: 'Anita Desai',
+            name: 'Aruna Limbu',
             title: 'CEO',
-            company: 'EduFuture Labs',
+            company: 'Krishi Venture',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=EduFuture&font=noto', // Trimmed space
         },
     ];
