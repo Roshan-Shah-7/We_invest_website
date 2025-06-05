@@ -6,6 +6,7 @@ import StartupInvestment, { IStartupInvestment } from '@/models/StartupInvestmen
 import BusinessInvestment, { IBusinessInvestment } from '@/models/BusinessInvestment';
 import Contact, { IContact } from '@/models/Contact';
 import Newsletter, { INewsletter } from '@/models/Newsletter';
+import { Document } from 'mongoose'; // Import Document from mongoose
 
 export async function POST(_req: Request) {
   // Note: Authentication check was here previously, but was removed as per user's request to remove auth.
@@ -20,7 +21,8 @@ export async function POST(_req: Request) {
       return NextResponse.json({ success: false, message: 'formType and id are required' }, { status: 400 });
     }
 
-    let submissionData: IIndividualInvestment | IStartupInvestment | IBusinessInvestment | IContact | INewsletter | null;
+    // Use Document<T> to correctly type Mongoose documents with toObject() method
+    let submissionData: Document<IIndividualInvestment> | Document<IStartupInvestment> | Document<IBusinessInvestment> | Document<IContact> | Document<INewsletter> | null;
 
     switch (formType) {
       case 'individual':
