@@ -295,51 +295,47 @@ export default function InvestmentPage() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                        {/* Card 1 */}
-                        <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
-                                    <TrendingUp className="h-6 w-6 text-emerald-600" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-slate-900 mb-2">Beat Inflation</h3>
-                                <p className="text-slate-600 text-sm">
-                                    Inflation erodes purchasing power over time. Investments with returns that outpace inflation help
-                                    maintain and grow your wealth.
-                                </p>
-                            </CardContent>
-                        </Card>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 mb-16">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                            <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6">
+                                    <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
+                                        <TrendingUp className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-semibold text-lg text-slate-900 mb-2">Beat Inflation</h3>
+                                    <p className="text-slate-600 text-sm">
+                                        Inflation erodes purchasing power over time. Investments with returns that outpace inflation help
+                                        maintain and grow your wealth.
+                                    </p>
+                                </CardContent>
+                            </Card>
 
-                        {/* Card 2 */}
-                        <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
-                                    <Target className="h-6 w-6 text-emerald-600" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-slate-900 mb-2">Achieve Financial Goals</h3>
-                                <p className="text-slate-600 text-sm">
-                                    Whether it&apos;s buying a home, funding education, or retiring early, investing accelerates your progress
-                                    toward major milestones.
-                                </p>
-                            </CardContent>
-                        </Card>
+                            <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6">
+                                    <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
+                                        <Target className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-semibold text-lg text-slate-900 mb-2">Achieve Financial Goals</h3>
+                                    <p className="text-slate-600 text-sm">
+                                        Whether it&apos;s buying a home, funding education, or retiring early, investing accelerates your progress
+                                        toward major milestones.
+                                    </p>
+                                </CardContent>
+                            </Card>
 
-                        {/* Card 3 */}
-                        <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
-                                    <PieChart className="h-6 w-6 text-emerald-600" />
-                                </div>
-                                <h3 className="font-semibold text-lg text-slate-900 mb-2">Leverage Compounding</h3>
-                                <p className="text-slate-600 text-sm">
-                                    Starting early maximises the benefits of compounding, allowing smaller investments to grow
-                                    significantly over time.
-                                </p>
-                            </CardContent>
-                        </Card>
+                            <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6">
+                                    <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
+                                        <PieChart className="h-6 w-6 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-semibold text-lg text-slate-900 mb-2">Leverage Compounding</h3>
+                                    <p className="text-slate-600 text-sm">
+                                        Starting early maximises the benefits of compounding, allowing smaller investments to grow
+                                        significantly over time.
+                                    </p>
+                                </CardContent>
+                            </Card>
 
-                        {/* Card 4 - Centered in last row */}
-                        <div className="lg:col-start-2">
                             <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                                 <CardContent className="p-6">
                                     <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -352,10 +348,7 @@ export default function InvestmentPage() {
                                     </p>
                                 </CardContent>
                             </Card>
-                        </div>
 
-                        {/* Card 5 - Centered in last row */}
-                        <div className="lg:col-start-3">
                             <Card className="border-emerald-200 hover:shadow-lg transition-shadow">
                                 <CardContent className="p-6">
                                     <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">

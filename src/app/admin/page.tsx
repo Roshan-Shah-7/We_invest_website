@@ -3,8 +3,10 @@
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Download } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar'; // Import AdminSidebar
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 // Define interfaces for the data types
 interface Contact {
@@ -66,6 +68,43 @@ export default function AdminDashboard() {
   const [dataLoading, setDataLoading] = useState(true);
   const [dataError, setDataError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'investments' | 'contacts' | 'newsletters'>('investments'); // New state for active tab
+
+  const [selectedInvestment, setSelectedInvestment] = useState<Investment | null>(null);
+  const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false);
+
+  const handleViewDetails = (investment: Investment) => {
+    setSelectedInvestment(investment);
+    setIsDetailDialogOpen(true);
+  };
+
+  const handleDownloadPdf = async (formType: string, data: any[]) => {
+    try {
+        const response = await fetch('/api/admin/download-report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ formType, data }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to generate PDF');
+        }
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${formType}_report.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error('Error downloading PDF:', error);
+        // Optionally, show an error message to the user
+    }
+  };
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -132,7 +171,18 @@ export default function AdminDashboard() {
               <div className="space-y-8">
                 {activeTab === 'investments' && (
                   <section>
-                    <h3 className="text-2xl font-semibold text-gray-700 mb-4">Investment Forms ({investments.length})</h3>
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-2xl font-semibold text-gray-700">Investment Forms ({investments.length})</h3>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDownloadPdf('investments', investments)}
+                        disabled={investments.length === 0}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </div>
                     {investments.length === 0 ? (
                       <p className="text-gray-500">No investment forms found.</p>
                     ) : (
@@ -142,18 +192,10 @@ export default function AdminDashboard() {
                             <tr>
                               <th className="py-2 px-4 border-b text-left">Type</th>
                               <th className="py-2 px-4 border-b text-left">Email</th>
-                              <th className="py-2 px-4 border-b text-left">Phone</th>
-                              <th className="py-2 px-4 border-b text-left">Date</th>
                               <th className="py-2 px-4 border-b text-left">Name/Company</th>
                               <th className="py-2 px-4 border-b text-left">Amount (Rs)</th>
-                              <th className="py-2 px-4 border-b text-left">Occupation/Industry</th>
-                              <th className="py-2 px-4 border-b text-left">Message/Description</th>
-                              <th className="py-2 px-4 border-b text-left">Pitch Deck</th>
-                              <th className="py-2 px-4 border-b text-left">Business Plan</th>
-                              <th className="py-2 px-4 border-b text-left">Years in Operation</th>
-                              <th className="py-2 px-4 border-b text-left">Annual Revenue</th>
-                              <th className="py-2 px-4 border-b text-left">Employees</th>
-                              <th className="py-2 px-4 border-b text-left">Reason for Investment</th>
+                              <th className="py-2 px-4 border-b text-left">Date</th>
+                              <th className="py-2 px-4 border-b text-left">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -161,10 +203,6 @@ export default function AdminDashboard() {
                               <tr key={investment._id} className="hover:bg-gray-50">
                                 <td className="py-2 px-4 border-b capitalize">{investment.type}</td>
                                 <td className="py-2 px-4 border-b">{investment.email}</td>
-                                <td className="py-2 px-4 border-b">{investment.phone || 'N/A'}</td>
-                                <td className="py-2 px-4 border-b">{new Date(investment.createdAt).toLocaleDateString()}</td>
-                                {/* Display fields based on type */}
-                                {/* Individual Investment */}
                                 <td className="py-2 px-4 border-b">
                                   {investment.type === 'individual' ? investment.fullName || 'N/A' :
                                     investment.type === 'startup' ? investment.startupName || 'N/A' :
@@ -174,33 +212,16 @@ export default function AdminDashboard() {
                                   {investment.investmentAmount ? `Rs ${investment.investmentAmount.toLocaleString()}` :
                                     investment.fundingRequired ? `Rs ${investment.fundingRequired.toLocaleString()}` : 'N/A'}
                                 </td>
+                                <td className="py-2 px-4 border-b">{new Date(investment.createdAt).toLocaleDateString()}</td>
                                 <td className="py-2 px-4 border-b">
-                                  {investment.type === 'individual' ? investment.occupation || 'N/A' :
-                                    investment.type === 'startup' ? investment.industry || 'N/A' :
-                                      investment.type === 'business' ? investment.industry || 'N/A' : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'individual' ? investment.message || 'N/A' :
-                                    investment.type === 'startup' ? investment.ideaDescription || investment.message || 'N/A' :
-                                      investment.type === 'business' ? investment.businessDescription || investment.message || 'N/A' : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'startup' ? (investment.pitchDeck ? <a href={investment.pitchDeck} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View</a> : 'N/A') : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'startup' ? (investment.businessPlan ? <a href={investment.businessPlan} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View</a> : 'N/A') : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'business' ? investment.yearsInOperation || 'N/A' : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'business' ? (investment.annualRevenue ? `Rs ${investment.annualRevenue.toLocaleString()}` : 'N/A') : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'business' ? investment.employees || 'N/A' : 'N/A'}
-                                </td>
-                                <td className="py-2 px-4 border-b">
-                                  {investment.type === 'business' ? investment.reasonForInvestment || 'N/A' : 'N/A'}
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleViewDetails(investment)}
+                                    className="text-blue-600 hover:text-blue-800"
+                                  >
+                                    View Details
+                                  </Button>
                                 </td>
                               </tr>
                             ))}
@@ -213,7 +234,18 @@ export default function AdminDashboard() {
 
                 {activeTab === 'contacts' && (
                   <section>
-                    <h3 className="text-2xl font-semibold text-gray-700 mb-4">Contact Submissions ({contacts.length})</h3>
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-2xl font-semibold text-gray-700">Contact Submissions ({contacts.length})</h3>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDownloadPdf('contacts', contacts)}
+                        disabled={contacts.length === 0}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </div>
                     {contacts.length === 0 ? (
                       <p className="text-gray-500">No contact submissions found.</p>
                     ) : (
@@ -245,7 +277,18 @@ export default function AdminDashboard() {
 
                 {activeTab === 'newsletters' && (
                   <section>
-                    <h3 className="text-2xl font-semibold text-gray-700 mb-4">Newsletter Subscriptions ({newsletters.length})</h3>
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-2xl font-semibold text-gray-700">Newsletter Subscriptions ({newsletters.length})</h3>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDownloadPdf('newsletters', newsletters)}
+                        disabled={newsletters.length === 0}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </div>
                     {newsletters.length === 0 ? (
                       <p className="text-gray-500">No newsletter subscriptions found.</p>
                     ) : (
@@ -273,6 +316,101 @@ export default function AdminDashboard() {
               </div>
             )}
           </div>
+            {/* Investment Detail Dialog */}
+            <Dialog open={isDetailDialogOpen} onOpenChange={setIsDetailDialogOpen}>
+              <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-gray-800">Investment Details</DialogTitle>
+                  <DialogDescription className="text-gray-600">
+                    Comprehensive information for this {selectedInvestment?.type} investment.
+                  </DialogDescription>
+                </DialogHeader>
+                {selectedInvestment && (
+                  <div className="py-4 space-y-4 text-gray-700">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                      <div className="font-semibold">Type:</div>
+                      <div className="capitalize">{selectedInvestment.type}</div>
+
+                      <div className="font-semibold">Email:</div>
+                      <div>{selectedInvestment.email}</div>
+
+                      {selectedInvestment.phone && (
+                        <>
+                          <div className="font-semibold">Phone:</div>
+                          <div>{selectedInvestment.phone}</div>
+                        </>
+                      )}
+
+                      <div className="font-semibold">Submission Date:</div>
+                      <div>{new Date(selectedInvestment.createdAt).toLocaleDateString()}</div>
+
+                      {selectedInvestment.type === 'individual' && (
+                        <>
+                          <div className="font-semibold">Full Name:</div>
+                          <div>{selectedInvestment.fullName || 'N/A'}</div>
+                          <div className="font-semibold">Investment Amount:</div>
+                          <div>{selectedInvestment.investmentAmount ? `Rs ${selectedInvestment.investmentAmount.toLocaleString()}` : 'N/A'}</div>
+                          <div className="font-semibold">Occupation:</div>
+                          <div>{selectedInvestment.occupation || 'N/A'}</div>
+                          <div className="font-semibold">Message:</div>
+                          <div>{selectedInvestment.message || 'N/A'}</div>
+                        </>
+                      )}
+
+                      {selectedInvestment.type === 'startup' && (
+                        <>
+                          <div className="font-semibold">Startup Name:</div>
+                          <div>{selectedInvestment.startupName || 'N/A'}</div>
+                          <div className="font-semibold">Industry:</div>
+                          <div>{selectedInvestment.industry || 'N/A'}</div>
+                          <div className="font-semibold">Contact Person:</div>
+                          <div>{selectedInvestment.contactPerson || 'N/A'}</div>
+                          <div className="font-semibold">Funding Required:</div>
+                          <div>{selectedInvestment.fundingRequired ? `Rs ${selectedInvestment.fundingRequired.toLocaleString()}` : 'N/A'}</div>
+                          <div className="font-semibold">Idea Description:</div>
+                          <div>{selectedInvestment.ideaDescription || selectedInvestment.message || 'N/A'}</div>
+                          <div className="font-semibold">Team Description:</div>
+                          <div>{selectedInvestment.teamDescription || 'N/A'}</div>
+                          <div className="font-semibold">Market Analysis:</div>
+                          <div>{selectedInvestment.marketAnalysis || 'N/A'}</div>
+                          <div className="font-semibold">Financial Projections:</div>
+                          <div>{selectedInvestment.financialProjections || 'N/A'}</div>
+                          <div className="font-semibold">Return Expectations:</div>
+                          <div>{selectedInvestment.returnExpectations || 'N/A'}</div>
+                          <div className="font-semibold">Pitch Deck:</div>
+                          <div>{selectedInvestment.pitchDeck ? <a href={selectedInvestment.pitchDeck} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View</a> : 'N/A'}</div>
+                          <div className="font-semibold">Business Plan:</div>
+                          <div>{selectedInvestment.businessPlan ? <a href={selectedInvestment.businessPlan} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View</a> : 'N/A'}</div>
+                        </>
+                      )}
+
+                      {selectedInvestment.type === 'business' && (
+                        <>
+                          <div className="font-semibold">Company Name:</div>
+                          <div>{selectedInvestment.companyName || 'N/A'}</div>
+                          <div className="font-semibold">Industry:</div>
+                          <div>{selectedInvestment.industry || 'N/A'}</div>
+                          <div className="font-semibold">Contact Person:</div>
+                          <div>{selectedInvestment.contactPerson || 'N/A'}</div>
+                          <div className="font-semibold">Investment Amount:</div>
+                          <div>{selectedInvestment.investmentAmount ? `Rs ${selectedInvestment.investmentAmount.toLocaleString()}` : 'N/A'}</div>
+                          <div className="font-semibold">Business Description:</div>
+                          <div>{selectedInvestment.businessDescription || selectedInvestment.message || 'N/A'}</div>
+                          <div className="font-semibold">Years in Operation:</div>
+                          <div>{selectedInvestment.yearsInOperation || 'N/A'}</div>
+                          <div className="font-semibold">Annual Revenue:</div>
+                          <div>{selectedInvestment.annualRevenue ? `Rs ${selectedInvestment.annualRevenue.toLocaleString()}` : 'N/A'}</div>
+                          <div className="font-semibold">Employees:</div>
+                          <div>{selectedInvestment.employees || 'N/A'}</div>
+                          <div className="font-semibold">Reason for Investment:</div>
+                          <div>{selectedInvestment.reasonForInvestment || 'N/A'}</div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
         </div>
       </div>
     );
