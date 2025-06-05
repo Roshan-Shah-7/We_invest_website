@@ -1,4 +1,3 @@
-// app/apply/page.tsx
 'use client';
 
 import * as React from 'react';
@@ -6,13 +5,6 @@ import { useState } from 'react';
 import InvestmentForm from '@/components/form/InvestmentForm';
 import { User, Zap, Briefcase, LucideIcon } from 'lucide-react';
 
-export const metadata = {
-    title: "Investment Application | We Invest Global Pvt. Ltd.",
-    description:
-        "Apply for investment with We Invest Global Pvt. Ltd. Choose between individual investor, startup, or established business application forms.",
-    keywords:
-        "investment application, apply for funding, individual investor, startup funding, business investment, We Invest Global, financial application",
-};
 
 type FormType = 'individual' | 'startup' | 'business';
 
