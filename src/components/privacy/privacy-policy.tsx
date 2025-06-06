@@ -18,6 +18,11 @@ import {
     TrendingUp,
     FileText,
     AlertTriangle,
+    Settings,
+    Share2,
+    Archive,
+    UserCheck,
+    RefreshCw,
 } from "lucide-react"
 import {
     privacyPolicySections,
@@ -38,13 +43,15 @@ interface Section {
 }
 
 const iconMap: Record<string, React.ElementType> = {
-    "investment-philosophy": TrendingUp,
-    "investment-strategy": Globe,
-    "risk-management-framework": Shield,
-    "portfolio-reporting-transparency": FileText,
-    "ethical-conduct-fiduciary-duty": User,
-    "aml-ctf-policy": Lock,
-    "consumer-protection-grievance": Bell,
+    "introduction-commitment": Shield,
+    "information-we-collect": Globe, // Using Globe for general info collection
+    "how-we-use-your-information": Settings, // Using Settings for how info is used
+    "how-we-share-your-information": Share2, // Using Share2 for sharing info
+    "data-security": Lock,
+    "data-retention": Archive, // Using Archive for data retention
+    "your-rights-responsibilities": UserCheck, // Using UserCheck for rights and responsibilities
+    "changes-to-privacy-policy": RefreshCw, // Using RefreshCw for changes to policy
+    "contact-us": Mail,
 }
 
 const sections: Section[] = privacyPolicySections.map((section: PrivacySection) => ({
@@ -106,9 +113,9 @@ export default function PrivacyPolicy() {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-dark-green rounded-2xl mb-6">
                         <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Investment Policy Statement</h1>
+                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
-                        Comprehensive investment framework and operational guidelines for We Invest Private Limited
+                        Our commitment to protecting your personal information and privacy.
                     </p>
                     <div className="flex items-center justify-center space-x-6 text-sm text-gray-600">
                         <div className="flex items-center">
@@ -135,7 +142,7 @@ export default function PrivacyPolicy() {
                     <div className="flex items-center justify-center text-yellow-800">
                         <AlertTriangle className="w-5 h-5 mr-2" />
                         <span className="text-sm font-medium">
-                            Nepal Rastra Bank | Licensed Investment Company in Nepal is in the process of obtaining a licence from SEBON.
+                            Registered Investment Company In The Process of Obtaining License from SEBOM
                         </span>
                     </div>
                 </div>
@@ -149,6 +156,7 @@ export default function PrivacyPolicy() {
                             <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
                             <nav className="space-y-2">
                                 {sections.map((section: PrivacySection) => {
+                                    const IconComponent = iconMap[section.icon]; // Get the icon component from the map
                                     return (
                                         <div key={section.id}>
                                             <button
@@ -157,6 +165,7 @@ export default function PrivacyPolicy() {
                                                     flex items-center ${activeSection === section.id ? "bg-brand_teal text-white" : "text-gray-700 hover:bg-gray-50"
                                                     }`}
                                             >
+                                                {IconComponent && <IconComponent className="w-4 h-4 mr-2" />}
                                                 <span>{section.title}</span>
                                             </button>
                                             {section.subsections && activeSection === section.id && (

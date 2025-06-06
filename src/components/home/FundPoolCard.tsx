@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import Image from "next/image" // Import Image component
 import { Card, CardContent } from "@/components/ui/card"
 import { Target, Lightbulb, Eye } from "lucide-react"
 import type { FundPool } from "@/data/fundPoolsData"
@@ -28,9 +29,11 @@ const FundPoolCard: React.FC<FundPoolCardProps> = ({
                     <div className="relative h-64 md:h-full overflow-hidden">
                         {/* Image with transition */}
                         <div className="relative w-full h-full">
-                            <img
+                            <Image
                                 src={pool.image.src || "/placeholder.svg"}
                                 alt={pool.title}
+                                fill // Use fill to make the image cover the parent div
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Add appropriate sizes
                                 className={`w-full h-full object-cover transition-all 
                                     duration-500 ease-out ${isAnimating ? "scale-110 opacity-60" : "scale-100 opacity-100"
                                     }`}

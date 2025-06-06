@@ -4,9 +4,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/Badge"
 import { Activity, PieChart, LineChart as LineChartIcon } from "lucide-react"
 
-const StrategicApproachSection = () => {
+interface StrategicApproachSectionProps {
+    className?: string;
+}
+
+const StrategicApproachSection = ({ className }: StrategicApproachSectionProps) => {
     return (
-        <section className="py-20 px-4 bg-gradient-to-br from-slate-900 to-emerald-900">
+        <section className={`py-20 px-4 bg-gradient-to-br from-slate-900 to-emerald-900 ${className}`}>
             <div className="container mx-auto max-w-7xl">
                 <div className="text-center mb-16">
                     <Badge className="mb-6 bg-emerald-500/20 text-emerald-300 border-emerald-400/30">Strategic Approach</Badge>

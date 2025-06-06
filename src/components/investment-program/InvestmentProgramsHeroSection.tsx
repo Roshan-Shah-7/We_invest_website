@@ -2,14 +2,22 @@ import Image from "next/image";
 import MoneyGrow from "@/assets/investment/bg.jpg";
 import { TrendingUp } from "lucide-react";
 
-const InvestmentProgramsHeroSection = () => {
+interface InvestmentProgramsHeroSectionProps {
+    className?: string;
+}
+
+const InvestmentProgramsHeroSection = ({ className }: InvestmentProgramsHeroSectionProps) => {
     return (
-        <header className="relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10 h-[60vh]"
-            style={{
-                backgroundImage: `url(${MoneyGrow.src})`,
-                backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'
-            }}>
-            <div className="container mx-auto p-6 text-center relative drop-shadow-md bg-white/80 w-fit rounded-xl">
+        <header className={`relative bg-white border-b border-gray-200 py-20 sm:py-28 mt-10 h-[60vh] overflow-hidden ${className}`}>
+            <Image
+                src={MoneyGrow}
+                alt="Money growing"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center'}}
+                priority
+                className="bg-fixed"
+            />
+            <div className="container mx-auto p-6 text-center relative z-10 drop-shadow-md bg-white/80 w-fit rounded-xl">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-dark-green rounded-2xl mb-8">
                     <TrendingUp className="w-8 h-8 text-brand_green" />
                 </div>

@@ -4,7 +4,6 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import dynamic from 'next/dynamic';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import AnimatedHeadline from '../AnimatedHeadline';
-import rocketAnimation from '../../assets/a.json';
 
 // Lazy load heavy components
 const Particles = dynamic(() => import('@tsparticles/react'), { ssr: false, loading: () => <></> });
@@ -56,6 +55,7 @@ const HeroSection: React.FC = () => {
     const [greeting, setGreeting] = useState(getGreeting);
     const lottieContainerRef = useRef<HTMLDivElement>(null);
     const [showLottie, setShowLottie] = useState(false);
+    const [animationData, setAnimationData] = useState<any>(null); // State to hold dynamically loaded animation data
 
     // Update greeting every 1 min
     useEffect(() => {
@@ -63,12 +63,16 @@ const HeroSection: React.FC = () => {
         return () => clearInterval(timer);
     }, []);
 
-    // Intersection Observer for Lottie animation
+    // Intersection Observer for Lottie animation and dynamic data loading
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setShowLottie(true);
+                    // Dynamically import the animation data when the component is visible
+                    import('../../assets/a.json').then(mod => {
+                        setAnimationData(mod.default);
+                    });
                     observer.disconnect(); // Stop observing once it's visible
                 }
             },
@@ -80,12 +84,12 @@ const HeroSection: React.FC = () => {
         }
 
         return () => {
-            const currentLottieContainer = lottieContainerRef.current; // Capture the ref value
+            const currentLottieContainer = lottieContainerRef.current;
             if (currentLottieContainer) {
                 observer.unobserve(currentLottieContainer);
             }
         };
-    }, [lottieContainerRef]); // Added lottieContainerRef to dependencies
+    }, [lottieContainerRef]);
 
 
     // useTypewriter hook
@@ -180,9 +184,9 @@ const HeroSection: React.FC = () => {
 
                 {/* Lottie Animation */}
                 <div ref={lottieContainerRef} className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    {showLottie && (
+                    {showLottie && animationData && ( // Render Lottie only when visible and data is loaded
                         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
-                            <Lottie animationData={rocketAnimation} loop className="w-full h-auto" />
+                            <Lottie animationData={animationData} loop className="w-full h-auto" />
                         </div>
                     )}
                 </div>

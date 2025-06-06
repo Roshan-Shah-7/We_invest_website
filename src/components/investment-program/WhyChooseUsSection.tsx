@@ -2,9 +2,13 @@ import { Shield, CheckCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { whyChooseUsPoints } from "@/data/investmentProgramsData";
 
-const WhyChooseUsSection = () => {
+interface WhyChooseUsSectionProps {
+    className?: string;
+}
+
+const WhyChooseUsSection = ({ className }: WhyChooseUsSectionProps) => {
     return (
-        <section className="bg-brand_teal/100 rounded-2xl p-12 text-white">
+        <section className={`bg-brand_teal/100 rounded-2xl p-12 text-white ${className}`}>
             <div className="text-center mb-12">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-6">
                     <Shield className="w-8 h-8 text-white" />

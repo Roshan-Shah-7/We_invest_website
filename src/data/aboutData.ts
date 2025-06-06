@@ -1,4 +1,3 @@
-import { StaticImageData } from "next/image";
 import Building from "@/assets/about/building.jpg";
 import Mission from "@/assets/about/mission.jpg";
 import OurStory from "@/assets/about/our story.jpg";

@@ -16,9 +16,10 @@ interface SectorOverviewSectionProps {
     handleSectorClick: (sector: Sector) => void;
     comparedSectors: string[];
     toggleSectorComparison: (sectorId: string) => void;
+    className?: string; // Add className prop
 }
 
-const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, toggleSectorComparison }: SectorOverviewSectionProps) => {
+const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, toggleSectorComparison, className }: SectorOverviewSectionProps) => {
     const [comparisonMode, setComparisonMode] = useState(false)
     const [filterView, setFilterView] = useState<"all" | "low-risk" | "high-growth">("all")
 
@@ -139,7 +140,7 @@ const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, to
     }
 
     return (
-        <section className="py-24 px-4 bg-slate-50">
+        <section className={`py-24 px-4 bg-slate-50 ${className}`}>
             <div className="container mx-auto max-w-7xl">
                 <AnimatedSection>
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">

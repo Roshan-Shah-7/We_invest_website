@@ -5,9 +5,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import AnimatedCounter from "@/components/market-overview/AnimatedCounter"
 import { Target, Star, Shield, BrainCircuit, Users } from "lucide-react"
 
-const PartnershipBenefitsSection = () => {
+interface PartnershipBenefitsSectionProps {
+    className?: string;
+}
+
+const PartnershipBenefitsSection = ({ className }: PartnershipBenefitsSectionProps) => {
     return (
-        <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-emerald-50">
+        <section className={`py-20 px-4 bg-gradient-to-br from-slate-50 to-emerald-50 ${className}`}>
             <div className="container mx-auto max-w-7xl">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div>

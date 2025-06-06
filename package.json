@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.3",
     "@types/node": "^20.17.50",
     "@types/nodemailer": "^6.4.17",
     "@types/pdfkit": "^0.13.9",

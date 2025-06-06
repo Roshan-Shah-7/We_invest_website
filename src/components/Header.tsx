@@ -44,6 +44,8 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
             <Image
               src={we_logo}
               alt={LOGO_ALT_TEXT}
+              width={160} // Approximate width based on w-[10rem]
+              height={40} // Approximate height to maintain aspect ratio (160/4 = 40)
               className="w-[10rem] object-contain"
               priority
             />

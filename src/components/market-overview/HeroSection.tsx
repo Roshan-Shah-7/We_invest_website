@@ -9,11 +9,12 @@ import { Sector } from "@/data/marketOverviewData"
 interface HeroSectionProps {
     sectors: Sector[];
     handleSectorClick: (sector: Sector) => void;
+    className?: string; // Add className prop
 }
 
-const HeroSection = ({ sectors, handleSectorClick }: HeroSectionProps) => {
+const HeroSection = ({ sectors, handleSectorClick, className }: HeroSectionProps) => {
     return (
-        <section className="relative min-h-screen flex items-center overflow-hidden">
+        <section className={`relative min-h-screen flex items-center overflow-hidden ${className}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900">
                 <div className="absolute inset-0 opacity-10">
                     <div

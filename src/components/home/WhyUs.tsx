@@ -1,5 +1,11 @@
-import React, { useRef } from 'react';
+"use client";
+
+import React, { useRef, useEffect } from 'react';
 import { Lightbulb, Building, Handshake, Eye } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface InvestmentPhilosophyItem {
     icon: React.ReactNode;
@@ -11,7 +17,28 @@ const WhyUs: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
 
-    // Removed useEffect with GSAP animations
+    useEffect(() => {
+        if (containerRef.current) {
+            gsap.fromTo(
+                itemsRef.current,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 80%', // When the top of the trigger hits 80% down the viewport
+                        end: 'bottom 20%', // When the bottom of the trigger hits 20% up the viewport
+                        toggleActions: 'play none none none', // Play animation once when entering
+                        // markers: true, // For debugging - remove in production
+                    },
+                }
+            );
+        }
+    }, []);
 
     const philosophyItems: InvestmentPhilosophyItem[] = [
         {
@@ -43,7 +70,7 @@ const WhyUs: React.FC = () => {
         >
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl md:text-5xl font-bold text-center text-brand_text_primary mb-12">
-                    Why <span className="text-brand_teal">We</span> Invest?
+                    Why <span className="text-brand_teal">We</span> Invest ?
                 </h2>
 
                 <p className="text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed">

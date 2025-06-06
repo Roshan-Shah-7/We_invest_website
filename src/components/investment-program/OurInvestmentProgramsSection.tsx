@@ -12,7 +12,11 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 
-const OurInvestmentProgramsSection = () => {
+interface OurInvestmentProgramsSectionProps {
+    className?: string;
+}
+
+const OurInvestmentProgramsSection = ({ className }: OurInvestmentProgramsSectionProps) => {
     const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -33,7 +37,7 @@ const OurInvestmentProgramsSection = () => {
     };
 
     return (
-        <section className="mb-20">
+        <section className={`mb-20 ${className}`}>
             <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Investment Programmes</h2>
                 <div className="w-20 h-1 bg-brand-green mx-auto mb-6"></div>

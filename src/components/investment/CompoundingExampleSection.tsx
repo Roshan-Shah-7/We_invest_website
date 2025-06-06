@@ -1,20 +1,55 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BarChart, PieChart, Lightbulb } from "lucide-react"
+import clsx from "clsx";
 
-const CompoundingExampleSection = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+interface CompoundingExampleSectionProps {
+    className?: string;
+}
+
+const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps) => {
+    const sectionRef = useRef(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            });
+
+            tl.from(".compounding-title", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
+              .from(".compounding-paragraph", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
+              .from(".summary-card", { opacity: 0, x: -50, duration: 0.8, ease: "power3.out" }, "-=0.3")
+              .from(".breakdown-card", { opacity: 0, x: 50, duration: 0.8, ease: "power3.out" }, "-=0.5");
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="py-16 px-4 bg-emerald-50 relative">
+        <section ref={sectionRef} className={clsx("py-16 px-4 bg-emerald-50 relative", className)}>
             <div className="container mx-auto max-w-6xl">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">The Power of Compounding</h2>
-                    <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 compounding-title">The Power of Compounding</h2>
+                    <p className="text-lg text-slate-600 max-w-3xl mx-auto compounding-paragraph">
                         See how reinvesting earnings can exponentially grow your wealth over time
                     </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {/* Left Column: Summary Card */}
-                    <Card className="bg-white border-emerald-200 h-fit md:sticky top-20">
+                    <Card className="bg-white border-emerald-200 h-fit md:sticky top-20 summary-card">
                         <CardHeader>
                             <CardTitle className="flex items-center space-x-2">
                                 <PieChart className="h-6 w-6 text-emerald-600" />
@@ -61,7 +96,7 @@ const CompoundingExampleSection = () => {
                     </Card>
 
                     {/* Right Column: Detailed Breakdown */}
-                    <div className="bg-white border border-emerald-200 rounded-xl overflow-hidden">
+                    <div className="bg-white border border-emerald-200 rounded-xl overflow-hidden breakdown-card">
                         <div className="bg-emerald-600 p-4">
                             <h3 className="text-xl font-bold text-white flex items-center">
                                 <BarChart className="h-5 w-5 mr-2" />
@@ -82,7 +117,7 @@ const CompoundingExampleSection = () => {
                                             <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Year</th>
                                             <th className="px-4 py-3 text-right text-xs font-medium text-slate-700 uppercase tracking-wider">Starting Balance</th>
                                             <th className="px-4 py-3 text-right text-xs font-medium text-slate-700 uppercase tracking-wider">Interest Earned</th>
-                                            <th className="px-4 py-3 text-right text-xs font-medium text-slate-700 uppercase tracking-wider">Ending Balance</th>
+                                            <th className="px-4 py-3 whitespace-nowrap text-right text-xs font-medium text-slate-700 uppercase tracking-wider">Ending Balance</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">

@@ -1,8 +1,12 @@
 import { Target } from "lucide-react";
 
-const InvestmentProgramsIntroSection = () => {
+interface InvestmentProgramsIntroSectionProps {
+    className?: string;
+}
+
+const InvestmentProgramsIntroSection = ({ className }: InvestmentProgramsIntroSectionProps) => {
     return (
-        <section className="mb-20">
+        <section className={`mb-20 ${className}`}>
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-2xl p-12 shadow-sm border border-gray-200">
                     <div className="flex items-center justify-center mb-8">

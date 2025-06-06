@@ -1,14 +1,48 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Briefcase, Shield } from "lucide-react";
+import clsx from "clsx";
 
-const RiskInvestmentTypesSection = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+interface RiskInvestmentTypesSectionProps {
+    className?: string;
+}
+
+const RiskInvestmentTypesSection = ({ className }: RiskInvestmentTypesSectionProps) => {
+    const sectionRef = useRef(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            });
+
+            tl.from(".risk-title", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
+              .from(".risk-card", { opacity: 0, x: -50, duration: 0.8, ease: "power3.out", stagger: 0.2 }, "-=0.3")
+              .from(".risk-conclusion", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3");
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="py-16 px-4 bg-white">
+        <section ref={sectionRef} className={clsx("py-16 px-4 bg-white", className)}>
             <div className="container mx-auto max-w-8xl">
                 <div className="mt-16 w-full">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">Investments and Risk</h3>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center risk-title">Investments and Risk</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <Card className="border-emerald-200">
+                        <Card className="border-emerald-200 risk-card">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <Users className="h-6 w-6 text-emerald-600" />
@@ -48,7 +82,7 @@ const RiskInvestmentTypesSection = () => {
                             </CardContent>
                         </Card>
 
-                        <Card className="border-blue-200">
+                        <Card className="border-blue-200 risk-card">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <Briefcase className="h-6 w-6 text-blue-600" />
@@ -99,7 +133,7 @@ const RiskInvestmentTypesSection = () => {
                             </CardContent>
                         </Card>
 
-                        <Card className="border-orange-200">
+                        <Card className="border-orange-200 risk-card">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     <Shield className="h-6 w-6 text-orange-600" />
@@ -140,7 +174,7 @@ const RiskInvestmentTypesSection = () => {
                         </Card>
                     </div>
                     <div className="text-center mt-8">
-                        <p className="text-slate-600 italic">
+                        <p className="text-slate-600 italic risk-conclusion">
                             At We Invest, we understand that each investor's journey is unique.
                             We collaborate closely with our clients to evaluate their risk tolerance and tailor
                             investment strategies that align with their individual goals. Whether you are seeking

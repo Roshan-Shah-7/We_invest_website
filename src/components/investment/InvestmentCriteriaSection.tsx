@@ -1,17 +1,51 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, Users, CheckCircle } from "lucide-react";
+import clsx from "clsx";
 
-const InvestmentCriteriaSection = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+interface InvestmentCriteriaSectionProps {
+    className?: string;
+}
+
+const InvestmentCriteriaSection = ({ className }: InvestmentCriteriaSectionProps) => {
+    const sectionRef = useRef(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                }
+            });
+
+            tl.from(".criteria-title", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
+              .from(".criteria-paragraph", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
+              .from(".criteria-card", { opacity: 0, y: 50, duration: 0.6, ease: "power3.out", stagger: 0.2 }, "-=0.3");
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="py-16 px-4 bg-white">
+        <section ref={sectionRef} className={clsx("py-16 px-4 bg-white", className)}>
             <div className="container mx-auto max-w-6xl">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Investment Criteria</h2>
-                    <p className="text-lg text-slate-600">What we look for in investment opportunities</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 criteria-title">Investment Criteria</h2>
+                    <p className="text-lg text-slate-600 criteria-paragraph">What we look for in investment opportunities</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                    <Card className="border-emerald-200">
+                    <Card className="border-emerald-200 criteria-card">
                         <CardHeader>
                             <CardTitle className="flex items-center space-x-2">
                                 <Briefcase className="h-6 w-6 text-emerald-600" />
@@ -50,7 +84,7 @@ const InvestmentCriteriaSection = () => {
                         </CardContent>
                     </Card>
 
-                    <Card className="border-emerald-200">
+                    <Card className="border-emerald-200 criteria-card">
                         <CardHeader>
                             <CardTitle className="flex items-center space-x-2">
                                 <Users className="h-6 w-6 text-emerald-600" />
