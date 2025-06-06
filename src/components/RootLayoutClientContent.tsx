@@ -16,7 +16,10 @@ export default function RootLayoutClientContent({ children }: { children: React.
   const isAdminPath = pathname.startsWith('/admin'); // Check if it's any admin path
 
   useEffect(() => {
-    setLoading(false);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -38,8 +41,9 @@ export default function RootLayoutClientContent({ children }: { children: React.
 
   return (
     <SessionProvider> {/* Wrap with SessionProvider */}
-      {loading && <Loader />}
-      {!loading && (
+      {/* {loading && <Loader />} */}
+      {/* {!loading && (
+      )} */}
         <div>
           <AppClientSetup />
           {!isAdminPath && <Header />} {/* Conditionally render Header */}
@@ -59,7 +63,6 @@ export default function RootLayoutClientContent({ children }: { children: React.
             </button>
           )}
         </div>
-      )}
     </SessionProvider>
   );
 }

@@ -7,8 +7,9 @@ import WhyUs from '@/components/home/WhyUs';
 import Portfolio from '@/components/home/Portfolio';
 import Testimonials from '@/components/home/Testimonials';
 import Video from '@/components/home/Video';
-import FundPools from '@/components/home/FundPools';
 import OurServices from '@/components/home/OurServices';
+import FundPool from '@/components/home/Fund-pool';
+import { fundPoolsData } from '@/data/fundPoolsData';
 
 const videos = [
   {
@@ -32,11 +33,11 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col items-center overflow-hidden justify-center w-full text-center mx-auto">
+      <main className="flex flex-col items-center justify-center w-full text-center mx-auto">
         <Hero />
         <OurServices />
         <WhyUs />
-        <FundPools />
+        <FundPool funds={fundPoolsData} />
         <Portfolio />
         <Video videos={videos} />
         <Testimonials />

@@ -1,13 +1,16 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useLayoutEffect } from "react"
 import { Zap } from "lucide-react"
 
 export default function Portfolio() {
+    const sectionRef = useRef<HTMLElement>(null)
     const headerRef = useRef<HTMLDivElement>(null)
+    const messageRef = useRef<HTMLDivElement>(null)
+    // Removed floatingElementsRef as it was only for GSAP animations
 
     return (
-        <section className="relative py-20 px-4 overflow-hidden">
+        <section ref={sectionRef} className="relative py-20 px-4 overflow-hidden">
             {/* Floating Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="floating-element absolute top-20 left-[10%] w-4 h-4 bg-[#00695C]/20 rounded-full" />
@@ -33,7 +36,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Polite message instead of cards */}
-                <div className="text-center text-gray-700 text-lg">
+                <div ref={messageRef} className="text-center text-gray-700 text-lg">
                     <p>We are currently working on exciting new projects to showcase our creative solutions.</p>
                     <p>Stay tuned for updates!</p>
                 </div>

@@ -1,0 +1,222 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import {
+    TrendingUp,
+    TrendingDown,
+    Shield,
+    DollarSign,
+    BarChart3,
+    ArrowRight,
+    Star,
+    AlertTriangle,
+    CheckCircle,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/Badge"
+import { Card, CardContent } from "@/components/ui/card"
+import type { FundPool } from "@/data/fundPoolsData"
+import { ExtendedFundPool, getExtendedFundData } from "@/data/extendedFundData"
+
+interface FundPoolCardProps {
+    fund: FundPool
+    index: number
+}
+
+const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
+    const cardRef = useRef<HTMLDivElement>(null)
+    const [isHovered, setIsHovered] = useState(false)
+    const extendedFund = getExtendedFundData(fund)
+
+    // Removed GSAP useEffect for animations and event listeners
+    // The hover effects will now rely solely on Tailwind's hover classes on the Card component.
+
+    const getRiskColor = (level: string) => {
+        switch (level) {
+            case "Low":
+                return "text-green-600 bg-green-50"
+            case "Medium":
+                return "text-yellow-600 bg-yellow-50"
+            case "High":
+                return "text-red-600 bg-red-50"
+            default:
+                return "text-gray-600 bg-gray-50"
+        }
+    }
+
+    const getRiskIcon = (level: string) => {
+        switch (level) {
+            case "Low":
+                return <CheckCircle className="w-4 h-4" />
+            case "Medium":
+                return <AlertTriangle className="w-4 h-4" />
+            case "High":
+                return <Shield className="w-4 h-4" />
+            default:
+                return <Shield className="w-4 h-4" />
+        }
+    }
+
+    return (
+        <Card
+            ref={cardRef}
+            className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border-0"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {/* Header with Image and Basic Info */}
+            <div className="relative h-48 overflow-hidden">
+                <Image
+                    src={fund.image.src || "/placeholder.svg?height=200&width=400"}
+                    alt={fund.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4">
+                    <Badge className="text-white border-white/20" style={{ backgroundColor: fund.color }}>
+                        {fund.category}
+                    </Badge>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white mb-1">{fund.title}</h3>
+                    {/* <p className="text-white/90 text-sm">{extendedFund.currentValue} AUM</p> */}
+                </div>
+            </div>
+
+            <CardContent className="p-6 space-y-6">
+                {/* Performance Metrics */}
+                <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center">
+                        <div className="flex items-center justify-center mb-1">
+                            {extendedFund.ytdReturn > 0 ? (
+                                <TrendingUp className="w-4 h-4 text-green-600 mr-1" />
+                            ) : (
+                                <TrendingDown className="w-4 h-4 text-red-600 mr-1" />
+                            )}
+                            <span className={`font-semibold ${extendedFund.ytdReturn > 0 ? "text-green-600" : "text-red-600"}`}>
+                                {extendedFund.ytdReturn > 0 ? "+" : ""}
+                                {extendedFund.ytdReturn}%
+                            </span>
+                        </div>
+                        <p className="text-xs text-gray-500">YTD Return</p>
+                    </div>
+                    <div className="text-center">
+                        <div className="flex items-center justify-center mb-1">
+                            <Star className="w-4 h-4 text-yellow-500 mr-1" />
+                            <span className="font-semibold text-gray-900">{extendedFund.oneYearReturn}%</span>
+                        </div>
+                        <p className="text-xs text-gray-500">1Y Return</p>
+                    </div>
+                    <div className="text-center">
+                        <div className="flex items-center justify-center mb-1">
+                            <BarChart3 className="w-4 h-4 text-blue-600 mr-1" />
+                            <span className="font-semibold text-gray-900">{extendedFund.expenseRatio}%</span>
+                        </div>
+                        <p className="text-xs text-gray-500">Expense Ratio</p>
+                    </div>
+                </div>
+
+                {/* Fund Description */}
+                <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Investment Focus</h4>
+                    <p className="text-sm text-gray-600 leading-relaxed">{fund.focus}</p>
+                </div>
+
+                {/* Investment Details */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Min. Investment</span>
+                        <span className="text-sm font-semibold text-gray-900">{extendedFund.minimumInvestment}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700">Investment Range</span>
+                        <span className="text-sm font-semibold text-gray-900">{fund.investmentRange}</span>
+                    </div>
+                </div>
+
+                {/* Risk Assessment */}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                        <span className="text-sm font-medium text-gray-700">Risk Level</span>
+                        <Badge className={`${getRiskColor(extendedFund.riskLevel)} border-0`}>
+                            {getRiskIcon(extendedFund.riskLevel)}
+                            <span className="ml-1">{extendedFund.riskLevel}</span>
+                        </Badge>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                        {[...Array(10)].map((_, i) => (
+                            <div
+                                key={i}
+                                className={`w-2 h-2 rounded-full ${i < extendedFund.riskScore ? "bg-red-500" : "bg-gray-200"}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Call to Action */}
+                <div className="pt-4 border-t border-gray-100">
+                    <p className="text-xs text-gray-500 text-center mt-2">
+                        Start investing with as little as {extendedFund.minimumInvestment}
+                    </p>
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
+interface FundPoolComponentProps {
+    funds: FundPool[]
+    title?: string
+    subtitle?: string
+}
+
+export default function FundPoolComponent({
+    funds,
+    title = "Investment Funds",
+    subtitle = "Discover our curated selection of high-performance investment opportunities",
+}: FundPoolComponentProps) {
+    const containerRef = useRef<HTMLDivElement>(null)
+    const initialDisplayCount = 6; // Number of cards to show initially
+    const loadMoreCount = 4; // Number of cards to load each time
+    const [visibleFundsCount, setVisibleFundsCount] = useState(initialDisplayCount);
+
+    // Removed GSAP useEffect for header animation
+
+    const handleLoadMore = () => {
+        setVisibleFundsCount(prevCount => Math.min(prevCount + loadMoreCount, funds.length));
+    };
+
+    const allFundsLoaded = visibleFundsCount >= funds.length;
+
+    return (
+        <section ref={containerRef} className="py-16 bg-gradient-to-br from-gray-50 to-white">
+            <div className="container mx-auto px-4">
+                {/* Header */}
+                <div className="header-content text-center mb-12">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+                </div>
+
+                {/* Fund Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {funds.slice(0, visibleFundsCount).map((fund, index) => (
+                        <FundPoolCard key={fund.number} fund={fund} index={index} />
+                    ))}
+                </div>
+
+                {!allFundsLoaded && (
+                    <div className="text-center mt-12">
+                        <Button
+                            onClick={handleLoadMore}
+                            className="bg-brand_teal hover:bg-brand_teal/90 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300"
+                        >
+                            Load More Funds
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </section>
+    )
+}

@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface Video {
     id: string;
@@ -13,26 +15,77 @@ interface VideoGalleryProps {
 
 const VideoGallery = ({ videos }: VideoGalleryProps) => {
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const dividerRef = useRef<HTMLDivElement>(null);
+    const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none none',
+            },
+        });
+
+        // Animate title and divider
+        tl.fromTo(
+            [titleRef.current, dividerRef.current],
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
+        );
+
+        // Animate video cards
+        videoRefs.current.forEach((card, index) => {
+            if (card) {
+                gsap.fromTo(
+                    card,
+                    { opacity: 0, y: 50, scale: 0.95 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 90%',
+                            toggleActions: 'play none none none',
+                        },
+                    }
+                );
+            }
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
     const toggleVideo = (id: string) => {
         setActiveVideo(activeVideo === id ? null : id);
     };
 
     return (
-        <div className="mx-auto py-12 px-4 bg-[#F5F7FA] w-full">
+        <div ref={sectionRef} className="mx-auto py-12 px-4 bg-[#F5F7FA] w-full">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
+                <h1 ref={titleRef} className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
                     Real-Time NEPSE Analysis Learn From The Best
                     <br />
                     Watch the Recorded Session Now
                 </h1>
-                <div className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
+                <div ref={dividerRef} className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
             </div>
 
             <div className="max-w-6xl m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {videos.map((video) => (
+                {videos.map((video, index) => (
                     <div
                         key={video.id}
+                        ref={(el: HTMLDivElement | null) => { videoRefs.current[index] = el; }}
                         className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
                     >
                         <div className="relative cursor-pointer" onClick={() => toggleVideo(video.id)}>
@@ -45,6 +98,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                         className="w-full h-full"
+                                        loading="lazy"
                                     />
                                 </div>
                             ) : (
@@ -53,9 +107,10 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
                                         <Image
                                             src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                             alt={video.title}
-                                            fill // Use fill to make the image cover the parent div
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Add appropriate sizes
-                                            className="object-cover"
+                                            width={640} // Common width for 16:9 aspect ratio
+                                            height={360} // Common height for 16:9 aspect ratio
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            className="object-cover w-full h-full" // Ensure image covers the div
                                         />
                                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                                             <div className="w-16 h-16 rounded-full bg-[#00695C] flex items-center justify-center">

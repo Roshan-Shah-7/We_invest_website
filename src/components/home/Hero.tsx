@@ -10,8 +10,14 @@ const Particles = dynamic(() => import('@tsparticles/react'), { ssr: false, load
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false, loading: () => <></> });
 
 // Who We Help card extracted for memoization
-const WhoWeHelpCard = React.memo(({ title, desc }: { title: string, desc: string }) => (
+interface WhoWeHelpCardProps {
+    title: string;
+    desc: string;
+}
+
+const WhoWeHelpCard = React.memo(React.forwardRef<HTMLDivElement, WhoWeHelpCardProps>(({ title, desc }, ref) => (
     <div
+        ref={ref}
         className="bg-white/60 backdrop-blur-lg border border-slate-200/80 p-6 py-8 sm:p-8 rounded-xl shadow-lg 
     hover:shadow-xl transition-all transform duration-300 hover:-translate-y-1 hover:border-brand_teal/50 group"
     >
@@ -20,7 +26,7 @@ const WhoWeHelpCard = React.memo(({ title, desc }: { title: string, desc: string
         </h4>
         <p className="text-slate-600 mt-3 leading-relaxed text-sm">{desc}</p>
     </div>
-));
+)));
 WhoWeHelpCard.displayName = 'WhoWeHelpCard';
 
 const whoWeHelpData = [
@@ -52,31 +58,31 @@ const getGreeting = () => {
 const HeroSection: React.FC = () => {
     const [isFirstHeadlineExpanded, setIsFirstHeadlineExpanded] = useState(false);
     const [isSecondHeadlineExpanded, setIsSecondHeadlineExpanded] = useState(false);
-    const [greeting, setGreeting] = useState(getGreeting);
+    const [greeting, setGreeting] = useState('');
     const lottieContainerRef = useRef<HTMLDivElement>(null);
     const [showLottie, setShowLottie] = useState(false);
-    const [animationData, setAnimationData] = useState<any>(null); // State to hold dynamically loaded animation data
+    const [animationData, setAnimationData] = useState<any>(null);
 
-    // Update greeting every 1 min
+    // Removed GSAP-related refs: heroContentRef, whoWeHelpSectionRef, whoWeHelpTitleRef, whoWeHelpParagraphRef, whoWeHelpCardRefs
+
     useEffect(() => {
+        setGreeting(getGreeting());
         const timer = setInterval(() => setGreeting(getGreeting()), 60000);
         return () => clearInterval(timer);
     }, []);
 
-    // Intersection Observer for Lottie animation and dynamic data loading
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setShowLottie(true);
-                    // Dynamically import the animation data when the component is visible
                     import('../../assets/a.json').then(mod => {
                         setAnimationData(mod.default);
                     });
-                    observer.disconnect(); // Stop observing once it's visible
+                    observer.disconnect();
                 }
             },
-            { threshold: 0.1 } // Trigger when 10% of the element is visible
+            { threshold: 0.1 }
         );
 
         if (lottieContainerRef.current) {
@@ -91,8 +97,6 @@ const HeroSection: React.FC = () => {
         };
     }, [lottieContainerRef]);
 
-
-    // useTypewriter hook
     const [text] = useTypewriter({
         words: [
             'Funding & Mentorship',
@@ -106,7 +110,6 @@ const HeroSection: React.FC = () => {
         deleteSpeed: 50,
     });
 
-    // Memoized particle options
     const particlesOptions = useMemo(() => ({
         fpsLimit: 60,
         interactivity: {
@@ -137,80 +140,88 @@ const HeroSection: React.FC = () => {
                 speed: 0.8,
                 straight: false,
             },
-            number: { density: { enable: true, value_area: 800 }, value: 40 },
-            opacity: { value: 0.3 },
+            number: { density: { enable: true, value_area: 800 }, value: 20 },
+            opacity: { value: 0.15 },
             shape: { type: 'circle' as const },
             size: { random: true, value: 2 },
         },
         detectRetina: true,
     }), []);
 
-    // Toggle functions (memoized)
     const toggleFirst = useCallback(() => setIsFirstHeadlineExpanded(prev => !prev), []);
     const toggleSecond = useCallback(() => setIsSecondHeadlineExpanded(prev => !prev), []);
 
+    // Removed useLayoutEffect with GSAP animations
+
     return (
-        <section className="hero-section-container relative min-h-screen flex flex-col items-center justify-start overflow-hidden text-black pt-24 sm:pt-32 lg:pt-20 px-4 sm:px-6">
+        <>
+            <section className="hero-section-container relative min-h-screen flex flex-col items-center justify-start overflow-hidden text-black pt-24 sm:pt-32 lg:pt-20 px-4 sm:px-6">
 
-            {/* Particle background (optional on mobile) */}
-            <div className="hidden sm:block absolute inset-0 -z-10">
-                <Particles id="tsparticles" options={particlesOptions} />
-            </div>
-
-            {/* Hero */}
-            <div className="relative z-10 w-full lg:mt-20 max-w-7xl flex flex-col lg:flex-row items-start justify-between">
-                <div className="w-full lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
-                    <AnimatedHeadline
-                        text="Grow Your Startup with"
-                        style="text-slate-700 text-3xl sm:text-4xl md:text-4xl"
-                        isExpanded={isFirstHeadlineExpanded}
-                        onToggleExpansion={toggleFirst}
-                    />
-                    <AnimatedHeadline
-                        text="Visionaries, For Visionaries"
-                        style="font-bold text-slate-900 text-4xl sm:text-5xl md:text-5xl mt-1 leading-tight"
-                        isExpanded={isSecondHeadlineExpanded}
-                        onToggleExpansion={toggleSecond}
-                    />
-                    <p className="text-xl sm:text-2xl text-slate-600 my-6 sm:my-8">
-                        {greeting} <span className="font-semibold">Ready to take the next step?</span>
-                    </p>
-
-                    <h2 className="text-2xl sm:text-3xl font-medium text-brand_teal min-h-[3em] sm:min-h-[2.5em]">
-                        We provide <span className='font-semibold'>{text}</span>
-                        <Cursor cursorStyle='_' cursorColor="#20B2AA" />
-                    </h2>
+                {/* Particle background (optional on mobile) */}
+                <div className="hidden sm:block absolute inset-0 -z-10">
+                    <Particles id="tsparticles" options={particlesOptions} />
                 </div>
 
-                {/* Lottie Animation */}
-                <div ref={lottieContainerRef} className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    {showLottie && animationData && ( // Render Lottie only when visible and data is loaded
-                        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
-                            <Lottie animationData={animationData} loop className="w-full h-auto" />
-                        </div>
-                    )}
-                </div>
-            </div>
+                {/* Hero */}
+                <div /* ref={heroContentRef} */ className="relative z-10 w-full lg:mt-20 max-w-7xl flex flex-col lg:flex-row items-start justify-between">
+                    <div className="w-full lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
+                        <AnimatedHeadline
+                            text="Grow Your Startup with"
+                            style="text-slate-700 text-3xl sm:text-4xl md:text-4xl"
+                            isExpanded={isFirstHeadlineExpanded}
+                            onToggleExpansion={toggleFirst}
+                        />
+                        <AnimatedHeadline
+                            text="Visionaries, For Visionaries"
+                            style="font-bold text-slate-900 text-4xl sm:text-5xl md:text-5xl mt-1 leading-tight"
+                            isExpanded={isSecondHeadlineExpanded}
+                            onToggleExpansion={toggleSecond}
+                        />
+                        <p className="text-xl sm:text-2xl text-slate-600 my-6 sm:my-8">
+                            {greeting} <span className="font-semibold">Ready to take the next step?</span>
+                        </p>
 
-            {/* Who We Help */}
-            <section className="relative z-10 py-10 px-4 sm:px-6 text-gray-900 w-full max-w-7xl">
-                <div className="text-center mb-12 sm:mb-16">
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                        Who <span className="text-brand_green">We</span> Help?
-                    </h2>
-                    <p className="mt-4 text-lg sm:text-xl text-slate-700 max-w-3xl mx-auto">
-                        We are your trusted partner for your financial and entrepreneurial endeavors.
-                        We collaborate with founders, teams, and organizations poised for growth and innovation.
-                    </p>
+                        <h2 className="text-2xl sm:text-3xl font-medium text-brand_teal min-h-[3em] sm:min-h-[2.5em]">
+                            We provide <span className='font-semibold'>{text}</span>
+                            <Cursor cursorStyle='_' cursorColor="#20B2AA" />
+                        </h2>
+                    </div>
+
+                    {/* Lottie Animation */}
+                    <div ref={lottieContainerRef} className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end mt-8 lg:mt-0">
+                        {showLottie && animationData && ( // Render Lottie only when visible and data is loaded
+                            <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+                                <Lottie animationData={animationData} loop className="w-full h-auto" />
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6">
-                    {whoWeHelpData.map((item) => (
-                        <WhoWeHelpCard key={item.title} {...item} />
-                    ))}
-                </div>
+                {/* Who We Help */}
+                <section /* ref={whoWeHelpSectionRef} */ className="relative z-10 py-10 px-4 sm:px-6 text-gray-900 w-full max-w-7xl">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 /* ref={whoWeHelpTitleRef} */ className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+                            Who <span className="text-brand_green">We</span> Help?
+                        </h2>
+                        <p /* ref={whoWeHelpParagraphRef} */ className="mt-4 text-lg sm:text-xl text-slate-700 max-w-3xl mx-auto">
+                            We are your trusted partner for your financial and entrepreneurial endeavors.
+                            We collaborate with founders, teams, and organizations poised for growth and innovation.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6">
+                        {whoWeHelpData.map((item, index) => (
+                            <WhoWeHelpCard key={item.title} {...item} /* ref={(el: HTMLDivElement | null) => { whoWeHelpCardRefs.current[index] = el; }} */ />
+                        ))}
+                    </div>
+                </section>
+
             </section>
-        </section>
+            {/* Full-screen Video Section */}
+            <section className="w-[90%] mt-16 mb-16 select-nonerounded-[10rem] ">
+                <video src="/hero_vide.mp4" autoPlay loop muted playsInline className="rounded-[5rem] w-full h-auto object-cover"></video>
+            </section>
+        </>
     );
 };
 

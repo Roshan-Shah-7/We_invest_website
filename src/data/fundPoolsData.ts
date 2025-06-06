@@ -3,9 +3,10 @@ import healthcareImage from '@/assets/home/healthcare.jpg';
 import agricultureImage from '@/assets/home/Agriculture.jpg';
 import renewableEnergyImage from '@/assets/home/Renewable_Energy.jpg';
 import emergingMarketsImage from '@/assets/home/Emerging_Markets.jpg';
-import educationEdTechImage from '@/assets/home/Education & EdTech.jpg';
+import educationEdTechImage from '@/assets/home/Education-EdTech.jpg';
 import retailEvolutionImage from '@/assets/home/Retail Evolution.jpg';
-import mobilityTransportImage from '@/assets/home/Mobility & Transport.jpg';
+import mobilityTransportImage from '@/assets/home/Mobility-Transport.jpg';
+import realState from '@/assets/home/realState.jpg';
 import ventureCapitalImage from '@/assets/home/Venture Capital.jpg';
 
 export interface ImageData {
@@ -123,7 +124,7 @@ export const fundPoolsData: FundPool[] = [
     focus: 'Pooling capital from like-minded investors to collectively invest in high-value real estate opportunities.',
     goal: 'Enable small investors to benefit from the appreciating value of prime land and properties through shared ownership and strategic acquisitions.',
     color: '#FFC107',
-    image: ventureCapitalImage,
+    image: realState,
     category: 'Real Estate',
     investmentRange: 'Rs.400K - Rs.2cr',
   },

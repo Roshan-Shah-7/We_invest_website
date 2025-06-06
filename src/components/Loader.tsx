@@ -52,9 +52,10 @@ const Loading = () => {
         return candles
     }
 
-    const [candleData] = useState(generateCandleData())
+    const [candleData, setCandleData] = useState<CandleData[]>([]);
 
     useEffect(() => {
+        setCandleData(generateCandleData()); // Generate data on client mount
         const messages = [
             "Initializing secure investment environment...",
             "Loading market data and analytics...",
@@ -201,7 +202,7 @@ const Loading = () => {
             <div className="max-w-2xl w-full relative z-10">
                 {/* Company Logo and Name */}
                 <div className="text-center flex flex-col items-center gap-4">
-                    <Image src={W_Logo} alt="We Invest Gloabel" width={70} height={50} />
+                    <Image src={W_Logo} alt="We Invest Gloabel" width={70} height={50} className="object-contain" />
                     <h1 className="text-3xl font-bold text-white mb-2 tracking-wider">Wee Invest Global Pvt. Ltd.</h1>
                 </div>
 
@@ -298,7 +299,7 @@ const Loading = () => {
                                     .map((candle, index) => {
                                         const x = (index / (candleData.length - 1)) * 100
                                         const y = 100 - ((candle.close - minPrice) / priceRange) * 80
-                                        return `${index === 0 ? "M" : "L"} ${x}% ${y}%`
+                                        return `${index === 0 ? "M" : "L"} ${x} ${y}`
                                     })
                                     .join(" ")}
                                 stroke="url(#priceGradient)"
