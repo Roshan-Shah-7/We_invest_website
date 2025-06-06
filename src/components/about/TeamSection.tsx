@@ -37,7 +37,6 @@ const TeamSection = () => {
                 }
             );
 
-            // Team member cards animation
             gsap.fromTo(
                 cardRefs.current,
                 { opacity: 0, y: 50 },
