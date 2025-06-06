@@ -16,10 +16,7 @@ export default function RootLayoutClientContent({ children }: { children: React.
   const isAdminPath = pathname.startsWith('/admin'); // Check if it's any admin path
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-    return () => clearTimeout(timer);
+    setLoading(false);
   }, []);
 
   useEffect(() => {

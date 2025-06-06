@@ -551,7 +551,7 @@ export default function AboutUsPage() {
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Technology</h3>
                                         <p className="text-[#666666] mb-4">We fund early-stage tech startups in AI, fintech, and software, addressing the challenge of scaling disruptive innovations in competitive markets.
                                             Our goal is to empower entrepreneurs to create technologies that redefine industries.</p>
-                                        <div className="text-2xl font-bold text-[#00695C]">35%</div>
+                                        <div className="text-2xl font-bold text-[#00695C]">30%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
@@ -568,7 +568,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Agriculture</h3>
                                         <p className="text-[#666666] mb-4">We invest in sustainable farming practices and food security solutions to combat unsustainable practices and global food challenges. Our focus is on building resilient, eco-friendly agricultural systems with economic benefits.</p>
-                                        <div className="text-2xl font-bold text-[#00C853]">28%</div>
+                                        <div className="text-2xl font-bold text-[#00C853]">15%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
@@ -585,7 +585,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Waste Management & Renewable Energy</h3>
                                         <p className="text-[#666666] mb-4"> We support initiatives in clean energy (solar, wind, hydropower) and sustainable waste solutions, tackling high costs and regulatory barriers to adoption. Our investments drive environmental impact and long-term financial returns.</p>
-                                        <div className="text-2xl font-bold text-[#00BCD4]">22%</div>
+                                        <div className="text-2xl font-bold text-[#00BCD4]">9%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
@@ -602,7 +602,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Equity Market</h3>
                                         <p className="text-[#666666] mb-4">We target opportunities in stock markets, leveraging data-driven insights to navigate volatility and investor sentiment. Our investments aim to capitalize on economic growth for diversified, long-term returns.</p>
-                                        <div className="text-2xl font-bold text-[#FFD54F]">15%</div>
+                                        <div className="text-2xl font-bold text-[#FFD54F]">25%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
@@ -619,7 +619,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-[#333333] mb-4">Real Estate</h3>
                                         <p className="text-[#666666] mb-4">We enable access to high-value properties through collective investment models, addressing the barrier of high costs for individual investors. Our goal is to deliver strong returns through appreciating land and property values.</p>
-                                        <div className="text-2xl font-bold text-[#00BCD4]">22%</div>
+                                        <div className="text-2xl font-bold text-[#00BCD4]">21%</div>
                                         <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                     </CardContent>
                                 </div>
@@ -655,7 +655,7 @@ export default function AboutUsPage() {
                                     </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-[#666666] mb-6 leading-relaxed">
+                                    <p className="text-[#666666] mb-6 leading-relaxed text-sm">
                                         Complete transparency in all dealings, ensuring full visibility into our investment process and
                                         decision-making framework.
                                     </p>
@@ -684,14 +684,13 @@ export default function AboutUsPage() {
                                     </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-[#666666] mb-6 leading-relaxed">
-                                        Expert team always available to provide guidance, mentorship, and strategic advice when you need it
-                                        most.
+                                    <p className="text-[#666666] mb-6 leading-relaxed text-sm">
+                                        Our expert team is always available to provide guidance, mentorship, and strategic advice when you need it most.
                                     </p>
                                     <div className="space-y-3">
                                         <div className="flex items-center space-x-3">
                                             <Clock className="h-5 w-5 text-[#00695C]" />
-                                            <span className="text-[#666666]">24/7 support availability</span>
+                                            <span className="text-[#666666]">Responsive support</span>
                                         </div>
                                         <div className="flex items-center space-x-3">
                                             <Users className="h-5 w-5 text-[#00695C]" />
@@ -709,13 +708,12 @@ export default function AboutUsPage() {
                                         <div className="bg-[#00C853] rounded-xl p-3">
                                             <Award className="h-6 w-6 text-white" />
                                         </div>
-                                        <CardTitle className="text-xl">Success Guarantee</CardTitle>
+                                        <CardTitle className="text-xl">Commitment to Progress</CardTitle>
                                     </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-[#666666] mb-6 leading-relaxed">
-                                        Confident in our approach with guaranteed measurable progress within the first 12 months of
-                                        partnership.
+                                    <p className="text-[#666666] mb-6 leading-relaxed text-sm">
+                                        Confident in our approach, we're committed to helping you achieve measurable progress within the first 12 months of our partnership.
                                     </p>
                                     <div className="space-y-3">
                                         <div className="flex items-center space-x-3">
@@ -724,7 +722,7 @@ export default function AboutUsPage() {
                                         </div>
                                         <div className="flex items-center space-x-3">
                                             <CheckCircle className="h-5 w-5 text-[#00C853]" />
-                                            <span className="text-[#666666]">Satisfaction guarantee</span>
+                                            <span className="text-[#666666]">Regular progress reviews</span>
                                         </div>
                                     </div>
                                 </CardContent>

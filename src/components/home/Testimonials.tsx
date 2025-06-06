@@ -52,7 +52,7 @@ const Testimonials: React.FC = () => {
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=EcoInnovate&font=noto', // Trimmed space
         },
         {
-            quote: 'We make investments to support the product expansion and distribution.  We Invest made it possible to enter three new markets in a single year, which was an incredible accomplishment.',
+            quote: "We Invests support for product expansion and distribution was instrumental. They made it possible for us to enter three new markets in a single year, which is an incredible accomplishment.",
             name: 'Urja Tamrakar',
             title: 'Co-Founder',
             company: 'Vatsala Aroma Products',

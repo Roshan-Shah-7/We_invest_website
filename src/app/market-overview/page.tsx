@@ -1461,9 +1461,9 @@ export default function MarketOverviewPage() {
                                         <Star className="h-6 w-6 text-emerald-600" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Curated Opportunities</h4>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Network & Ecosystem Access</h4>
                                         <p className="text-slate-600">
-                                            Access to high-growth sectors and innovative ventures for institutional-level returns
+                                            Gain unparalleled access to a thriving network of industry leaders, investors, and fellow entrepreneurs to accelerate your growth.
                                         </p>
                                     </div>
                                 </div>
@@ -1485,7 +1485,7 @@ export default function MarketOverviewPage() {
                                         <BrainCircuit className="h-6 w-6 text-emerald-600" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Deep Researcb</h4>
+                                        <h4 className="text-lg font-semibold text-slate-900 mb-2">Deep Research</h4>
                                         <p className="text-slate-600">
                                             Comprehensive market analysis and data-driven insights to identify high-potential opportunities
                                         </p>
