@@ -2,8 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/Badge"
-import { Building2, Heart, Zap, Globe } from "lucide-react"
+import { Cpu, Hospital, LandPlot, Building2, Zap, Globe } from "lucide-react"
 import { colors } from "@/data/aboutData"
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -71,14 +70,15 @@ const InvestmentSectorsSection = () => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-8 mb-16 lg:mt-32">
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16 lg:mt-32">
                     <div className="group lg:mt-10" ref={el => { cardRefs.current[0] = el; }}>
+
                         <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#00695C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <CardContent className="p-8 relative">
                                     <div className="bg-[#00695C] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Building2 className="h-8 w-8 text-white" />
+                                        <Cpu className="h-8 w-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Technology</h3>
                                     <p className="text-[#666666] mb-4">We fund early-stage tech startups in AI, fintech, and software, addressing the challenge of scaling disruptive innovations in competitive markets.
@@ -96,11 +96,28 @@ const InvestmentSectorsSection = () => {
                                 <div className="absolute inset-0 bg-[#00C853]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <CardContent className="p-8 relative">
                                     <div className="bg-[#00C853] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Heart className="h-8 w-8 text-white" />
+                                        <Hospital className="h-8 w-8 text-white" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-[#333333] mb-4">Health Care</h3>
+                                    <p className="text-[#666666] mb-4">We back innovative healthcare solutions, addressing funding gaps to improve access and outcomes through transformative technologies.</p>
+                                    <div className="text-2xl font-bold text-[#00C853]">16%</div>
+                                    <div className="text-sm text-[#666666]">Portfolio Allocation</div>
+                                </CardContent>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <div className="group lg:mt-10" ref={el => { cardRefs.current[1] = el; }}>
+                        <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white text-center overflow-hidden">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-[#00C853]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <CardContent className="p-8 relative">
+                                    <div className="border-orange-900 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <LandPlot className="h-8 w-8 text-black" />
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Agriculture/Agri-Tech</h3>
                                     <p className="text-[#666666] mb-4">We invest in sustainable farming practices and food security solutions to combat unsustainable practices and global food challenges. Our focus is on building resilient, eco-friendly agricultural systems with economic benefits.</p>
-                                    <div className="text-2xl font-bold text-[#00C853]">25%</div>
+                                    <div className="text-2xl font-bold text-orange-900">12%</div>
                                     <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                 </CardContent>
                             </div>
@@ -117,7 +134,7 @@ const InvestmentSectorsSection = () => {
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Waste Management & Renewable Energy</h3>
                                     <p className="text-[#666666] mb-4"> We support initiatives in clean energy (solar, wind, hydropower) and sustainable waste solutions, tackling high costs and regulatory barriers to adoption. Our investments drive environmental impact and long-term financial returns.</p>
-                                    <div className="text-2xl font-bold text-[#00BCD4]">18%</div>
+                                    <div className="text-2xl font-bold text-[#00BCD4]">13%</div>
                                     <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                 </CardContent>
                             </div>
@@ -134,7 +151,7 @@ const InvestmentSectorsSection = () => {
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Equity Market</h3>
                                     <p className="text-[#666666] mb-4">We target opportunities in stock markets, leveraging data-driven insights to navigate volatility and investor sentiment. Our investments aim to capitalize on economic growth for diversified, long-term returns.</p>
-                                    <div className="text-2xl font-bold text-[#FFD54F]">15%</div>
+                                    <div className="text-2xl font-bold text-[#FFD54F]">17%</div>
                                     <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                 </CardContent>
                             </div>
@@ -147,7 +164,7 @@ const InvestmentSectorsSection = () => {
                                 <div className="absolute inset-0 bg-[#00BCD4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <CardContent className="p-8 relative">
                                     <div className="bg-[#9C27B0] rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Zap className="h-8 w-8 text-white" />
+                                        <Building2 className="h-8 w-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Real Estate & Infrastructure</h3>
                                     <p className="text-[#666666] mb-4">We enable access to high-value properties through collective investment models, addressing the barrier of high costs for individual investors. Our goal is to deliver strong returns through appreciating land and property values.</p>

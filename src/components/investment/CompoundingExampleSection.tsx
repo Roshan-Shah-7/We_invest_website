@@ -28,9 +28,9 @@ const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps
             });
 
             tl.from(".compounding-title", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" })
-              .from(".compounding-paragraph", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
-              .from(".summary-card", { opacity: 0, x: -50, duration: 0.8, ease: "power3.out" }, "-=0.3")
-              .from(".breakdown-card", { opacity: 0, x: 50, duration: 0.8, ease: "power3.out" }, "-=0.5");
+                .from(".compounding-paragraph", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, "-=0.3")
+                .from(".summary-card", { opacity: 0, x: -50, duration: 0.8, ease: "power3.out" }, "-=0.3")
+                .from(".breakdown-card", { opacity: 0, x: 50, duration: 0.8, ease: "power3.out" }, "-=0.5");
 
         }, sectionRef);
 
@@ -42,6 +42,10 @@ const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps
             <div className="container mx-auto max-w-6xl">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 compounding-title">The Power of Compounding</h2>
+                    <blockquote className="text-md text-slate-600 italic mb-4 mt-4">
+                        "Compound interest is the eighth wonder of the world."
+                        <footer className="mt-2 not-italic font-semibold">— Albert Einstein</footer>
+                    </blockquote>
                     <p className="text-lg text-slate-600 max-w-3xl mx-auto compounding-paragraph">
                         See how reinvesting earnings can exponentially grow your wealth over time
                     </p>
@@ -106,7 +110,7 @@ const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps
 
                         <div className="p-6">
                             <p className="text-slate-700 mb-6">
-                                Mr. Shrestha invests NPR 10,00,000 at a 5% annual interest rate, compounded annually, for 15 years.
+                                Mr. Shah invests NPR 10,00,000 at a 5% annual interest rate, compounded annually, for 15 years.
                                 The power of compounding is demonstrated through the increasing interest earned each year:
                             </p>
 
@@ -189,7 +193,7 @@ const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps
                                 <Lightbulb className="h-6 w-6 text-emerald-600 mr-3 flex-shrink-0" />
                                 <p className="text-sm text-slate-700">
                                     <span className="font-semibold">Financial Insight:</span> The power of compounding accelerates over time.
-                                    By year 15, Mr. Shrestha earns almost twice as much interest annually as he did in the first year,
+                                    By year 15, Mr. Shah earns almost twice as much interest annually as he did in the first year,
                                     without investing any additional capital.
                                 </p>
                             </div>
@@ -197,7 +201,7 @@ const CompoundingExampleSection = ({ className }: CompoundingExampleSectionProps
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
     )
 }
 

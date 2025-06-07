@@ -99,7 +99,7 @@ const PartnershipBenefitsSection = ({ className }: PartnershipBenefitsSectionPro
                                 </div>
                                 <div className="text-center">
                                     <div className="text-3xl font-bold text-purple-600 mb-2">
-                                        <AnimatedCounter end={3} prefix="Rs " suffix="CR+" />
+                                        <AnimatedCounter end={2.6} prefix="Rs " suffix="CR+" />
                                     </div>
                                     <div className="text-sm text-slate-600">Capital Deployed</div>
                                 </div>

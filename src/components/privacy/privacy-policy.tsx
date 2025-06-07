@@ -286,7 +286,11 @@ export default function PrivacyPolicy() {
                                     <Phone className="w-8 h-8 text-brand-green mx-auto mb-3" />
                                     <h4 className="font-semibold text-gray-900 mb-2">Phone</h4>
                                     <p className="text-gray-600 text-sm mb-3">Business hours support</p>
-                                    <p className="text-brand-green font-medium">{contactDetails.phone}</p>
+                                    {contactDetails.phone.map((number, index) => (
+                                        <p key={index} className="text-brand-green font-medium">
+                                            {number}
+                                        </p>
+                                    ))}
                                 </div>
 
                                 <div className="bg-gray-50 rounded-xl p-6 text-center">
@@ -294,42 +298,6 @@ export default function PrivacyPolicy() {
                                     <h4 className="font-semibold text-gray-900 mb-2">Address</h4>
                                     <p className="text-gray-600 text-sm mb-3">{contactDetails.company}</p>
                                     <p className="text-brand-green font-medium">{contactDetails.address}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Footer */}
-                        <div className="mt-8 bg-brand_teal rounded-xl p-8 text-white text-center">
-                            <h3 className="text-xl font-semibold mb-4">Regulatory Compliance</h3>
-                            <p className="text-gray-200 leading-relaxed max-w-2xl mx-auto mb-6">
-                                We Invest Private Limited operates under the regulatory oversight of the Securities Board of Nepal
-                                (SEBON) and Nepal Rastra Bank. We are committed to maintaining the highest standards of compliance with
-                                all applicable laws and regulations in Nepal.
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                                <div>
-                                    <h4 className="font-semibold text-white mb-2">Regulatory Bodies</h4>
-                                    <ul className="text-gray-300 space-y-1">
-                                        {privacyPolicyMetadata.regulatoryBodies.map((body: string) => (
-                                            <li key={body}>{body}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold text-white mb-2">Applicable Laws</h4>
-                                    <ul className="text-gray-300 space-y-1">
-                                        {privacyPolicyMetadata.applicableLaws.map((law: string) => (
-                                            <li key={law}>{law}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold text-white mb-2">Document Info</h4>
-                                    <ul className="text-gray-300 space-y-1">
-                                        <li>Version: {privacyPolicyMetadata.version}</li>
-                                        <li>ID: {privacyPolicyMetadata.documentId}</li>
-                                        <li>Jurisdiction: {privacyPolicyMetadata.jurisdiction}</li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>

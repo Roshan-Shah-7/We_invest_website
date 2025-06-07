@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useEffect, useRef, useLayoutEffect } from 'react';
 import { Lightbulb, Building, Handshake, Eye } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface InvestmentPhilosophyItem {
     icon: React.ReactNode;
@@ -12,66 +14,7 @@ interface InvestmentPhilosophyItem {
 }
 
 const WhyUs: React.FC = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-    const mainTitleRef = useRef<HTMLHeadingElement>(null);
-    const introParagraphRef = useRef<HTMLParagraphElement>(null);
-    const philosophyTitleRef = useRef<HTMLHeadingElement>(null);
-    const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
-
-    useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none none',
-            },
-        });
-
-        // Animate main title and intro paragraph
-        tl.fromTo(
-            [mainTitleRef.current, introParagraphRef.current],
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
-        );
-
-        // Animate "Our Investment Philosophy" title
-        tl.fromTo(
-            philosophyTitleRef.current,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
-            "-=0.3" // Start slightly before previous animation ends
-        );
-
-        // Animate philosophy items (cards)
-        itemsRef.current.forEach((item, index) => {
-            if (item) {
-                gsap.fromTo(
-                    item,
-                    { opacity: 0, y: 50, scale: 0.9 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        delay: index * 0.1, // Stagger the animation
-                        scrollTrigger: {
-                            trigger: item,
-                            start: 'top 90%',
-                            toggleActions: 'play none none none',
-                        },
-                    }
-                );
-            }
-        });
-
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     const philosophyItems: InvestmentPhilosophyItem[] = [
         {
@@ -96,23 +39,79 @@ const WhyUs: React.FC = () => {
         },
     ];
 
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const items = containerRef.current.querySelectorAll('.philosophy-item');
+
+        gsap.fromTo(
+            items,
+            {
+                opacity: 0,
+                y: 40,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top 95%', // Adjusted for earlier trigger
+                    toggleActions: "play reverse play reverse", // Added for reverse animation
+                },
+            }
+        );
+    }, []);
+
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 95%", // Adjusted for earlier trigger
+                end: "bottom 20%",
+                scrub: 1,
+                toggleActions: "play reverse play reverse", // Added for reverse animation
+            }
+        });
+
+        tl.fromTo(containerRef.current?.querySelector('h2'),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        )
+        .fromTo(containerRef.current?.querySelector('.text-lg.text-center'),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+            "<0.2"
+        )
+        .fromTo(containerRef.current?.querySelector('h3'),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+            "<0.2"
+        );
+
+        return () => {
+            tl.kill();
+        };
+    }, []);
+
     return (
-        <section
-            ref={sectionRef}
-            className="relative py-20 px-4 md:px-8 lg:px-16"
-        >
-            <div className="max-w-6xl mx-auto">
-                <h2 ref={mainTitleRef} className="text-4xl md:text-5xl font-bold text-center text-brand_text_primary mb-12">
-                    Why <span className="text-brand_teal">We</span> Invest ?
+        <section className="relative py-20 px-4 md:px-8 lg:px-16">
+            <div className="max-w-6xl mx-auto" ref={containerRef}>
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-brand_text_primary mb-12">
+                    Why <span className="text-brand_teal">We</span> Invest?
                 </h2>
 
-                <p ref={introParagraphRef} className="text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed text-brand_text_secondary">
                     At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world.
                     Our mission is to fuel the dreams of visionaries by providing resources, mentorship,
                     and capital to turn bold concepts into thriving businesses.
                 </p>
 
-                <h3 ref={philosophyTitleRef} className="text-3xl font-semibold text-brand_text_primary mb-10 text-center">
+                <h3 className="text-3xl font-semibold text-brand_text_primary mb-10 text-center">
                     Our Investment Philosophy
                 </h3>
 
@@ -120,18 +119,11 @@ const WhyUs: React.FC = () => {
                     {philosophyItems.map((item, index) => (
                         <div
                             key={index}
-                            ref={(el: HTMLDivElement | null) => {
-                                itemsRef.current[index] = el;
-                            }}
-                            className="p-6 bg-white border border-brand_teal/10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 ease-in-out text-center"
+                            className="philosophy-item p-6 bg-white border border-brand_teal/10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 ease-in-out text-center"
                         >
                             <div className="flex justify-center">{item.icon}</div>
-                            <h4 className="text-lg font-semibold text-brand_teal mt-4 mb-2">
-                                {item.title}
-                            </h4>
-                            <p className="text-sm text-brand_text_secondary leading-relaxed">
-                                {item.text}
-                            </p>
+                            <h4 className="text-lg font-semibold text-brand_teal mt-4 mb-2">{item.title}</h4>
+                            <p className="text-sm text-brand_text_secondary leading-relaxed">{item.text}</p>
                         </div>
                     ))}
                 </div>

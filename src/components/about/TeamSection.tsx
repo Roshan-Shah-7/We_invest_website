@@ -75,15 +75,14 @@ const TeamSection = () => {
                         <div
                             key={index}
                             ref={el => { cardRefs.current[index] = el; }}
-                            className={`group ${index === 1 || index === 4 ? "lg:mt-10" : ""} ${index === 2 || index === 5 ? "lg:mt-20" : ""}`}
+                            className="group"
                         >
-                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                            <Card className="border shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden h-full">
                                 <div className="relative">
                                     <div className={`absolute inset-0 bg-gradient-to-br from-[${member.bgColorFrom}] to-[${member.bgColorTo}] opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                                     <CardContent className="p-8 text-center relative">
                                         <div className="relative mb-6">
                                             <Avatar className="w-24 h-24 mx-auto border-4 border-white shadow-lg">
-                                                {/* Removed AvatarImage to always show initials */}
                                                 <AvatarFallback className={`bg-gradient-to-br from-[${member.bgColorFrom}] to-[${member.bgColorTo}] text-brand_teal text-xl font-bold flex items-center justify-center`}>
                                                     {member.avatarFallback}
                                                 </AvatarFallback>

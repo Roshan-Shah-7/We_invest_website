@@ -131,7 +131,7 @@ const OurInvestmentProgramsSection = ({ className }: OurInvestmentProgramsSectio
                                 <div>
                                     <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                                         <div className="w-3 h-3 bg-brand-dark-green rounded-full mr-2"></div>
-                                        Roadmap
+                                        Benefits
                                     </h4>
                                     <ul className="space-y-2">
                                         {selectedProgram.benefits.map((benefit, i) => (

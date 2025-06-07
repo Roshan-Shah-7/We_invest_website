@@ -2,12 +2,45 @@
 
 import { useRef, useLayoutEffect } from "react"
 import { Zap } from "lucide-react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 export default function Portfolio() {
-    const sectionRef = useRef<HTMLElement>(null)
-    const headerRef = useRef<HTMLDivElement>(null)
-    const messageRef = useRef<HTMLDivElement>(null)
-    // Removed floatingElementsRef as it was only for GSAP animations
+    const sectionRef = useRef(null);
+    const q = gsap.utils.selector(sectionRef);
+
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 95%",
+                end: "bottom 20%",
+                scrub: 1,
+                toggleActions: "play reverse play reverse",
+            }
+        });
+
+        tl.fromTo(q(".floating-element"),
+            { opacity: 0, scale: 0 },
+            { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)", stagger: 0.2 }
+        )
+        .fromTo(q(".text-center > *"),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
+            "<0.5"
+        )
+        .fromTo(q(".text-lg > p"),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
+            "<0.2"
+        );
+
+        return () => {
+            tl.kill();
+        };
+    }, []);
 
     return (
         <section ref={sectionRef} className="relative py-20 px-4 overflow-hidden">
@@ -22,7 +55,7 @@ export default function Portfolio() {
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-20">
+                <div className="text-center mb-20">
                     <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-[#00695C]/10 rounded-full">
                         <Zap className="w-4 h-4 text-[#00695C]" />
                         <span className="text-[#00695C] font-semibold text-sm uppercase tracking-wide">Portfolio</span>
@@ -36,7 +69,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Polite message instead of cards */}
-                <div ref={messageRef} className="text-center text-gray-700 text-lg">
+                <div className="text-center text-gray-700 text-lg">
                     <p>We are currently working on exciting new projects to showcase our creative solutions.</p>
                     <p>Stay tuned for updates!</p>
                 </div>

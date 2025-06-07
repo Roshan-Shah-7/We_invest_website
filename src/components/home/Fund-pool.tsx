@@ -1,14 +1,15 @@
+
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+"use client"
+
+import { useEffect, useRef, useState, useLayoutEffect } from "react"
 import Image from "next/image"
 import {
     TrendingUp,
     TrendingDown,
     Shield,
-    DollarSign,
     BarChart3,
-    ArrowRight,
     Star,
     AlertTriangle,
     CheckCircle,
@@ -17,7 +18,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/Badge"
 import { Card, CardContent } from "@/components/ui/card"
 import type { FundPool } from "@/data/fundPoolsData"
-import { ExtendedFundPool, getExtendedFundData } from "@/data/extendedFundData"
+import { getExtendedFundData } from "@/data/extendedFundData"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface FundPoolCardProps {
     fund: FundPool
@@ -26,11 +31,29 @@ interface FundPoolCardProps {
 
 const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
     const cardRef = useRef<HTMLDivElement>(null)
-    const [isHovered, setIsHovered] = useState(false)
     const extendedFund = getExtendedFundData(fund)
 
-    // Removed GSAP useEffect for animations and event listeners
-    // The hover effects will now rely solely on Tailwind's hover classes on the Card component.
+    // Keep existing card animation, but adjust start slightly if needed
+    useEffect(() => {
+        if (cardRef.current) {
+            gsap.fromTo(
+                cardRef.current,
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: cardRef.current,
+                        start: "top 95%", // Adjusted for earlier trigger
+                        toggleActions: "play reverse play reverse", // Added for reverse animation
+                    },
+                }
+            )
+        }
+    }, [])
 
     const getRiskColor = (level: string) => {
         switch (level) {
@@ -62,10 +85,7 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
         <Card
             ref={cardRef}
             className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border-0"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Header with Image and Basic Info */}
             <div className="relative h-48 overflow-hidden">
                 <Image
                     src={fund.image.src || "/placeholder.svg?height=200&width=400"}
@@ -81,12 +101,10 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                 </div>
                 <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-xl font-bold text-white mb-1">{fund.title}</h3>
-                    {/* <p className="text-white/90 text-sm">{extendedFund.currentValue} AUM</p> */}
                 </div>
             </div>
 
             <CardContent className="p-6 space-y-6">
-                {/* Performance Metrics */}
                 <div className="grid grid-cols-3 gap-4">
                     <div className="text-center">
                         <div className="flex items-center justify-center mb-1">
@@ -118,13 +136,6 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                     </div>
                 </div>
 
-                {/* Fund Description */}
-                <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Investment Focus</h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">{fund.focus}</p>
-                </div>
-
-                {/* Investment Details */}
                 <div className="bg-gray-50 rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-gray-700">Min. Investment</span>
@@ -136,7 +147,6 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                     </div>
                 </div>
 
-                {/* Risk Assessment */}
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                         <span className="text-sm font-medium text-gray-700">Risk Level</span>
@@ -155,7 +165,6 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                     </div>
                 </div>
 
-                {/* Call to Action */}
                 <div className="pt-4 border-t border-gray-100">
                     <p className="text-xs text-gray-500 text-center mt-2">
                         Start investing with as little as {extendedFund.minimumInvestment}
@@ -177,32 +186,63 @@ export default function FundPoolComponent({
     title = "Investment Funds",
     subtitle = "Discover our curated selection of high-performance investment opportunities",
 }: FundPoolComponentProps) {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const initialDisplayCount = 6; // Number of cards to show initially
-    const loadMoreCount = 4; // Number of cards to load each time
-    const [visibleFundsCount, setVisibleFundsCount] = useState(initialDisplayCount);
+    const initialDisplayCount = 6
+    const loadMoreCount = 4
+    const [visibleFundsCount, setVisibleFundsCount] = useState(initialDisplayCount)
+    const sectionRef = useRef(null);
+    const q = gsap.utils.selector(sectionRef);
 
-    // Removed GSAP useEffect for header animation
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 95%",
+                end: "bottom 20%",
+                scrub: 1,
+                toggleActions: "play reverse play reverse",
+            }
+        });
+
+        tl.fromTo(q(".text-center > h2, .text-center > p"),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" }
+        );
+
+        return () => {
+            tl.kill();
+        };
+    }, []);
 
     const handleLoadMore = () => {
-        setVisibleFundsCount(prevCount => Math.min(prevCount + loadMoreCount, funds.length));
-    };
+        setVisibleFundsCount(prev => Math.min(prev + loadMoreCount, funds.length))
+    }
 
-    const allFundsLoaded = visibleFundsCount >= funds.length;
+    const allFundsLoaded = visibleFundsCount >= funds.length
+    const visibleFunds = funds.slice(0, visibleFundsCount)
+    const centerLast = visibleFunds.length % 3 === 1
 
     return (
-        <section ref={containerRef} className="py-16 bg-gradient-to-br from-gray-50 to-white">
+        <section ref={sectionRef} className="py-16 bg-gray-100 w-full">
             <div className="container mx-auto px-4">
-                {/* Header */}
-                <div className="header-content text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-brand_teal mb-4">{title}</h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
                 </div>
 
-                {/* Fund Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {funds.slice(0, visibleFundsCount).map((fund, index) => (
-                        <FundPoolCard key={fund.number} fund={fund} index={index} />
+                    {visibleFunds.map((fund, index) => (
+                        <div
+                            key={fund.number}
+                            className={
+                                centerLast && index === visibleFunds.length - 1
+                                    ? "md:col-span-2 lg:col-span-1 lg:col-start-2"
+                                    : ""
+                            }
+                        >
+                            <FundPoolCard fund={fund} index={index} />
+                        </div>
                     ))}
                 </div>
 

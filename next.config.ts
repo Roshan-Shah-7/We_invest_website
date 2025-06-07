@@ -1,9 +1,5 @@
 import type { NextConfig } from "next";
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -22,24 +18,7 @@ const nextConfig: NextConfig = {
     ],
     dangerouslyAllowSVG: true,
   },
-  webpack: (config, { isServer }) => {
-    // Add a rule for .mp4 files
-    config.module.rules.push({
-      test: /\.mp4$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next/static/media/',
-            outputPath: 'static/media/',
-            name: '[name].[hash].[ext]',
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
+  turbopack: {},
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default nextConfig;

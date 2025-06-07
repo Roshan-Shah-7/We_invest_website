@@ -50,14 +50,14 @@ const HeroSection = () => {
                         <span className="text-white text-sm font-medium">About We Invest</span>
                     </div>
 
-                    <h1 ref={titleRef} className="text-5xl md:text-7xl font-bold text-white mb-8 leading-3">
+                    <h1 ref={titleRef} className="text-5xl md:text-7xl font-bold text-white mb-8">
                         Where Innovation
                         <span className="block text-white mt-2">
                             Fuels Growth
                         </span>
                     </h1>
 
-                    <p ref={subtitleRef} className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-12 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-full p-4 py-6">
+                    <p ref={subtitleRef} className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-12 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-3xl p-4 py-6">
                         We are more than an investment firm; we are a dynamic team of visionaries committed to empowering the next
                         generation of entrepreneurs through strategic partnerships and innovative solutions.
                     </p>

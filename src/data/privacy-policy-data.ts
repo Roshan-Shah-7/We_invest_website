@@ -20,7 +20,7 @@ export const effectiveDate: string = "June 1, 2025";
 
 export const contactDetails = {
     email: "investwe3@gmail.com",
-    phone: "+9779847690076",
+    phone: ["+977-9851408600", "+977-9828240210"],
     company: "We Invest Global Pvt. Ltd.",
     address: "Bishalnagar, Kathmandu, Nepal",
 };

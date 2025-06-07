@@ -1,6 +1,6 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface Video {
@@ -15,10 +15,12 @@ interface VideoGalleryProps {
 
 const VideoGallery = ({ videos }: VideoGalleryProps) => {
     const [activeVideo, setActiveVideo] = useState<string | null>(null);
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const dividerRef = useRef<HTMLDivElement>(null);
-    const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const sectionRef = useRef(null);
+    const q = gsap.utils.selector(sectionRef);
+
+    const toggleVideo = (id: string) => {
+        setActiveVideo(activeVideo === id ? null : id);
+    };
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -26,66 +28,43 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none none',
-            },
-        });
-
-        // Animate title and divider
-        tl.fromTo(
-            [titleRef.current, dividerRef.current],
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
-        );
-
-        // Animate video cards
-        videoRefs.current.forEach((card, index) => {
-            if (card) {
-                gsap.fromTo(
-                    card,
-                    { opacity: 0, y: 50, scale: 0.95 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 90%',
-                            toggleActions: 'play none none none',
-                        },
-                    }
-                );
+                start: "top 95%",
+                end: "bottom 20%",
+                scrub: 1,
+                toggleActions: "play reverse play reverse",
             }
         });
 
+        tl.fromTo(q(".text-center > *"),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" }
+        )
+        .fromTo(q(".max-w-6xl > div"),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
+            "<0.5"
+        );
+
         return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            tl.kill();
         };
     }, []);
 
-    const toggleVideo = (id: string) => {
-        setActiveVideo(activeVideo === id ? null : id);
-    };
-
     return (
-        <div ref={sectionRef} className="mx-auto py-12 px-4 bg-[#F5F7FA] w-full">
+        <div ref={sectionRef} className="mx-auto py-12 px-4 bg-gray-100 w-full">
             <div className="text-center mb-12">
-                <h1 ref={titleRef} className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
+                <h1 className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
                     Real-Time NEPSE Analysis Learn From The Best
                     <br />
                     Watch the Recorded Session Now
                 </h1>
-                <div ref={dividerRef} className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
+                <div className="w-20 h-1 mx-auto bg-[#00695C] rounded-full"></div>
             </div>
 
             <div className="max-w-6xl m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {videos.map((video, index) => (
                     <div
                         key={video.id}
-                        ref={(el: HTMLDivElement | null) => { videoRefs.current[index] = el; }}
                         className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
                     >
                         <div className="relative cursor-pointer" onClick={() => toggleVideo(video.id)}>

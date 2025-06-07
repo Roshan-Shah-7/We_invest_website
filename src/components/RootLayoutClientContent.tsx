@@ -15,12 +15,6 @@ export default function RootLayoutClientContent({ children }: { children: React.
   const pathname = usePathname(); // Get current pathname
   const isAdminPath = pathname.startsWith('/admin'); // Check if it's any admin path
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,11 +33,18 @@ export default function RootLayoutClientContent({ children }: { children: React.
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleLoaderAnimationComplete = () => {
+    setLoading(false);
+  };
+
   return (
     <SessionProvider> {/* Wrap with SessionProvider */}
-      {/* {loading && <Loader />} */}
-      {/* {!loading && (
-      )} */}
+      {loading && (
+        <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+          <Loader onAnimationComplete={handleLoaderAnimationComplete} />
+        </div>
+      )}
+      {!loading && (
         <div>
           <AppClientSetup />
           {!isAdminPath && <Header />} {/* Conditionally render Header */}
@@ -63,6 +64,7 @@ export default function RootLayoutClientContent({ children }: { children: React.
             </button>
           )}
         </div>
+      )}
     </SessionProvider>
   );
 }
