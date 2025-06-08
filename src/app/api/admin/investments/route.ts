@@ -53,7 +53,13 @@ export async function GET(req: Request) {
           name: obj.contactPerson, // Map contactPerson to name
           email: obj.email,
           amount: obj.investmentAmount,
-          companyName: obj.companyName, // Already companyName
+          companyName: obj.companyName,
+          industry: obj.industry,
+          businessDescription: obj.message || obj.businessPlan, // Use message or businessPlan for description
+          yearsInOperation: obj.yearsInOperation,
+          annualRevenue: obj.annualRevenue,
+          employees: obj.employees,
+          reasonForInvestment: obj.reasonForInvestment,
           createdAt: obj.createdAt,
         };
       }),

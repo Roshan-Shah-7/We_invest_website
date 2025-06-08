@@ -142,7 +142,7 @@ export default function PrivacyPolicy() {
                     <div className="flex items-center justify-center text-yellow-800">
                         <AlertTriangle className="w-5 h-5 mr-2" />
                         <span className="text-sm font-medium">
-                            Registered Investment Company In The Process of Obtaining License from SEBOM
+                            Registered Investment Company In The Process of Obtaining License from SEBON
                         </span>
                     </div>
                 </div>

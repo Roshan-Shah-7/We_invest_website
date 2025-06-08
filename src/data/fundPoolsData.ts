@@ -108,17 +108,6 @@ export const fundPoolsData: FundPool[] = [
   },
   {
     number: 8,
-    title: 'Mobility & Transport Fund',
-    problem: 'Inefficient transportation systems and environmental concerns hinder sustainable mobility solutions.',
-    focus: 'Supporting startups revolutionising transportation, such as electric vehicles and smart logistics.',
-    goal: 'Drive innovation for efficient, sustainable mobility solutions that transform how people and goods move.',
-    color: '#2196F3',
-    image: mobilityTransportImage,
-    category: 'Transportation',
-    investmentRange: 'Rs.500K - Rs.2.5cr',
-  },
-  {
-    number: 9,
     title: 'Real Estate Collective Fund',
     problem: 'Individual investors often cannot afford prime land or properties due to high market values.',
     focus: 'Pooling capital from like-minded investors to collectively invest in high-value real estate opportunities.',
@@ -129,7 +118,7 @@ export const fundPoolsData: FundPool[] = [
     investmentRange: 'Rs.400K - Rs.2cr',
   },
   {
-    number: 10,
+    number: 9,
     title: 'Venture Capital Fund',
     problem: 'Startups with flat or declining revenue struggle to regain momentum due to operational or strategic challenges.',
     focus: 'Revitalising underperforming startups with operational and strategic support.',

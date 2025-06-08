@@ -36,6 +36,8 @@ export async function POST(req: Request) {
           phone,
           investmentAmount: parseFloat(investmentAmount),
           occupation: rest.occupation as string,
+          sourceOfFunds: rest.sourceOfFunds as string,
+          investmentExperience: rest.investmentExperience as string,
           message,
           createdAt: new Date(),
         });
@@ -49,7 +51,8 @@ export async function POST(req: Request) {
           phone,
           investmentAmount: parseFloat(investmentAmount),
           pitchDeck: rest.pitchDeck as string,
-          businessPlan: rest.businessPlan as string,
+          startupStage: rest.startupStage as string,
+          teamSize: parseFloat(rest.teamSize as string), // Convert to number
           message,
           createdAt: new Date(),
         });
@@ -63,7 +66,8 @@ export async function POST(req: Request) {
           phone,
           investmentAmount: parseFloat(investmentAmount),
           businessPlan: rest.businessPlan as string,
-          pitchDeck: rest.pitchDeck as string,
+          yearsInOperation: parseFloat(rest.yearsInOperation as string), // Convert to number
+          annualRevenue: parseFloat(rest.annualRevenue as string), // Convert to number
           message,
           createdAt: new Date(),
         });

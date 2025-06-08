@@ -55,8 +55,8 @@ export const investmentPrograms: Program[] = [
         title: 'Project-Wise Funding (Equity-Based)',
         overview: 'The Project-Wise Funding programme offers targeted equity investments in specific projects within established or emerging businesses. This programme is designed for investors seeking direct involvement in high-potential initiatives with clear milestones and outcomes.',
         keyFeatures: [
-            'Project-Depending Investments: Funding allocated to individual projects, such as product launches, infrastructure development, or market expansion, with investments starting at Rs.50,000.',
-            'Equity Based On The Project: Investors receive equity in the project or parent company, typically ranging from 5% and above,  depending on the project and also depending on the investment can range from few lakhs to even crores..',
+            'Project Based Investments: Funding allocated to individual projects, such as product launches, infrastructure development, or market expansion.',
+            'Equity Based Investments: Investors receive equity in the project or parent company, depending on the project and also depending on the investment can range from few lakhs to even crores..',
             'Milestone-Based Funding: Capital disbursed in tranches tied to project milestones, ensuring accountability and progress.',
             'Sector Focus: Technology, real estate, agriculture, and renewable energy projects with strong ROI potential.',
         ],

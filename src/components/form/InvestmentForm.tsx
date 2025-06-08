@@ -71,10 +71,11 @@ export default function InvestmentForm({ formType }: InvestmentFormProps) {
   const validateForm = (): boolean => {
     const errors: Partial<Record<keyof FormData, string>> = {};
     let isValid = true;
+    const minLength = 2; // Minimum length for text fields
 
     // Common fields validation
-    if (!formData.fullName.trim()) {
-      errors.fullName = 'Full Name is required.';
+    if (!formData.fullName.trim() || formData.fullName.trim().length < minLength) {
+      errors.fullName = `Full Name is required and must be at least ${minLength} characters.`;
       isValid = false;
     }
     if (!formData.email.trim()) {
@@ -87,48 +88,60 @@ export default function InvestmentForm({ formType }: InvestmentFormProps) {
     if (!formData.phone.trim()) {
       errors.phone = 'Phone Number is required.';
       isValid = false;
-    } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(formData.phone)) { // Basic phone number regex
+    } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(formData.phone)) {
       errors.phone = 'Invalid phone number format.';
       isValid = false;
     }
-    if (!formData.investmentAmount.trim() || parseFloat(formData.investmentAmount) <= 0) {
+    const investmentAmountNum = parseFloat(formData.investmentAmount);
+    if (isNaN(investmentAmountNum) || investmentAmountNum <= 0) {
       errors.investmentAmount = 'Investment Amount must be a positive number.';
       isValid = false;
     }
 
     // Type-specific fields validation
     if (formType === 'individual') {
-      if (!formData.occupation?.trim()) {
-        errors.occupation = 'Occupation is required.';
+      if (!formData.occupation?.trim() || formData.occupation.trim().length < minLength) {
+        errors.occupation = `Occupation is required and must be at least ${minLength} characters.`;
+        isValid = false;
+      }
+      if (formData.sourceOfFunds && formData.sourceOfFunds.trim().length < minLength) {
+        errors.sourceOfFunds = `Source of Funds must be at least ${minLength} characters if provided.`;
         isValid = false;
       }
     } else if (formType === 'startup') {
-      if (!formData.companyName?.trim()) {
-        errors.companyName = 'Startup Name is required.';
+      if (!formData.companyName?.trim() || formData.companyName.trim().length < minLength) {
+        errors.companyName = `Startup Name is required and must be at least ${minLength} characters.`;
         isValid = false;
       }
-      if (!formData.industry?.trim()) {
-        errors.industry = 'Industry is required.';
+      if (!formData.industry?.trim() || formData.industry.trim().length < minLength) {
+        errors.industry = `Industry is required and must be at least ${minLength} characters.`;
         isValid = false;
       }
-      if (!formData.startupStage?.trim()) {
+      if (!formData.startupStage?.trim()) { // Select field, just check if empty
         errors.startupStage = 'Startup Stage is required.';
         isValid = false;
       }
+      const teamSizeNum = parseFloat(formData.teamSize || '');
+      if (formData.teamSize && (isNaN(teamSizeNum) || !Number.isInteger(teamSizeNum) || teamSizeNum <= 0)) {
+        errors.teamSize = 'Team Size must be a positive whole number.';
+        isValid = false;
+      }
     } else if (formType === 'business') {
-      if (!formData.companyName?.trim()) {
-        errors.companyName = 'Company Name is required.';
+      if (!formData.companyName?.trim() || formData.companyName.trim().length < minLength) {
+        errors.companyName = `Company Name is required and must be at least ${minLength} characters.`;
         isValid = false;
       }
-      if (!formData.industry?.trim()) {
-        errors.industry = 'Industry is required.';
+      if (!formData.industry?.trim() || formData.industry.trim().length < minLength) {
+        errors.industry = `Industry is required and must be at least ${minLength} characters.`;
         isValid = false;
       }
-      if (!formData.yearsInOperation?.trim() || parseFloat(formData.yearsInOperation) <= 0) {
-        errors.yearsInOperation = 'Years in Operation must be a positive number.';
+      const yearsInOperationNum = parseFloat(formData.yearsInOperation || '');
+      if (isNaN(yearsInOperationNum) || !Number.isInteger(yearsInOperationNum) || yearsInOperationNum <= 0) {
+        errors.yearsInOperation = 'Years in Operation must be a positive whole number.';
         isValid = false;
       }
-      if (!formData.annualRevenue?.trim() || parseFloat(formData.annualRevenue) <= 0) {
+      const annualRevenueNum = parseFloat(formData.annualRevenue || '');
+      if (isNaN(annualRevenueNum) || annualRevenueNum <= 0) {
         errors.annualRevenue = 'Annual Revenue must be a positive number.';
         isValid = false;
       }
@@ -155,12 +168,22 @@ export default function InvestmentForm({ formType }: InvestmentFormProps) {
     const { name, files } = e.target;
     if (files && files.length > 0) {
       const file = files[0];
+      const maxFileSize = 5 * 1024 * 1024; // 5 MB
+
       if (file.type !== "application/pdf" && (name === "pitchDeck" || name === "businessPlan")) {
         setFileError("Please upload a PDF file.");
         setFormData(prev => ({ ...prev, [name]: null }));
         e.target.value = ""; // Clear the file input
         return;
       }
+
+      if (file.size > maxFileSize) {
+        setFileError(`File size exceeds ${maxFileSize / (1024 * 1024)}MB limit.`);
+        setFormData(prev => ({ ...prev, [name]: null }));
+        e.target.value = ""; // Clear the file input
+        return;
+      }
+
       setFileError(null);
       setFormData(prev => ({ ...prev, [name]: file }));
     } else {

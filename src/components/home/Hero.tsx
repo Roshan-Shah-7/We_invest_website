@@ -102,12 +102,15 @@ const HeroSection: React.FC = () => {
 
     return (
         <>
-            <section className="hero-section-container mt-12 relative flex
+            <section className="hero-section-container relative flex
         flex-col items-center justify-start overflow-hidden text-black pt-24 sm:pt-32 lg:pt-20 px-4 sm:px-6">
 
                 {/* Hero Section */}
                 <div className="relative z-10 w-full max-w-7xl flex flex-col lg:flex-row items-start justify-between">
                     <div className="w-full lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
+                        <div className="slogan mb-2">
+                            <h2 className='italic'>"Beyond returns. Building legacies"</h2>
+                        </div>
                         <AnimatedHeadline
                             text="Grow Your Startup with"
                             style="text-slate-700 text-3xl sm:text-4xl"
@@ -154,7 +157,7 @@ const HeroSection: React.FC = () => {
             </section>
 
             {/* Video Section */}
-            <section className="w-[95%] mt-16 mb-16 relative"> {/* Added relative for positioning button */}
+            <section className="w-full mt-16 mb-16 relative mx-auto">
                 <video
                     ref={videoRef} // Add ref to video
                     src="/hero_video.mp4"
@@ -162,8 +165,8 @@ const HeroSection: React.FC = () => {
                     loop
                     muted={isMuted} // Use state for muted
                     playsInline
-                    preload="none"
-                    className="rounded-[2rem] w-full h-[80vh] object-cover"
+                    preload="metadata"
+                    className="m-auto"
                 ></video>
                 <button
                     onClick={toggleMute}

@@ -6,6 +6,8 @@ export interface IIndividualInvestment {
   phone: string;
   investmentAmount: number;
   occupation: string;
+  sourceOfFunds?: string;
+  investmentExperience?: string;
   message: string;
   createdAt: Date;
 }
@@ -16,6 +18,8 @@ const IndividualInvestmentSchema: Schema = new Schema({
   phone: { type: String, required: true },
   investmentAmount: { type: Number, required: true },
   occupation: { type: String, required: true },
+  sourceOfFunds: { type: String },
+  investmentExperience: { type: String },
   message: { type: String },
   createdAt: { type: Date, default: Date.now },
 });

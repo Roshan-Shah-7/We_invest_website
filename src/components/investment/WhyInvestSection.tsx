@@ -48,7 +48,7 @@ const WhyInvestSection = ({ className }: WhyInvestSectionProps) => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 mb-16">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
                     <Card className="border-emerald-200 hover:shadow-lg transition-shadow why-invest-card">
                         <CardContent className="p-6">
                             <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
@@ -88,7 +88,7 @@ const WhyInvestSection = ({ className }: WhyInvestSectionProps) => {
                         </CardContent>
                     </Card>
 
-                    <Card className="border-emerald-200 hover:shadow-lg transition-shadow why-invest-card">
+                    {/* <Card className="border-emerald-200 hover:shadow-lg transition-shadow why-invest-card">
                         <CardContent className="p-6">
                             <div className="bg-emerald-100 rounded-full p-3 w-12 h-12 mb-4 flex items-center justify-center">
                                 <BarChart3 className="h-6 w-6 text-emerald-600" />
@@ -99,7 +99,7 @@ const WhyInvestSection = ({ className }: WhyInvestSectionProps) => {
                                 returns.
                             </p>
                         </CardContent>
-                    </Card>
+                    </Card> */}
 
                     <Card className="border-emerald-200 hover:shadow-lg transition-shadow why-invest-card">
                         <CardContent className="p-6">

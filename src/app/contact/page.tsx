@@ -19,9 +19,10 @@ export default function Contact() {
     const validateForm = (): boolean => {
         const errors: Partial<typeof formData> = {};
         let isValid = true;
+        const minLength = 2; // Minimum length for text fields
 
-        if (!formData.fullName.trim()) {
-            errors.fullName = 'Full Name is required.';
+        if (!formData.fullName.trim() || formData.fullName.trim().length < minLength) {
+            errors.fullName = `Full Name is required and must be at least ${minLength} characters.`;
             isValid = false;
         }
         if (!formData.email.trim()) {
@@ -38,12 +39,12 @@ export default function Contact() {
             errors.phone = 'Invalid phone number format.';
             isValid = false;
         }
-        if (!formData.subject.trim()) {
-            errors.subject = 'Subject is required.';
+        if (!formData.subject.trim() || formData.subject.trim().length < minLength) {
+            errors.subject = `Subject is required and must be at least ${minLength} characters.`;
             isValid = false;
         }
-        if (!formData.message.trim()) {
-            errors.message = 'Message is required.';
+        if (!formData.message.trim() || formData.message.trim().length < minLength) {
+            errors.message = `Message is required and must be at least ${minLength} characters.`;
             isValid = false;
         }
 
