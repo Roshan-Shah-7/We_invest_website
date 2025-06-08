@@ -59,7 +59,7 @@ const WhyUs: React.FC = () => {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: 'top 80%',
-                    toggleActions: "play reverse play reverse",
+                    toggleActions: "play none none none",
                 },
             }
         );
@@ -73,7 +73,7 @@ const WhyUs: React.FC = () => {
                 trigger: containerRef.current,
                 start: "top 80%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
             }
         });
 
@@ -105,7 +105,7 @@ const WhyUs: React.FC = () => {
                 </h2>
 
                 <p className="text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed text-brand_text_secondary">
-                    At Wee Invest Global Pvt. Ltd., we believe in the power of ideas to change the world.
+                    At We Invest Global Pvt. Ltd., we believe in the power of ideas to change the world.
                     Our mission is to fuel the dreams of visionaries by providing resources, mentorship,
                     and capital to turn bold concepts into thriving businesses.
                 </p>

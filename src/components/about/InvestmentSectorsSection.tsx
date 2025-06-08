@@ -112,12 +112,12 @@ const InvestmentSectorsSection = () => {
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#00C853]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <CardContent className="p-8 relative">
-                                    <div className="border-orange-900 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <LandPlot className="h-8 w-8 text-black" />
+                                    <div className="bg-orange-950 rounded-2xl p-4 w-16 h-16 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                        <LandPlot className="h-8 w-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-[#333333] mb-4">Agriculture/Agri-Tech</h3>
                                     <p className="text-[#666666] mb-4">We invest in sustainable farming practices and food security solutions to combat unsustainable practices and global food challenges. Our focus is on building resilient, eco-friendly agricultural systems with economic benefits.</p>
-                                    <div className="text-2xl font-bold text-orange-900">12%</div>
+                                    <div className="text-2xl font-bold text-orange-950">12%</div>
                                     <div className="text-sm text-[#666666]">Portfolio Allocation</div>
                                 </CardContent>
                             </div>

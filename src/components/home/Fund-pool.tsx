@@ -48,7 +48,7 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                     scrollTrigger: {
                         trigger: cardRef.current,
                         start: "top 80%",
-                        toggleActions: "play reverse play reverse",
+                        toggleActions: "play none none none",
                     },
                 }
             )

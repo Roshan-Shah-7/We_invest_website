@@ -82,7 +82,7 @@ const MissionSection = () => {
                             <span className="text-[#00C853] text-sm font-medium">Our Mission</span>
                         </div>
 
-                        <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-[#333333] mb-8 leading-tight">
+                        <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-[#333333] mb-8">
                             Transforming Ideas Into
                             <span className="block text-[#00695C]">Industry Leaders</span>
                         </h2>
@@ -155,7 +155,7 @@ const MissionSection = () => {
 
                                 <div ref={el => { statRefs.current[1] = el; }} className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-[#00C853]">Rs 2.5cr</div>
+                                        <div className="text-2xl font-bold text-[#00C853]">Rs 2.5Cr</div>
                                         <div className="text-xs text-[#666666]">Capital Deployed</div>
                                     </div>
                                 </div>

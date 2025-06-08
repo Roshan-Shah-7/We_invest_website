@@ -17,7 +17,7 @@ export default function Portfolio() {
                 trigger: sectionRef.current,
                 start: "top 80%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
             }
         });
 
@@ -63,13 +63,13 @@ export default function Portfolio() {
                         Creative | Digital | Innovative <span className="text-[#00695C]">Solutions</span>
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Our projects are currently under construction. Please check back later for updates on our innovative solutions!
+                        Our projects are currently under construction. Please check back later for updates on our innovative solutions! <br />
+                        We are excited to showcase our creatice & inovative solutions soon!
                     </p>
                 </div>
 
                 {/* Polite message instead of cards */}
                 <div className="text-center text-gray-700 text-lg">
-                    <p>We are currently working on exciting new projects to showcase our creative solutions.</p>
                     <p>Stay tuned for updates!</p>
                 </div>
             </div>

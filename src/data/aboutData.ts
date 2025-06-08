@@ -27,7 +27,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Laxmi Dangol",
         role: "Founding Leader",
-        description: "Key leader Laxmi drives operational efficiency and financial performance, steering the company's strategic direction to ensure sustainable growth for our partners.",
+        description: "As our Founding Leader, Laxmi is instrumental in driving operational efficiency and financial performance. She steers the company's strategic direction, ensuring sustainable growth for all our partners.",
         avatarFallback: "LD",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00BCD4",
@@ -37,7 +37,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Keshab Jaisi",
         role: "Talent Scout",
-        description: "Talent scout Keshab identifies high-potential ventures and builds strategic partnerships, turning visionary ideas into reality with his sharp insight and expertise.",
+        description: "Keshab is our keen Talent Scout, expertly identifying high-potential ventures and cultivating strategic partnerships. His sharp insight and expertise are key to turning visionary ideas into tangible realities.",
         avatarFallback: "KJ",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00BCD4",
@@ -47,7 +47,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Bipendra Chudal",
         role: "Analytics Expert",
-        description: "Analytical expert Bipendra provides data-driven insights for investment strategies, keeping us ahead in dynamic markets with his sharp analytical skills.",
+        description: "Our Analytics Expert, Bipendra, provides crucial data-driven insights that inform our investment strategies. His sharp analytical skills keep us ahead in dynamic markets.",
         avatarFallback: "BC",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00BCD4",
@@ -57,7 +57,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Yubraj Sharma",
         role: "NEPSE Analyst",
-        description: "NEPSE analyst Yubraj optimises portfolio performance by analysing Nepal's stock market trends, delivering actionable insights for local investments.",
+        description: "Yubraj, our NEPSE Analyst, optimizes portfolio performance by meticulously analyzing Nepal's stock market trends. He delivers actionable insights crucial for our local investments.",
         avatarFallback: "YS",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00C853",
@@ -67,7 +67,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Sushil Silwal",
         role: "Financial & Project Advisor",
-        description: "As a financial and project advisor, Sushil ensures ventures are financially sound with strategic guidance on funding and project execution.",
+        description: "As our Financial & Project Advisor, Sushil ensures that ventures are financially sound. He provides strategic guidance on funding and precise project execution.",
         avatarFallback: "SS",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00695C",
@@ -77,7 +77,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Jyotika Thapa",
         role: "Operations Head",
-        description: "Operations Head, Jyotika, streamlines workflows and enhances efficiency, ensuring seamless project execution with her strategic leadership and operational expertise.",
+        description: "Jyotika, our Operations Head, is responsible for streamlining workflows and enhancing efficiency. Her strategic leadership and operational expertise ensure seamless project execution.",
         avatarFallback: "JT",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00C853",
@@ -87,7 +87,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Ana Magar",
         role: "Market Analyst",
-        description: "Head Research Analyst, Ana drives strategic decisions with in-depth market research, identifying high-potential opportunities through data-driven insights.",
+        description: "Ana, our Head Research Analyst, drives strategic decisions through in-depth market research. She excels at identifying high-potential opportunities with her data-driven insights.",
         avatarFallback: "AM",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00695C",
@@ -97,7 +97,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Alish Dangol",
         role: "Social Media Manager",
-        description: "Social media manager Alish boosts brand visibility with creative digital campaigns, connecting our community through innovative engagement strategies.",
+        description: "Alish, our Social Media Manager, boosts brand visibility through creative digital campaigns. He expertly connects our community with innovative engagement strategies.",
         avatarFallback: "AD",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00695C",
@@ -107,7 +107,7 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Roisha Dangol",
         role: "HR Manager",
-        description: "HR Manager Roisha fosters a vibrant team culture, recruiting top talent and driving employee growth to support our mission with strategic human resources expertise.",
+        description: "As HR Manager, Roisha is dedicated to fostering a vibrant team culture. She recruits top talent and drives employee growth, providing strategic human resources expertise essential to our mission.",
         avatarFallback: "RD",
         avatarSrc: "/placeholder.svg?height=96&width=96",
         bgColorFrom: "#00695C",

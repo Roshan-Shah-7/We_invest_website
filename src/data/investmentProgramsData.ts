@@ -17,7 +17,7 @@ export const investmentPrograms: Program[] = [
     {
         id: 'vcip',
         title: 'Venture Capital Investment Programme (VCIP)',
-        overview: 'The Venture Capital Investment Programme (VCIP) is a flagship initiative targeting early-stage and growth-stage startups with high potential for market disruption, particularly in technology-driven sectors. VCIP bridges the funding gap for innovative ventures, providing capital and strategic support to fuel rapid growth.',
+        overview: 'The Venture Capital Investment Programme (VCIP) is a flagship initiative targeting early-stage and growth-stage startups with high potential for market disruption, particularly in technology-driven sectors. VCIP bridges the funding gap for innovative ventures, providing essential captial & strategic support to fuel vapid growth.',
         keyFeatures: [
             'Predictable Returns: Fixed returns based on group selection.',
             'Transparent Process: Third - party audits ensure accountability.',
@@ -25,18 +25,18 @@ export const investmentPrograms: Program[] = [
             'Capital Protection: Full initial investment returned upon selection.'
         ],
         benefits: [
-            'Registration & KYC: Submit details and documentation.',
-            'Slot Allotment: Enter selection pool and await draw notification.',
-            'Investment Confirmation: Finalise investment and receive agreements.',
-            'Capital Deployment: Funds invested in pre-screened ventures.',
-            'Payout: Receive structured returns upon term completion.',
+            'Access to Vetted Ventures: Invest in carefully screened, high-potential early and growth-stage startups.',
+            'Predictable Returns: Enjoy clear, fixed returns based on group selection.',
+            'Strong Capital Protection: Your initial investment is fully protected and returned, minimizing risk.',
+            'Audited Transparency: Benefit from a fully transparent process ensured by third-party audits.',
+            'Fair Participation: Our randomized draw provides an equal opportunity for all investors to join.',
         ],
         imageUrl: VCIP, // Using imported image module
     },
     {
         id: 'pool-funding',
         title: 'Our Pool Funding Programme',
-        overview: 'Our Pool Funding programme allows multiple investors to combine resources into a single, diversified investment vehicle, offering a tentaively 12% annual return. This programme is ideal for risk-averse investors seeking consistent income with lower volatility.',
+        overview: 'Our Pool Funding programme allows multiple investors to combine resources into a single, diversified investment vehicle, projective tentaively 12% annual return. This programme is ideal for risk-averse investors seeking consistent income with lower volatility.',
         keyFeatures: [
             'Pooled Capital: Investors contribute to a collective fund, enabling access to large-scale opportunities in real estate, equities, and fixed-income assets.',
             'Fixed Return: Tentaively 12% annual return, distributed quarterly, based on the fund’s performance.',

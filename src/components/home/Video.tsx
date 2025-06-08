@@ -28,9 +28,9 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: "top 40%",
+                start: "top 80%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
             }
         });
 

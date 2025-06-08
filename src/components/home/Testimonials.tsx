@@ -20,14 +20,14 @@ const Testimonials: React.FC = () => {
 
     const testimonials: Testimonial[] = [
         {
-            quote: "We invest's mentorship help turn my software concept into reality. They didn't just investment in my idea, they provided a space team and professional assistance crucial for it's development.",
+            quote: "We invest's mentorship helped turn my software concept into reality. They didn't just investment in my idea, they provided a space team and professional assistance crucial for it's development.",
             name: 'Roshan Shah',
             title: 'Founder',
             company: 'AgroSewa',
             logo: 'https://placehold.co/600x600/E5E7EB/0F172A?text=EcoInnovate&font=noto',
         },
         {
-            quote: "We Invests support for product expansion and distribution was instrumental. They made it possible for us to enter three new markets in a single year, which is an incredible accomplishment.",
+            quote: "We Invest's support for product expansion and distribution was instrumental. They made it possible for us to enter three new markets in a single year, which is an incredible accomplishment.",
             name: 'Urja Tamrakar',
             title: 'Co-Founder',
             company: 'Vatsala Aroma Products',
@@ -50,7 +50,7 @@ const Testimonials: React.FC = () => {
                 trigger: sectionRef.current,
                 start: "top 60%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
             }
         });
 
@@ -58,21 +58,21 @@ const Testimonials: React.FC = () => {
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
         )
-        .fromTo(q(".mb-16 > p"),
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
-            "<0.2"
-        )
-        .fromTo(q(".grid > div"),
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
-            "<0.5"
-        )
-        .fromTo(q(".text-center > h3, .text-center > p, .text-center > a"),
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
-            "<0.5"
-        );
+            .fromTo(q(".mb-16 > p"),
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+                "<0.2"
+            )
+            .fromTo(q(".grid > div"),
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
+                "<0.5"
+            )
+            .fromTo(q(".text-center > h3, .text-center > p, .text-center > a"),
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
+                "<0.5"
+            );
 
         return () => {
             tl.kill();

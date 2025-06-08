@@ -2,8 +2,8 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Loader2, Download } from 'lucide-react';
+import { useEffect, useState, useCallback } from 'react';
+import { Loader2, Download, RefreshCw } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar'; // Import AdminSidebar
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -11,46 +11,56 @@ import { Button } from "@/components/ui/button";
 // Define interfaces for the data types
 interface Contact {
   _id: string;
-  name: string;
+  fullName: string;
   email: string;
+  phone: string;
+  subject: string;
   message: string;
   createdAt: string;
 }
 
-interface Investment {
+interface IndividualInvestmentDetails {
+  fullName?: string;
+  investmentAmount?: number;
+  occupation?: string;
+  sourceOfFunds?: string;
+  investmentExperience?: string;
+  message?: string;
+}
+
+interface StartupInvestmentDetails {
+  startupName?: string;
+  industry?: string;
+  contactPerson?: string;
+  investmentAmount?: number; // Use investmentAmount from model
+  pitchDeck?: string; // Re-added
+  businessPlan?: string; // Re-added (assuming if pitchDeck is there, businessPlan might also be, or could be added later)
+  startupStage?: string; // Added from model
+  teamSize?: number; // Added from model
+  message?: string; // This is the idea description
+}
+
+interface BusinessInvestmentDetails {
+  companyName?: string;
+  industry?: string;
+  contactPerson?: string;
+  investmentAmount?: number;
+  businessDescription?: string;
+  yearsInOperation?: number;
+  annualRevenue?: number;
+  message?: string;
+}
+
+type Investment = {
   _id: string;
-  type: string; // 'individual', 'business', 'startup'
   email: string;
   phone?: string;
   createdAt: string;
-
-  // IndividualInvestment fields
-  fullName?: string;
-  investmentAmount?: number; // Used by individual, startup, business
-  occupation?: string;
-  message?: string; // Used by individual, contact, business, startup
-
-  // StartupInvestment fields
-  startupName?: string;
-  industry?: string; // Used by startup, business
-  contactPerson?: string; // Used by startup, business
-  pitchDeck?: string;
-  businessPlan?: string;
-  ideaDescription?: string; // Assuming this maps to message for startup
-  teamDescription?: string;
-  marketAnalysis?: string;
-  financialProjections?: string;
-  fundingRequired?: number;
-  returnExpectations?: string;
-
-  // BusinessInvestment fields
-  companyName?: string;
-  businessDescription?: string; // Assuming this maps to message for business
-  yearsInOperation?: number;
-  annualRevenue?: number;
-  employees?: number;
-  reasonForInvestment?: string;
-}
+} & (
+  | ({ type: 'individual' } & IndividualInvestmentDetails)
+  | ({ type: 'startup' } & StartupInvestmentDetails)
+  | ({ type: 'business' } & BusinessInvestmentDetails)
+);
 
 interface Newsletter {
   _id: string;
@@ -111,40 +121,40 @@ export default function AdminDashboard() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (status === 'authenticated') {
-        setDataLoading(true);
-        setDataError(null);
-        try {
-          const [contactsRes, investmentsRes, newslettersRes] = await Promise.all([
-            fetch('/api/admin/contacts'),
-            fetch('/api/admin/investments'),
-            fetch('/api/admin/newsletters'),
-          ]);
+  const fetchData = useCallback(async () => {
+    if (status === 'authenticated') {
+      setDataLoading(true);
+      setDataError(null);
+      try {
+        const [contactsRes, investmentsRes, newslettersRes] = await Promise.all([
+          fetch('/api/admin/contacts'),
+          fetch('/api/admin/investments'),
+          fetch('/api/admin/newsletters'),
+        ]);
 
-          if (!contactsRes.ok || !investmentsRes.ok || !newslettersRes.ok) {
-            throw new Error('Failed to fetch data');
-          }
-
-          const contactsData = await contactsRes.json();
-          const investmentsData = await investmentsRes.json();
-          const newslettersData = await newslettersRes.json();
-
-          setContacts(contactsData.data);
-          setInvestments(investmentsData.data);
-          setNewslatters(newslettersData.data);
-        } catch (error) {
-          console.error('Error fetching admin data:', error);
-          setDataError('Failed to load data. Please try again.');
-        } finally {
-          setDataLoading(false);
+        if (!contactsRes.ok || !investmentsRes.ok || !newslettersRes.ok) {
+          throw new Error('Failed to fetch data');
         }
-      }
-    };
 
+        const contactsData = await contactsRes.json();
+        const investmentsData = await investmentsRes.json();
+        const newslettersData = await newslettersRes.json();
+
+        setContacts(contactsData.data);
+        setInvestments(investmentsData.data);
+        setNewslatters(newslettersData.data);
+      } catch (error) {
+        console.error('Error fetching admin data:', error);
+        setDataError('Failed to load data. Please try again.');
+      } finally {
+        setDataLoading(false);
+      }
+    }
+  }, [status]); // Dependencies for useCallback
+
+  useEffect(() => {
     fetchData();
-  }, [status]); // Re-fetch when authentication status changes
+  }, [fetchData]); // Re-fetch when fetchData changes (due to status change)
 
   if (status === 'loading') {
     return <div className="min-h-screen flex items-center justify-center bg-gray-100">Loading authentication...</div>;
@@ -172,15 +182,26 @@ export default function AdminDashboard() {
                   <section>
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-2xl font-semibold text-gray-700">Investment Forms ({investments.length})</h3>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDownloadPdf('investments', investments)}
-                        disabled={investments.length === 0}
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
-                      </Button>
+                      <div className="flex space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={fetchData}
+                          disabled={dataLoading}
+                        >
+                          <RefreshCw className={`h-4 w-4 mr-2 ${dataLoading ? 'animate-spin' : ''}`} />
+                          Refresh
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownloadPdf('investments', investments)}
+                          disabled={investments.length === 0 || dataLoading}
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download PDF
+                        </Button>
+                      </div>
                     </div>
                     {investments.length === 0 ? (
                       <p className="text-gray-500">No investment forms found.</p>
@@ -208,8 +229,9 @@ export default function AdminDashboard() {
                                       investment.type === 'business' ? investment.companyName || 'N/A' : 'N/A'}
                                 </td>
                                 <td className="py-2 px-4 border-b">
-                                  {investment.investmentAmount ? `Rs ${investment.investmentAmount.toLocaleString()}` :
-                                    investment.fundingRequired ? `Rs ${investment.fundingRequired.toLocaleString()}` : 'N/A'}
+                                  {investment.type === 'individual' && investment.investmentAmount ? `Rs ${investment.investmentAmount.toLocaleString()}` :
+                                    investment.type === 'business' && investment.investmentAmount ? `Rs ${investment.investmentAmount.toLocaleString()}` :
+                                      investment.type === 'startup' && investment.investmentAmount ? `Rs ${investment.investmentAmount.toLocaleString()}` : 'N/A'}
                                 </td>
                                 <td className="py-2 px-4 border-b">{new Date(investment.createdAt).toLocaleDateString()}</td>
                                 <td className="py-2 px-4 border-b">
@@ -235,15 +257,26 @@ export default function AdminDashboard() {
                   <section>
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-2xl font-semibold text-gray-700">Contact Submissions ({contacts.length})</h3>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDownloadPdf('contacts', contacts)}
-                        disabled={contacts.length === 0}
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
-                      </Button>
+                      <div className="flex space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={fetchData}
+                          disabled={dataLoading}
+                        >
+                          <RefreshCw className={`h-4 w-4 mr-2 ${dataLoading ? 'animate-spin' : ''}`} />
+                          Refresh
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownloadPdf('contacts', contacts)}
+                          disabled={contacts.length === 0 || dataLoading}
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download PDF
+                        </Button>
+                      </div>
                     </div>
                     {contacts.length === 0 ? (
                       <p className="text-gray-500">No contact submissions found.</p>
@@ -261,7 +294,7 @@ export default function AdminDashboard() {
                           <tbody>
                             {contacts.map((contact) => (
                               <tr key={contact._id} className="hover:bg-gray-50">
-                                <td className="py-2 px-4 border-b">{contact.name || 'N/A'}</td>
+                                <td className="py-2 px-4 border-b">{contact.fullName || 'N/A'}</td>
                                 <td className="py-2 px-4 border-b">{contact.email}</td>
                                 <td className="py-2 px-4 border-b">{contact.message}</td>
                                 <td className="py-2 px-4 border-b">{new Date(contact.createdAt).toLocaleDateString()}</td>
@@ -278,15 +311,26 @@ export default function AdminDashboard() {
                   <section>
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-2xl font-semibold text-gray-700">Newsletter Subscriptions ({newsletters.length})</h3>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDownloadPdf('newsletters', newsletters)}
-                        disabled={newsletters.length === 0}
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
-                      </Button>
+                      <div className="flex space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={fetchData}
+                          disabled={dataLoading}
+                        >
+                          <RefreshCw className={`h-4 w-4 mr-2 ${dataLoading ? 'animate-spin' : ''}`} />
+                          Refresh
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDownloadPdf('newsletters', newsletters)}
+                          disabled={newsletters.length === 0 || dataLoading}
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download PDF
+                        </Button>
+                      </div>
                     </div>
                     {newsletters.length === 0 ? (
                       <p className="text-gray-500">No newsletter subscriptions found.</p>
@@ -364,18 +408,14 @@ export default function AdminDashboard() {
                           <div>{selectedInvestment.industry || 'N/A'}</div>
                           <div className="font-semibold">Contact Person:</div>
                           <div>{selectedInvestment.contactPerson || 'N/A'}</div>
-                          <div className="font-semibold">Funding Required:</div>
-                          <div>{selectedInvestment.fundingRequired ? `Rs ${selectedInvestment.fundingRequired.toLocaleString()}` : 'N/A'}</div>
-                          <div className="font-semibold">Idea Description:</div>
-                          <div>{selectedInvestment.ideaDescription || selectedInvestment.message || 'N/A'}</div>
-                          <div className="font-semibold">Team Description:</div>
-                          <div>{selectedInvestment.teamDescription || 'N/A'}</div>
-                          <div className="font-semibold">Market Analysis:</div>
-                          <div>{selectedInvestment.marketAnalysis || 'N/A'}</div>
-                          <div className="font-semibold">Financial Projections:</div>
-                          <div>{selectedInvestment.financialProjections || 'N/A'}</div>
-                          <div className="font-semibold">Return Expectations:</div>
-                          <div>{selectedInvestment.returnExpectations || 'N/A'}</div>
+                          <div className="font-semibold">Investment Amount:</div>
+                          <div>{selectedInvestment.investmentAmount ? `Rs ${selectedInvestment.investmentAmount.toLocaleString()}` : 'N/A'}</div>
+                          <div className="font-semibold">Startup Stage:</div>
+                          <div>{selectedInvestment.startupStage || 'N/A'}</div>
+                          <div className="font-semibold">Team Size:</div>
+                          <div>{selectedInvestment.teamSize || 'N/A'}</div>
+                          <div className="font-semibold">Message:</div>
+                          <div>{selectedInvestment.message || 'N/A'}</div>
                           <div className="font-semibold">Pitch Deck:</div>
                           <div>{selectedInvestment.pitchDeck ? <a href={selectedInvestment.pitchDeck} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View</a> : 'N/A'}</div>
                           <div className="font-semibold">Business Plan:</div>
@@ -399,10 +439,6 @@ export default function AdminDashboard() {
                           <div>{selectedInvestment.yearsInOperation || 'N/A'}</div>
                           <div className="font-semibold">Annual Revenue:</div>
                           <div>{selectedInvestment.annualRevenue ? `Rs ${selectedInvestment.annualRevenue.toLocaleString()}` : 'N/A'}</div>
-                          <div className="font-semibold">Employees:</div>
-                          <div>{selectedInvestment.employees || 'N/A'}</div>
-                          <div className="font-semibold">Reason for Investment:</div>
-                          <div>{selectedInvestment.reasonForInvestment || 'N/A'}</div>
                         </>
                       )}
                     </div>

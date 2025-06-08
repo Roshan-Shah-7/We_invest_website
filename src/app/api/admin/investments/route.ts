@@ -26,11 +26,15 @@ export async function GET(req: Request) {
         return {
           _id: obj._id,
           type: 'individual',
-          name: obj.fullName,
+          fullName: obj.fullName,
           email: obj.email,
-          amount: obj.investmentAmount,
+          phone: obj.phone, // Add phone
+          investmentAmount: obj.investmentAmount,
+          occupation: obj.occupation, // Add occupation
+          sourceOfFunds: obj.sourceOfFunds, // Add sourceOfFunds
+          investmentExperience: obj.investmentExperience, // Add investmentExperience
+          message: obj.message, // Add message
           createdAt: obj.createdAt,
-          // companyName will be undefined for individual, which is fine
         };
       }),
       ...startupInvestments.map(doc => {
@@ -38,10 +42,17 @@ export async function GET(req: Request) {
         return {
           _id: obj._id,
           type: 'startup',
-          name: obj.contactPerson, // Map contactPerson to name
+          contactPerson: obj.contactPerson,
           email: obj.email,
-          amount: obj.investmentAmount,
-          companyName: obj.startupName, // Map startupName to companyName
+          phone: obj.phone, // Add phone
+          investmentAmount: obj.investmentAmount,
+          startupName: obj.startupName,
+          industry: obj.industry,
+          pitchDeck: obj.pitchDeck,
+          businessPlan: obj.businessPlan,
+          startupStage: obj.startupStage, // Added from model
+          teamSize: obj.teamSize, // Added from model
+          message: obj.message,
           createdAt: obj.createdAt,
         };
       }),
@@ -50,16 +61,18 @@ export async function GET(req: Request) {
         return {
           _id: obj._id,
           type: 'business',
-          name: obj.contactPerson, // Map contactPerson to name
+          contactPerson: obj.contactPerson,
           email: obj.email,
-          amount: obj.investmentAmount,
+          phone: obj.phone, // Add phone
+          investmentAmount: obj.investmentAmount,
           companyName: obj.companyName,
           industry: obj.industry,
-          businessDescription: obj.message || obj.businessPlan, // Use message or businessPlan for description
+          businessDescription: obj.message || obj.businessPlan,
           yearsInOperation: obj.yearsInOperation,
           annualRevenue: obj.annualRevenue,
           employees: obj.employees,
           reasonForInvestment: obj.reasonForInvestment,
+          message: obj.message, // Add message
           createdAt: obj.createdAt,
         };
       }),

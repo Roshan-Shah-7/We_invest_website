@@ -63,10 +63,9 @@ const TeamSection = () => {
                     <div ref={introBadgeRef} className="inline-flex items-center px-3 py-1 bg-[#E8F5E9] rounded-full mb-6">
                         <span className="text-[#00C853] text-sm font-medium">Our Team</span>
                     </div>
-                    <h2 ref={introTitleRef} className="text-4xl md:text-5xl font-bold text-[#333333] mb-6">Meet Our Visionaries</h2>
+                    <h2 ref={introTitleRef} className="text-4xl md:text-5xl font-bold text-[#333333] mb-6">Our Visionaries Team</h2>
                     <p ref={introParagraphRef} className="text-xl text-[#666666] max-w-3xl mx-auto">
-                        A diverse group of innovators, strategists, and industry experts united by a shared mission to reshape the
-                        entrepreneurial landscape.
+                        Meet the dedicated individuals who drive our mission to reshape the entrepreneurial landscape, a diverse group of innovators, strategists, and industry experts united by a shared commitment to your success.
                     </p>
                 </div>
 
