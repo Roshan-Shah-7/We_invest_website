@@ -52,11 +52,15 @@ const getGreeting = () => {
     return 'Good evening!';
 };
 
+import { Volume2, VolumeX } from 'lucide-react'; // Import icons
+
 const HeroSection: React.FC = () => {
     const [greeting, setGreeting] = useState(getGreeting());
     const [showLottie, setShowLottie] = useState(false);
     const [animationData, setAnimationData] = useState<any>(null);
     const lottieRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null); // Ref for video element
+    const [isMuted, setIsMuted] = useState(true); // State for mute status
 
     const [text] = useTypewriter({
         words: [
@@ -89,6 +93,12 @@ const HeroSection: React.FC = () => {
         return () => observer.disconnect();
     }, []);
 
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !videoRef.current.muted;
+            setIsMuted(videoRef.current.muted);
+        }
+    };
 
     return (
         <>
@@ -144,16 +154,29 @@ const HeroSection: React.FC = () => {
             </section>
 
             {/* Video Section */}
-            <section className="w-[95%] mt-16 mb-16">
+            <section className="w-[95%] mt-16 mb-16 relative"> {/* Added relative for positioning button */}
                 <video
+                    ref={videoRef} // Add ref to video
                     src="/hero_video.mp4"
                     autoPlay
                     loop
-                    muted={false}
+                    muted={isMuted} // Use state for muted
                     playsInline
                     preload="none"
                     className="rounded-[2rem] w-full h-[80vh] object-cover"
                 ></video>
+                <button
+                    onClick={toggleMute}
+                    className="absolute bottom-8 right-8 bg-white/70 backdrop-blur-sm p-3 rounded-full shadow-lg
+                               hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand_teal"
+                    aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                    {isMuted ? (
+                        <VolumeX className="h-6 w-6 text-slate-700" />
+                    ) : (
+                        <Volume2 className="h-6 w-6 text-slate-700" />
+                    )}
+                </button>
             </section>
         </>
     );
