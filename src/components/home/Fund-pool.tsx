@@ -47,8 +47,8 @@ const FundPoolCard = ({ fund, index }: FundPoolCardProps) => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: cardRef.current,
-                        start: "top 95%", // Adjusted for earlier trigger
-                        toggleActions: "play reverse play reverse", // Added for reverse animation
+                        start: "top 80%",
+                        toggleActions: "play reverse play reverse",
                     },
                 }
             )
@@ -198,9 +198,8 @@ export default function FundPoolComponent({
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: "top 95%",
+                start: "top 80%",
                 end: "bottom 20%",
-                scrub: 1,
                 toggleActions: "play reverse play reverse",
             }
         });

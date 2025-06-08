@@ -15,9 +15,8 @@ export default function Portfolio() {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: "top 95%",
+                start: "top 80%",
                 end: "bottom 20%",
-                scrub: 1,
                 toggleActions: "play reverse play reverse",
             }
         });

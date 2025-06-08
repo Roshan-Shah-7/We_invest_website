@@ -58,8 +58,8 @@ const WhyUs: React.FC = () => {
                 stagger: 0.2,
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top 95%', // Adjusted for earlier trigger
-                    toggleActions: "play reverse play reverse", // Added for reverse animation
+                    start: 'top 80%',
+                    toggleActions: "play reverse play reverse",
                 },
             }
         );
@@ -71,10 +71,9 @@ const WhyUs: React.FC = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top 95%", // Adjusted for earlier trigger
+                start: "top 80%",
                 end: "bottom 20%",
-                scrub: 1,
-                toggleActions: "play reverse play reverse", // Added for reverse animation
+                toggleActions: "play reverse play reverse",
             }
         });
 

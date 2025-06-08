@@ -7,9 +7,10 @@ interface AnimatedCounterProps {
     duration?: number;
     prefix?: string;
     suffix?: string;
+    decimalPlaces?: number;
 }
 
-const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "" }: AnimatedCounterProps) => {
+const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "", decimalPlaces }: AnimatedCounterProps) => {
     const [count, setCount] = useState(0)
 
     useEffect(() => {
@@ -17,7 +18,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "" }: Ani
         const animate = (currentTime: number) => {
             if (startTime === null) startTime = currentTime
             const progress = Math.min((currentTime - startTime) / duration, 1)
-            setCount(Math.floor(progress * end))
+            setCount(progress * end)
             if (progress < 1) {
                 requestAnimationFrame(animate)
             }
@@ -28,7 +29,7 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "" }: Ani
     return (
         <span className="font-bold">
             {prefix}
-            {count.toLocaleString()}
+            {decimalPlaces !== undefined ? count.toFixed(decimalPlaces) : count.toLocaleString()}
             {suffix}
         </span>
     )

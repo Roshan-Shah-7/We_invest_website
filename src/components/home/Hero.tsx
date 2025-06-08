@@ -149,7 +149,7 @@ const HeroSection: React.FC = () => {
                     src="/hero_video.mp4"
                     autoPlay
                     loop
-                    muted={true}
+                    muted={false}
                     playsInline
                     preload="none"
                     className="rounded-[2rem] w-full h-[80vh] object-cover"

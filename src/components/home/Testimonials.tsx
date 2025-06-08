@@ -48,9 +48,8 @@ const Testimonials: React.FC = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: "top 95%",
+                start: "top 60%",
                 end: "bottom 20%",
-                scrub: 1,
                 toggleActions: "play reverse play reverse",
             }
         });
