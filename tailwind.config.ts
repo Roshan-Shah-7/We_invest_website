@@ -5,6 +5,7 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/data/**/*.{js,ts,jsx,tsx}", // Add this line to scan data files
   ],
   theme: {
     extend: {
@@ -18,6 +19,8 @@ export default {
         warm_gray: '#E0E0E0',
         bright_cyan: '#00BCD4',
         golden_yellow: '#FFD54F',
+        brand_purple: '#8b5cf6',
+        brand_red: '#ef4444',
       },
       animation: {
         'gradient-x': 'gradient-x 5s ease infinite',

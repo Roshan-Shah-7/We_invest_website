@@ -187,14 +187,15 @@ const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, to
                                         onClick={() => comparisonMode ? toggleSectorComparison(sector.id) : handleSectorClick(sector)}
                                     >
                                         <Card
-                                            className={`h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 ${isCompared ? "ring-2 ring-purple-500" : ""
+                                            className={`h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 
+                                                ${isCompared ? "ring-2 ring-purple-500" : ""
                                                 }`}
                                         >
                                             <CardContent className="p-6 h-full flex flex-col">
                                                 <div className="flex items-center justify-between mb-4">
                                                     <div className="flex items-center space-x-3">
                                                         <div
-                                                            className={`bg-gradient-to-br ${sector.bgColor} rounded-xl p-3 flex items-center justify-center`}
+                                                            className={`${sector.bgColor} rounded-xl p-3 flex items-center justify-center`}
                                                         >
                                                             <Icon className="h-6 w-6 text-white" />
                                                         </div>
@@ -237,7 +238,7 @@ const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, to
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div className="text-sm text-slate-500 mb-1">Risk Profile</div>
+                                                        <div className="text-sm text-slate-500 mb-1">Risk Level</div>
                                                         <Badge
                                                             variant="outline"
                                                             className={`
@@ -264,7 +265,7 @@ const SectorOverviewSection = ({ sectors, handleSectorClick, comparedSectors, to
                                                 </div>
                                                 {!comparisonMode && (
                                                     <Button
-                                                        className="mt-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-800"
+                                                        className="mt-8 w-full bg-slate-100 hover:bg-slate-200 text-slate-800"
                                                         onClick={(e) => {
                                                             e.stopPropagation()
                                                             handleSectorClick(sector)
