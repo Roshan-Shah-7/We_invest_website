@@ -102,15 +102,12 @@ const HeroSection: React.FC = () => {
 
     return (
         <>
-            <section className="hero-section-container relative flex
+            <section className="hero-section-container relative flex mt-6
         flex-col items-center justify-start overflow-hidden text-black pt-24 sm:pt-32 lg:pt-20 px-4 sm:px-6">
 
                 {/* Hero Section */}
                 <div className="relative z-10 w-full max-w-7xl flex flex-col lg:flex-row items-start justify-between">
-                    <div className="w-full lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
-                        <div className="slogan mb-2">
-                            <h2 className='italic'>"Beyond returns. Building legacies"</h2>
-                        </div>
+                    <div className="w-full lg:w-3/5 text-center lg:text-left">
                         <AnimatedHeadline
                             text="Grow Your Startup with"
                             style="text-slate-700 text-3xl sm:text-4xl"
@@ -128,7 +125,7 @@ const HeroSection: React.FC = () => {
                         </h2>
                     </div>
 
-                    <div ref={lottieRef} className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end mt-8 lg:mt-0">
+                    <div ref={lottieRef} className="w-full lg:w-2/5 xl:w-[45rem] flex justify-center lg:justify-end">
                         {showLottie && animationData && (
                             <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
                                 <Lottie animationData={animationData} loop className="w-full h-auto" />
@@ -141,7 +138,7 @@ const HeroSection: React.FC = () => {
                 <section className="relative z-10 py-10 px-4 sm:px-6 text-gray-900 w-full max-w-7xl">
                     <div className="text-center mb-12 sm:mb-16">
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                            Who <span className="text-brand_teal">We</span> Help?
+                            Who <span className="text-brand_teal">We</span> Help ?
                         </h2>
                         <p className="mt-4 text-lg sm:text-xl text-slate-700 max-w-3xl mx-auto">
                             We are your trusted partner for your financial and entrepreneurial endeavors. We collaborate with founders, teams, and organizations poised for growth and innovation.
@@ -166,18 +163,17 @@ const HeroSection: React.FC = () => {
                     muted={isMuted} // Use state for muted
                     playsInline
                     preload="metadata"
-                    className="m-auto"
                 ></video>
                 <button
                     onClick={toggleMute}
-                    className="absolute bottom-8 right-8 bg-white/70 backdrop-blur-sm p-3 rounded-full shadow-lg
+                    className="absolute bottom-4 right-8 bg-white/70 backdrop-blur-sm p-3 rounded-full shadow-lg
                                hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand_teal"
                     aria-label={isMuted ? "Unmute video" : "Mute video"}
                 >
                     {isMuted ? (
-                        <VolumeX className="h-6 w-6 text-slate-700" />
+                        <VolumeX className="h-4 w-4 md:w-6 md:h-6 text-slate-700" />
                     ) : (
-                        <Volume2 className="h-6 w-6 text-slate-700" />
+                        <Volume2 className="h-4 w-4 md:w-6 md:h-6 text-slate-700" />
                     )}
                 </button>
             </section>

@@ -31,7 +31,7 @@ const HeroSection = () => {
 
     return (
         <section className="relative py-32 px-4 overflow-hidden">
-            <Image
+            {/* <Image
                 src={aboutImages.building}
                 alt="Modern building representing innovation and growth"
                 fill
@@ -39,25 +39,25 @@ const HeroSection = () => {
                 quality={80}
                 priority
                 className="absolute inset-0"
-            />
-            <div className="absolute inset-0">
+            /> */}
+            {/* <div className="absolute inset-0">
                 <div className="absolute inset-0 bg-gradient-to-bl from-[#004D40]/60 via-[#00695C]/30 to-[#00897B]/20"></div>
-            </div>
+            </div> */}
 
             <div className="container mx-auto max-w-6xl relative z-10">
                 <div className="text-center">
                     <div ref={badgeRef} className="inline-flex items-center px-4 py-2 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-full mb-8">
-                        <span className="text-white text-sm font-medium">About We Invest</span>
+                        <span className="text-brand_teal text-sm font-medium">About We Invest</span>
                     </div>
 
-                    <h1 ref={titleRef} className="text-5xl md:text-7xl font-bold text-white mb-8">
+                    <h1 ref={titleRef} className="text-5xl md:text-7xl font-bold text-black mb-8">
                         Where Innovation
-                        <span className="block text-white mt-2">
+                        <span className="block text-brand_teal mt-2">
                             Fuels Growth
                         </span>
                     </h1>
 
-                    <p ref={subtitleRef} className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed mb-12 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-3xl p-4 py-6">
+                    <p ref={subtitleRef} className="md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12 bg-brand_teal/10 backdrop-blur-sm border border-white/30 rounded-3xl p-4 py-6">
                         We are more than an investment firm; we are a dynamic team of visionaries committed to empowering the next
                         generation of entrepreneurs through strategic partnerships and innovative solutions.
                     </p>

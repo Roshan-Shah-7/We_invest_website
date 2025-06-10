@@ -52,7 +52,7 @@ const VideoGallery = ({ videos }: VideoGalleryProps) => {
     return (
         <div ref={sectionRef} className="mx-auto py-12 px-4 bg-gray-100 w-full">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
+                <h1 className="text-2xl lg:text-4xl font-bold mb-4" style={{ color: '#00695C' }}>
                     Real-Time NEPSE Analysis Learn From The Best
                     <br />
                     Watch the Recorded Session Now

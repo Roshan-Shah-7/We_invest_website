@@ -35,20 +35,21 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
       <aside
         className={`
           hidden lg:flex fixed top-0 left-0 w-full z-[10000]
-          bg-white/80 backdrop-blur-md border-b border-brand_teal py-3 shadow-md
+          bg-white/80 backdrop-blur-md border-b border-brand_teal py-2 shadow-md
         `}
       >
         <div className="flex items-center justify-between max-w-7xl w-full mx-auto px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex flex-col items-center gap-2">
             <Image
               src={we_logo}
               alt={LOGO_ALT_TEXT}
-              width={160} // Approximate width based on w-[10rem]
-              height={40} // Approximate height to maintain aspect ratio (160/4 = 40)
-              className="object-contain" // Removed conflicting width class
+              width={190}
+              height={40}
+              className="object-contain"
               priority
             />
+            <h2 className='slogan text-sm mb-1 text-brand_teal italic'>"Beyond returns. Building legacies"</h2>
           </Link>
 
           {/* Nav Links */}
@@ -83,15 +84,16 @@ export default function Header({ }) { // Removed isExpanded and onToggleExpansio
       {/* Mobile Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 bg-white z-50 shadow-md">
         <div className="flex items-center justify-between px-4 py-3">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex flex-col items-center gap-1">
             <Image
               src={we_logo}
-              width={100}
+              width={120}
               height={25}
               alt={LOGO_ALT_TEXT}
-              className="object-contain" // Removed conflicting width class
+              className="object-contain"
               priority
             />
+            <h2 className='slogan text-[0.6rem] mb-1 text-brand_teal italic'>"Beyond returns. Building legacies"</h2>
           </Link>
 
           <button

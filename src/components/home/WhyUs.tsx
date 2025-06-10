@@ -100,11 +100,11 @@ const WhyUs: React.FC = () => {
     return (
         <section className="relative py-20 px-4 md:px-8 lg:px-16">
             <div className="max-w-6xl mx-auto" ref={containerRef}>
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-brand_text_primary mb-12">
-                    Why <span className="text-brand_teal">We</span> Invest?
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-brand_text_primary mb-8">
+                    Why <span className="text-brand_teal">We</span> Invest ?
                 </h2>
 
-                <p className="text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed text-brand_text_secondary">
+                <p className="lg:text-lg text-center mb-16 max-w-4xl mx-auto leading-relaxed text-brand_text_secondary">
                     At We Invest Global Pvt. Ltd., we believe in the power of ideas to change the world.
                     Our mission is to fuel the dreams of visionaries by providing resources, mentorship,
                     and capital to turn bold concepts into thriving businesses.

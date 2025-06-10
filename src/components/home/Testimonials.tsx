@@ -82,12 +82,12 @@ const Testimonials: React.FC = () => {
     return (
         <section ref={sectionRef} className="py-20 bg-gradient-to-br from-background to-muted/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-extrabold text-center text-foreground mb-12">
+                <h2 className="text-3xl lg:text-4xl font-extrabold text-center text-foreground mb-8">
                     What Our <span className='text-brand_teal'>Startups</span> Say
                 </h2>
 
                 <div className="mb-16 text-center">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                    <p className="lg:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                         We're proud to support visionaries who are changing the world. Hear from the founders we've helped succeed.
                     </p>
                 </div>

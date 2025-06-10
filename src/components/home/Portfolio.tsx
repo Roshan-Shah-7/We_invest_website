@@ -59,10 +59,10 @@ export default function Portfolio() {
                         <Zap className="w-4 h-4 text-[#00695C]" />
                         <span className="text-[#00695C] font-semibold text-sm uppercase tracking-wide">Portfolio</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
                         Creative | Digital | Innovative <span className="text-[#00695C]">Solutions</span>
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    <p className="lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                         Our projects are currently under construction. Please check back later for updates on our innovative solutions! <br />
                         We are excited to showcase our creatice & inovative solutions soon!
                     </p>

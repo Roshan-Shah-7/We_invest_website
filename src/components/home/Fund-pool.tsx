@@ -1,8 +1,6 @@
 
 "use client"
 
-"use client"
-
 import { useEffect, useRef, useState, useLayoutEffect } from "react"
 import Image from "next/image"
 import {
@@ -227,7 +225,7 @@ export default function FundPoolComponent({
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-brand_teal mb-4">{title}</h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+                    <p className="lg:text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
